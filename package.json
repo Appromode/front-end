@@ -1,0 +1,20 @@
+{
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "Front end for project marking system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appromode/front-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Appromode/front-end/issues"
+  },
+  "homepage": "https://github.com/Appromode/front-end#readme"
+}
