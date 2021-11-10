@@ -1,0 +1,20 @@
+@import '../../styles/colours.scss';
+
+#navigation {
+  background-color: $default-blue;
+  font-weight: 300;
+  padding: 18px 0px;
+
+  div.navbar-nav {
+    margin: 0px 50px;
+  }
+
+  .navigationToggle {
+    color: $default-white;
+  }
+
+  a {
+    color: $default-white;
+    text-decoration: none;
+  }
+}
