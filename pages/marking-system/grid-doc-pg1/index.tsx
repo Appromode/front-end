@@ -44,12 +44,13 @@ export const Index: FC = () => {
                 }}
               >
                 <Form>
-                  <span className={styles.checkbox}>
-                    <Field type="checkbox" id="none" name="none" placeholder="None or Trivial" />
-                  </span>
                   <FormGroup>
                     <FormLabel htmlFor="none" />
-                    <FormCheck id="none" type="checkbox" label="none" />
+                    <FormCheck id="none" type="checkbox" label="None or trivial" />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormLabel htmlFor="smalltasks" className="checkboxtext" />
+                    <FormCheck id="smalltasks" type="checkbox" label="Small tasks not requiring knowledge from course" />
                   </FormGroup>
                   <div className={styles.formspacer} />
                   <span className={styles.checkbox}>
