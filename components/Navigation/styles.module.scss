@@ -11,6 +11,9 @@
 
   .navigationToggle {
     color: $default-white;
+    border: 1px solid $default-white;
+    padding: 10px;
+    display: flex;
   }
 
   a {
