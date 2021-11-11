@@ -1,0 +1,121 @@
+@import '../styles/colours.scss';
+
+
+.header {
+    background-color: $default-blue;
+    color: $default-white;
+    padding: 20px;
+}
+
+#headertext {
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.subtext1 {
+    font-weight: normal;
+    font-size: medium;
+}
+
+.subtext2 {
+    font-weight: normal;
+    font-size: small;
+}
+
+.progressbar {
+    background-color: $default-lightgrey;
+    color: $default-blue;
+    font-size: small;
+    list-style-type: none;
+}
+
+#pageid {
+    padding-left: 20px;
+    display: inline;
+}
+
+#awardedmark {
+    float: right;
+    padding-right: 20px;
+    display: inline;
+}
+
+#title {
+    color: $default-blue;
+    font-size: medium;
+    padding-left: 20px;
+    padding-top: 30px;
+    font-weight: bold;
+}
+
+.subtitle {
+    padding-left: 20px;
+    padding-top: 20px;
+    color: $default-blue;
+    font-weight: bold;
+    font-size: small;
+}
+
+.checkbox {
+    padding-left: 20px;
+}
+
+.checkboxtext {
+    color: $default-blue;
+    font-size: small;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.formspacer {
+    padding: 10px;
+}
+
+.container {
+    height: 50px;
+    position: relative;
+    padding-top: 100px;
+}
+
+.navbar {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.next {
+    padding-right: 45px;
+    padding-left: 45px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 4px;
+    background-color: $default-grey;
+    color: $default-white;
+    border: none;
+}
+
+.save {
+    padding-right: 45px;
+    padding-left: 45px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 4px;
+    background-color: $default-green;
+    color: $default-white;
+    border: none;
+}
+
+#footer {
+    text-align: center;
+    background-color: $default-blue;
+    color: $default-white;
+    font-weight: normal;
+    font-size: medium;
+}
+
+.body {
+    color: $default-gold;
+}
