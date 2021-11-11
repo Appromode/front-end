@@ -18,7 +18,7 @@ const Navigation:FC = () => {
         <NavbarBrand href="/">project-registry.org</NavbarBrand>
         <Navbar.Toggle className={styles.navigationToggle} />
         <Navbar.Collapse className="justify-content-end">
-          <Nav>
+          <Nav id={styles.staticLinks}>
             <NavItem>
               <NavLink href="/project-forum">Project Forum</NavLink>
             </NavItem>
