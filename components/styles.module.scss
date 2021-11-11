@@ -1,70 +1,86 @@
 @import '../styles/colours.scss';
 
-
 .header {
+    background-color: $default-lightgrey;
+    height: 197px;
+}
+
+.topbar {
     background-color: $default-blue;
-    color: $default-white;
-    padding: 20px;
+    height: 162px;
 }
 
 #headertext {
+    padding-top: 20px;
     font-weight: bold;
     font-size: 150%;
+    color: $default-white;
+}
+
+#img {
+    display: inline;
+    float: right;
+    padding-right: 20px;
+    padding-top: 20px;
+    top: 0;
+}
+
+#studentname {
+    font-weight: bold;
+    font-size: medium;  
+    display: inline;
+    float: right;
+    padding-right: 20px;
+    color: $default-white;
+}
+
+#projectname {
+    font-weight: bold;
+    font-size: medium;
+    color: $default-white;
 }
 
 .subtext1 {
     font-weight: normal;
-    font-size: medium;
+    font-size: small;
+    color: $default-white;
 }
 
 .subtext2 {
     font-weight: normal;
     font-size: small;
+    color: $default-white;
+    padding-bottom: 20px;
 }
 
 .progressbar {
-    background-color: $default-lightgrey;
     color: $default-blue;
     font-size: small;
     list-style-type: none;
+    padding-top: 32px;
 }
 
 #pageid {
-    padding-left: 20px;
-    display: inline;
-}
-
-#awardedmark {
-    float: right;
-    padding-right: 20px;
     display: inline;
 }
 
 #title {
     color: $default-blue;
     font-size: medium;
-    padding-left: 20px;
     padding-top: 30px;
     font-weight: bold;
 }
 
 .subtitle {
-    padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 40px;
     color: $default-blue;
     font-weight: bold;
     font-size: small;
 }
 
 .checkbox {
-    padding-left: 20px;
-}
-
-.checkboxtext {
     color: $default-blue;
     font-size: small;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .formspacer {
@@ -97,6 +113,11 @@
     border: none;
 }
 
+.next:hover {
+    background-color: #565a5d;
+    color: $default-white;
+}
+
 .save {
     padding-right: 45px;
     padding-left: 45px;
@@ -106,6 +127,11 @@
     background-color: $default-green;
     color: $default-white;
     border: none;
+}
+
+.save:hover {
+    background-color: #178265;
+    color: white;
 }
 
 #footer {
