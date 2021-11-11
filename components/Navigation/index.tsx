@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import Image from 'next/image';
 import {
   Navbar,
   NavbarBrand,
@@ -16,7 +17,16 @@ const Navigation:FC = () => {
     <Navbar id={styles.navigation} collapseOnSelect expand="md">
       <Container>
         <NavbarBrand href="/">project-registry.org</NavbarBrand>
-        <Navbar.Toggle className={styles.navigationToggle} />
+        <Navbar.Toggle className={styles.navigationToggle}>
+          <Image
+            id={styles.menuIcon}
+            src="/menu.svg"
+            layout="fixed"
+            alt="Menu icon"
+            width={30}
+            height={30}
+          />
+        </Navbar.Toggle>
         <Navbar.Collapse className="justify-content-end">
           <Nav id={styles.staticLinks}>
             <NavItem>
