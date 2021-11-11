@@ -11,7 +11,7 @@ import {
   Formik,
   Form,
 } from 'formik';
-import styles from '../../../components/styles.module.scss';
+import styles from '../../../components/Forms/styles.module.scss';
 
 interface MyFormValues {
   firstName: string;
