@@ -2,12 +2,12 @@
 
 .header {
     background-color: $default-lightgrey;
-    height: 197px;
+    height: 177px;
 }
 
 .topbar {
-    background-color: $default-blue;
-    height: 162px;
+    background-color: $default-lightblue;
+    height: 142px;
 }
 
 #headertext {
@@ -57,7 +57,7 @@
     color: $default-blue;
     font-size: small;
     list-style-type: none;
-    padding-top: 32px;
+    padding-top: 12px;
 }
 
 #pageid {
