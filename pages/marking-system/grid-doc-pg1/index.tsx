@@ -1,5 +1,11 @@
 import React, { FC } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  FormGroup,
+  FormLabel,
+  FormCheck,
+} from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import styles from '../../../components/styles.module.scss';
 
@@ -9,6 +15,7 @@ interface MyFormValues {
 
 export const Index: FC = () => {
   const initialValues: MyFormValues = { firstName: '' };
+
   return (
     <Container>
       <Row>
@@ -40,9 +47,10 @@ export const Index: FC = () => {
                   <span className={styles.checkbox}>
                     <Field type="checkbox" id="none" name="none" placeholder="None or Trivial" />
                   </span>
-                  <label htmlFor="none" className={styles.checkboxtext}>
-                    None or trivial
-                  </label>
+                  <FormGroup>
+                    <FormLabel htmlFor="none" />
+                    <FormCheck id="none" type="checkbox" label="none" />
+                  </FormGroup>
                   <div className={styles.formspacer} />
                   <span className={styles.checkbox}>
                     <Field type="checkbox" id="smalltasks" name="smalltasks" placeholder="Small Tasks" />
