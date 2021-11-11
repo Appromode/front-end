@@ -7,7 +7,7 @@ interface MyFormValues {
   firstName: string;
 }
 
-export const Index: FC<{}> = () => {
+export const Index: FC = () => {
   const initialValues: MyFormValues = { firstName: '' };
   return (
     <Container>
