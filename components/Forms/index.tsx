@@ -3,9 +3,10 @@ import {
   ProgressBar,
 } from 'react-bootstrap';
 
-const now = 60;
-
-const ProgressInstance = () => (
-  <ProgressBar now={now} label={`${now}%`} />);
+const ProgressInstance = () => {
+  const now = 60;
+  return (
+    <ProgressBar now={now} label={`${now}%`} />);
+};
 
 export default ProgressInstance;
