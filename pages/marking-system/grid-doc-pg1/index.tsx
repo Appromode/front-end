@@ -12,6 +12,7 @@ import {
   Form,
 } from 'formik';
 import styles from '../../../components/Forms/styles.module.scss';
+import ProgressInstance from '../../../components/Forms';
 
 interface MyFormValues {
   firstName: string;
@@ -35,9 +36,10 @@ export const Index: FC = () => {
               <div className={styles.subtext1}>First Marker Name</div>
               <div className={styles.subtext2}>Second Marker Name</div>
             </div>
-            <div className={styles.progressbar}>
+            <span className={styles.pagebar}>
               <p id={styles.pageid}>Page 1 of 6</p>
-            </div>
+              <ProgressInstance />
+            </span>
             <div>
               <p id={styles.title}>Intrinsic difficulty and scope of tasks attempted by student</p>
             </div>

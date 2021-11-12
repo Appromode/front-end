@@ -2,7 +2,7 @@
 
 .header {
     background-color: $default-lightgrey;
-    height: 177px;
+    height: 180px;
 }
 
 .topbar {
@@ -53,15 +53,27 @@
     padding-bottom: 20px;
 }
 
-.progressbar {
+.pagebar {
     color: $default-blue;
     font-size: small;
-    list-style-type: none;
-    padding-top: 12px;
+    padding-top: 4px;
+    display: inline;
 }
 
 #pageid {
     display: inline;
+}
+
+.progressbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $default-blue;
+    transition: width .6s ease;
 }
 
 #title {
