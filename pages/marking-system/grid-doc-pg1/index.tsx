@@ -12,7 +12,7 @@ import {
   Form,
 } from 'formik';
 import styles from '../../../components/Forms/styles.module.scss';
-import ProgressInstance from '../../../components/Forms';
+import { ProgressInstance } from '../../../components/Forms';
 
 interface MyFormValues {
   firstName: string;
