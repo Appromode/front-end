@@ -40,7 +40,7 @@ export const Skills = () => {
     </div>
   );
   if (tableisOccupied) {
-    return TableOccupied; //Maybe render instead
+    return TableOccupied; // Maybe render instead
   }
   return TableEmpty;
 };
