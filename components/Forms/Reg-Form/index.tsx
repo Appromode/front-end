@@ -23,7 +23,7 @@ const Index1:FC = () => {
     <div>
       {
         skillslist.map((skill) => (
-          <div>{skill}</div>
+          <div className={styles.tag}>{skill}</div>
         ))
       }
     </div>
