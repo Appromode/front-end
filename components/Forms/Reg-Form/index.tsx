@@ -24,7 +24,7 @@ const Index1:FC = () => {
   const Skills = () => {
     const TableOccupied = (
       <div>
-        <div>Skills</div>
+        <div>Skills Selected</div>
         <div className={styles.formspacer1} />
         <AddSkill />
       </div>
