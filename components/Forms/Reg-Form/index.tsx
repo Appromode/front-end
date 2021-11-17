@@ -1,5 +1,8 @@
 import React, { FC, useState } from 'react';
 import {
+  Container,
+  Row,
+  Col,
   FormControl,
   FormSelect,
   FormGroup,
@@ -79,6 +82,14 @@ const Index1:FC = () => {
         }}
       >
         <div className={styles.textbox}>
+          <Row>
+            <Col lg={6}>
+              Hello
+            </Col>
+            <Col lg={6}>
+              World
+            </Col>
+          </Row>
           <Form>
             <div className="d-flex">
               <div className={styles.lefttext}>
