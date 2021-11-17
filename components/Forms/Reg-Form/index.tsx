@@ -8,6 +8,7 @@ import {
 import {
   Formik,
   Form,
+  Field,
 } from 'formik';
 import styles from '../styles.module.scss';
 
@@ -18,7 +19,21 @@ const Index1:FC = () => {
   const [pickedSkill, setSkill] = useState('No skill selected');
 
   const AddSkill = () => (
-    <div className={styles.tag}>{pickedSkill}</div>
+    <div>
+      {
+        skillslist.map((skill) => (
+          <div>{skill}</div>
+        ))
+      }
+    </div>
+  );
+
+  const render = () => (
+    !skillslist.length
+    ? 
+    skillslist.map((skill) => (
+      <div>{skill}</div>
+    )) : <div>No skills selected</div>
   );
 
   const Skills = () => {
@@ -38,6 +53,7 @@ const Index1:FC = () => {
 
   const SkillSelected = () => {
     if (skillref.current.value !== 'Select your skills') {
+      setSkills((currentSkills) => [...currentSkills, skillref.current.value]);
       setSkill(skillref.current.value);
       setTable(true);
       return (<Skills />);
@@ -54,6 +70,7 @@ const Index1:FC = () => {
           lastName: '',
           kentID: 0,
           email: '',
+          tags: skillslist,
         }}
         onSubmit={(values, actions) => {
           console.log({ values, actions });
