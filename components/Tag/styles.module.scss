@@ -1,0 +1,10 @@
+@import '../../styles/colours.scss';
+
+.tag {
+  background-color: $default-blue;
+  display: inline;
+  color: $default-white;
+  padding: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}
