@@ -17,7 +17,6 @@ const Index1:FC = () => {
   const [skillslist, setSkills] = useState([]); // skills list.map
   const skillref = React.createRef();
   const [tableisOccupied, setTable] = useState(false);
-  const [pickedSkill, setSkill] = useState('No skill selected');
 
   const AddSkill = () => (
     <div>
@@ -29,37 +28,32 @@ const Index1:FC = () => {
     </div>
   );
 
-  const render = () => (
-    !skillslist.length
-    ? 
-    skillslist.map((skill) => (
-      <div>{skill}</div>
-    )) : <div>No skills selected</div>
+  const TagsOccupied = (
+    <div>
+      <div>Skills Selected</div>
+      <div className={styles.formspacer1} />
+      <AddSkill />
+    </div>
+  );
+
+  const TagsEmpty = (
+    <div>No skills selected</div>
   );
 
   const Skills = () => {
-    const TableOccupied = (
-      <div>
-        <div>Skills Selected</div>
-        <div className={styles.formspacer1} />
-        <AddSkill />
-      </div>
-    );
-
     if (tableisOccupied) {
-      return TableOccupied;
+      return TagsOccupied;
     }
-    return null;
+    return TagsEmpty;
   };
 
-  const SkillSelected = () => {
+  const DisplaySkills = () => {
     if (skillref.current.value !== 'Select your skills') {
       setSkills((currentSkills) => [...currentSkills, skillref.current.value]);
-      setSkill(skillref.current.value);
       setTable(true);
-      return (<Skills />);
+      return TagsOccupied;
     }
-    return null;
+    return TagsEmpty;
   };
 
   return (
@@ -80,30 +74,21 @@ const Index1:FC = () => {
         }}
       >
         <div className={styles.textbox}>
-          <Row>
-            <Col lg={6}>
-              Hello
-            </Col>
-            <Col lg={6}>
-              World
-            </Col>
-          </Row>
           <Form>
-            <div className="d-flex">
-              <div className={styles.lefttext}>
+            <Row>
+              <Col className={styles.lefttext} lg={6}>
                 <FormGroup>
                   <FormLabel>First Name</FormLabel>
                   <FormControl id="firstname" type="text" placeholder="First Name" />
                 </FormGroup>
-              </div>
-              <div className={styles.formspacer2} />
-              <div className={styles.righttext}>
+              </Col>
+              <Col className={styles.righttext} lg={6}>
                 <FormGroup>
                   <FormLabel>Last Name</FormLabel>
                   <FormControl id="lastname" type="text" placeholder="Last Name" />
                 </FormGroup>
-              </div>
-            </div>
+              </Col>
+            </Row>
             <div className={styles.formspacer1} />
             <FormGroup>
               <FormLabel>Kent ID</FormLabel>
@@ -115,24 +100,23 @@ const Index1:FC = () => {
               <FormControl id="email" type="email" placeholder="example@kent.ac.uk" />
             </FormGroup>
             <div className={styles.formspacer1} />
-            <div className="d-flex">
-              <div className={styles.lefttext}>
+            <Row className="d-flex">
+              <Col className={styles.lefttext} lg={6}>
                 <FormGroup controlId="formBasicPassword">
                   <FormLabel>Password</FormLabel>
                   <FormControl id="passwd" type="password" placeholder="Password" />
                 </FormGroup>
-              </div>
-              <div className={styles.formspacer2} />
-              <div className={styles.righttext}>
+              </Col>
+              <Col className={styles.righttext} lg={6}>
                 <FormGroup>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl id="confpasswd" type="password" placeholder="Confirm" />
                 </FormGroup>
-              </div>
-            </div>
+              </Col>
+            </Row>
             <div className={styles.formspacer1} />
-            <div className="d-flex">
-              <div className={styles.lefttext}>
+            <Row className="d-flex">
+              <Col className={styles.lefttext} lg={6}>
                 <FormGroup>
                   <FormLabel>Add Skills</FormLabel>
                   <FormSelect id="skills" ref={skillref}>
@@ -149,12 +133,11 @@ const Index1:FC = () => {
                     <option>Functional Programming</option>
                   </FormSelect>
                 </FormGroup>
-              </div>
-              <div className={styles.formspacer3} />
-              <div className={styles.righttext1}>
-                <button type="button" onClick={SkillSelected} className={styles.save}>Add</button>
-              </div>
-            </div>
+              </Col>
+              <Col className={styles.righttext1}>
+                <button type="button" onClick={DisplaySkills} className={styles.save}>Add</button>
+              </Col>
+            </Row>
             <div className={styles.formspacer1} />
             <Skills />
             <div className={styles.formspacer1} />
