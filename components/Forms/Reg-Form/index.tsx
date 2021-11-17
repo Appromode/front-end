@@ -12,7 +12,7 @@ import {
 import styles from '../styles.module.scss';
 
 const Index1:FC = () => {
-  const [skillslist, setSkills] = useState([]); // skills list.map({return <li>{item[0]})
+  const [skillslist, setSkills] = useState([]); // skills list.map
   const skillref = React.createRef();
   const [tableisOccupied, setTable] = useState(false);
   const [pickedSkill, setSkill] = useState('No skill selected');
