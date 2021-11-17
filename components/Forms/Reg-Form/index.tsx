@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   FormControl,
   FormSelect,
@@ -11,42 +11,35 @@ import {
 } from 'formik';
 import styles from '../styles.module.scss';
 
-function Index1() {
+const Index1:FC = () => {
+  const [skillslist, setSkills] = useState([]); // skills list.map({return <li>{item[0]})
   const skillref = React.createRef();
   const [tableisOccupied, setTable] = useState(false);
-  const TableEmpty = (
-    <div id={styles.overflow}>
-      <table>
-        <tr>
-          <th className={styles.skillstable}>Skills</th>
-        </tr>
-        <td className={styles.skillstable}>None selected</td>
-      </table>
-    </div>
-  );
-  const TableOccupied = (
-    <div id={styles.overflow}>
-      <table>
-        <tr>
-          <th className={styles.skillstable}>Skills</th>
-        </tr>
-        <td className={styles.skillstable}>Skills Selected</td>
-      </table>
-    </div>
+  const [pickedSkill, setSkill] = useState('No skill selected');
+
+  const AddSkill = () => (
+    <div className={styles.tag}>{pickedSkill}</div>
   );
 
   const Skills = () => {
+    const TableOccupied = (
+      <div>
+        <div>Skills</div>
+        <div className={styles.formspacer1} />
+        <AddSkill />
+      </div>
+    );
+
     if (tableisOccupied) {
-      return TableOccupied; // Maybe render instead
+      return TableOccupied;
     }
-    return TableEmpty;
+    return null;
   };
 
   const SkillSelected = () => {
-    if (skillref.current.value >= 1) {
-      console.log(skillref.current.value);
+    if (skillref.current.value !== 'Select your skills') {
+      setSkill(skillref.current.value);
       setTable(true);
-      console.log(tableisOccupied);
       return (<Skills />);
     }
     return null;
@@ -118,16 +111,16 @@ function Index1() {
                   <FormLabel>Add Skills</FormLabel>
                   <FormSelect id="skills" ref={skillref}>
                     <option>Select your skills</option>
-                    <option value="1">Java</option>
-                    <option value="2">CSS</option>
-                    <option value="3">HTML</option>
-                    <option value="4">PHP</option>
-                    <option value="5">React</option>
-                    <option value="6">MySQL</option>
-                    <option value="7">PostgreSQL</option>
-                    <option value="8">C++</option>
-                    <option value="9">Object Oriented Programming</option>
-                    <option value="10">Functional Programming</option>
+                    <option>Java</option>
+                    <option>CSS</option>
+                    <option>HTML</option>
+                    <option>PHP</option>
+                    <option>React</option>
+                    <option>MySQL</option>
+                    <option>PostgreSQL</option>
+                    <option>C++</option>
+                    <option>Object Oriented Programming</option>
+                    <option>Functional Programming</option>
                   </FormSelect>
                 </FormGroup>
               </div>
@@ -145,6 +138,6 @@ function Index1() {
       </Formik>
     </>
   );
-}
+};
 
 export default Index1;

@@ -199,14 +199,13 @@
     font-size: medium;
 }
 
-.skillstable {
-    border: 4px solid $default-blue;
-    padding: 15px;
-}
-
-#overflow {
-    overflow-x: auto;
-}
+.tag {
+    background-color: $default-blue;
+    display: inline;
+    color: $default-white;
+    padding: 8px;
+    border-radius: 3px;
+  }
 
 .body {
     color: $default-gold;
