@@ -7,7 +7,7 @@ import Index1 from '../components/Forms/Reg-Form';
 
 // Schema needs to be defined for the form
 
-export const Index: FC = () => (
+export const SignUp: FC = () => (
   <Container>
     <Row>
       <Index1 />
@@ -15,4 +15,4 @@ export const Index: FC = () => (
   </Container>
 );
 
-export default Index;
+export default SignUp;
