@@ -14,7 +14,7 @@ import {
 import styles from './styles.module.scss';
 
 const RegistrationForm:FC = () => {
-  const [skillslist, setSkills] = useState([]); // skills list.map
+  const [skillslist, setSkills] = useState([]);
   const skillref = React.createRef();
   const [tableisOccupied, setTable] = useState(false);
 
