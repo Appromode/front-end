@@ -11,7 +11,7 @@ import {
   Formik,
   Form,
 } from 'formik';
-import styles from '../styles.module.scss';
+import styles from './styles.module.scss';
 
 const Index1:FC = () => {
   const [skillslist, setSkills] = useState([]); // skills list.map
