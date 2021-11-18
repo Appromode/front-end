@@ -3,7 +3,7 @@ import {
   Container,
   Row,
 } from 'react-bootstrap';
-import Index1 from '../components/Forms/Reg-Form';
+import Index1 from '../components/RegistrationForm';
 
 // Schema needs to be defined for the form
 

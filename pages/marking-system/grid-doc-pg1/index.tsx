@@ -11,8 +11,8 @@ import {
   Formik,
   Form,
 } from 'formik';
-import styles from '../../../components/Forms/styles.module.scss';
-import { ProgressInstance } from '../../../components/Forms';
+import styles from '../../../components/RegistrationForm/styles.module.scss';
+import { ProgressInstance } from '../../../components/ProgressInstance';
 
 interface MyFormValues {
   firstName: string;
