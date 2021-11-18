@@ -13,7 +13,7 @@ import {
 } from 'formik';
 import styles from './styles.module.scss';
 
-const Index1:FC = () => {
+const RegistrationForm:FC = () => {
   const [skillslist, setSkills] = useState([]); // skills list.map
   const skillref = React.createRef();
   const [tableisOccupied, setTable] = useState(false);
@@ -149,4 +149,4 @@ const Index1:FC = () => {
   );
 };
 
-export default Index1;
+export default RegistrationForm;
