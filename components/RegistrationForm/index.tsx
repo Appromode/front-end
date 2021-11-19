@@ -9,7 +9,6 @@ import {
   FormLabel,
   OverlayTrigger,
   Tooltip,
-  Props,
 } from 'react-bootstrap';
 import {
   Formik,
@@ -22,7 +21,7 @@ const RegistrationForm:FC = () => {
   const [tableisOccupied, setTable] = useState(false);
   const [val, setVal] = useState('Select your skills');
 
-  const renderTooltip = (props: Props) => (
+  const renderTooltip = (props :any) => (
     <Tooltip id="button-tooltip" {...props}>
       Remove Skill
     </Tooltip>
