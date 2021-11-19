@@ -47,8 +47,11 @@ const RegistrationForm:FC = () => {
     return TagsEmpty;
   };
 
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>): string => (
+    event.target.value);
+
   const DisplaySkills = () => {
-    if (skillref.current.value !== 'Select your skills') {
+    if (onChange !== 'Select your skills') {
       setSkills((currentSkills) => [...currentSkills, skillref.current.value]);
       setTable(true);
       return TagsOccupied;
