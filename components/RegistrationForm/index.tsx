@@ -76,47 +76,47 @@ const RegistrationForm:FC = () => {
         <div className={styles.textbox}>
           <Form>
             <Row>
-              <Col className={styles.lefttext} lg={6}>
-                <FormGroup>
+              <Col lg={6}>
+                <FormGroup controlId="firstname">
                   <FormLabel>First Name</FormLabel>
-                  <FormControl id="firstname" type="text" placeholder="First Name" />
+                  <FormControl type="text" placeholder="First Name" />
                 </FormGroup>
               </Col>
-              <Col className={styles.righttext} lg={6}>
-                <FormGroup>
+              <Col lg={6}>
+                <FormGroup controlId="lastname">
                   <FormLabel>Last Name</FormLabel>
-                  <FormControl id="lastname" type="text" placeholder="Last Name" />
+                  <FormControl type="text" placeholder="Last Name" />
                 </FormGroup>
               </Col>
             </Row>
             <div className={styles.formspacer1} />
-            <FormGroup>
+            <FormGroup controlId="kentId">
               <FormLabel>Kent ID</FormLabel>
-              <FormControl id="kentid" type="text" placeholder="Kent ID" />
+              <FormControl type="text" placeholder="Kent ID" />
             </FormGroup>
             <div className={styles.formspacer1} />
-            <FormGroup>
+            <FormGroup controlId="email">
               <FormLabel>Kent Email</FormLabel>
-              <FormControl id="email" type="email" placeholder="example@kent.ac.uk" />
+              <FormControl type="email" placeholder="example@kent.ac.uk" />
             </FormGroup>
             <div className={styles.formspacer1} />
-            <Row className="d-flex">
-              <Col className={styles.lefttext} lg={6}>
-                <FormGroup controlId="formBasicPassword">
+            <Row>
+              <Col lg={6}>
+                <FormGroup controlId="password">
                   <FormLabel>Password</FormLabel>
-                  <FormControl id="passwd" type="password" placeholder="Password" />
+                  <FormControl type="password" placeholder="Password" />
                 </FormGroup>
               </Col>
-              <Col className={styles.righttext} lg={6}>
-                <FormGroup>
+              <Col lg={6}>
+                <FormGroup controlId="passwordConfirmation">
                   <FormLabel>Confirm Password</FormLabel>
-                  <FormControl id="confpasswd" type="password" placeholder="Confirm" />
+                  <FormControl type="password" placeholder="Confirm Password" />
                 </FormGroup>
               </Col>
             </Row>
             <div className={styles.formspacer1} />
-            <Row className="d-flex">
-              <Col className={styles.lefttext} lg={6}>
+            <Row>
+              <Col lg={6}>
                 <FormGroup>
                   <FormLabel>Add Skills</FormLabel>
                   <FormSelect id="skills" ref={skillref}>
