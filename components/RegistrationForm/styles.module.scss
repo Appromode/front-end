@@ -190,20 +190,29 @@
 }
 
 .save1 {
-    padding-right: 34px;
-    padding-left: 34px;
-    padding-top: 9px;
-    padding-bottom: 9px;
     border-radius: 4px;
     background-color: $default-green;
     color: $default-white;
     border: none;
     margin-top: 27px;
+    width:100%;
 }
 
 .save:hover {
     background-color: #178265;
     color: white;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addButton {
+    display: flex;
+    flex-direction: row;
+    bottom: 0;
 }
 
 .save1:hover {
@@ -225,8 +234,17 @@
     color: $default-white;
     padding: 8px;
     border-radius: 3px;
+    margin-top: 14px;
+  }
+
+  .tagRemover {
+    display: inline-block;
+    color: $default-white;
+    padding: 12px;
+    border-radius: 3px;
     margin-right: 10px;
     margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(34, 20, 226, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
 .body {

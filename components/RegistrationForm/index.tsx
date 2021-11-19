@@ -2,10 +2,14 @@ import React, { FC, useState } from 'react';
 import {
   Row,
   Col,
+  CloseButton,
   FormControl,
   FormSelect,
   FormGroup,
   FormLabel,
+  OverlayTrigger,
+  Tooltip,
+  Props,
 } from 'react-bootstrap';
 import {
   Formik,
@@ -18,11 +22,26 @@ const RegistrationForm:FC = () => {
   const [tableisOccupied, setTable] = useState(false);
   const [val, setVal] = useState('Select your skills');
 
+  const renderTooltip = (props: Props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Remove Skill
+    </Tooltip>
+  );
+
   const AddSkill = () => (
     <div>
       {
         skillslist.map((skill) => (
-          <div className={styles.tag}>{skill}</div>
+          <>
+            <div className={styles.tag}>{skill}</div>
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <CloseButton className={styles.tagRemover} />
+            </OverlayTrigger>
+          </>
         ))
       }
     </div>
@@ -150,7 +169,7 @@ const RegistrationForm:FC = () => {
                     </FormSelect>
                   </FormGroup>
                 </Col>
-                <Col lg={3}>
+                <Col className={styles.addButton} lg={3}>
                   <button type="button" onClick={DisplaySkills} className={styles.save1}>Add</button>
                 </Col>
               </Row>
@@ -162,7 +181,7 @@ const RegistrationForm:FC = () => {
               </Row>
               <div className={styles.formspacer} />
               <Row>
-                <Col lg={{ span: 10, offset: 3 }}>
+                <Col className={styles.buttonWrapper}>
                   <button type="submit" className={styles.save}>Create Account</button>
                 </Col>
               </Row>
