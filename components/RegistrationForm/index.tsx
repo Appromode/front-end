@@ -15,8 +15,8 @@ import styles from './styles.module.scss';
 
 const RegistrationForm:FC = () => {
   const [skillslist, setSkills] = useState([]);
-  const skillref = React.createRef();
   const [tableisOccupied, setTable] = useState(false);
+  const [val, setVal] = useState('Select your skills');
 
   const AddSkill = () => (
     <div>
@@ -31,7 +31,7 @@ const RegistrationForm:FC = () => {
   const TagsOccupied = (
     <div>
       <div>Skills Selected</div>
-      <div className={styles.formspacer1} />
+      <div className={styles.formspacer} />
       <AddSkill />
     </div>
   );
@@ -47,12 +47,9 @@ const RegistrationForm:FC = () => {
     return TagsEmpty;
   };
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>): string => (
-    event.target.value);
-
   const DisplaySkills = () => {
-    if (onChange !== 'Select your skills') {
-      setSkills((currentSkills) => [...currentSkills, skillref.current.value]);
+    if (val !== 'Select your skills' && skillslist.includes(val) === false) {
+      setSkills((currentSkills) => [...currentSkills, val]);
       setTable(true);
       return TagsOccupied;
     }
@@ -61,93 +58,120 @@ const RegistrationForm:FC = () => {
 
   return (
     <>
-      <p id={styles.title1}>Student Registration</p>
-      <Formik
-        initialValues={{
-          firstName: '',
-          lastName: '',
-          kentID: 0,
-          email: '',
-          skills: skillslist,
-        }}
-        onSubmit={(values, actions) => {
-          console.log({ values, actions });
-          alert(JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-        }}
-      >
-        <div className={styles.textbox}>
-          <Form>
-            <Row>
-              <Col lg={6}>
-                <FormGroup controlId="firstname">
-                  <FormLabel>First Name</FormLabel>
-                  <FormControl type="text" placeholder="First Name" />
-                </FormGroup>
-              </Col>
-              <Col lg={6}>
-                <FormGroup controlId="lastname">
-                  <FormLabel>Last Name</FormLabel>
-                  <FormControl type="text" placeholder="Last Name" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer1} />
-            <FormGroup controlId="kentId">
-              <FormLabel>Kent ID</FormLabel>
-              <FormControl type="text" placeholder="Kent ID" />
-            </FormGroup>
-            <div className={styles.formspacer1} />
-            <FormGroup controlId="email">
-              <FormLabel>Kent Email</FormLabel>
-              <FormControl type="email" placeholder="example@kent.ac.uk" />
-            </FormGroup>
-            <div className={styles.formspacer1} />
-            <Row>
-              <Col lg={6}>
-                <FormGroup controlId="password">
-                  <FormLabel>Password</FormLabel>
-                  <FormControl type="password" placeholder="Password" />
-                </FormGroup>
-              </Col>
-              <Col lg={6}>
-                <FormGroup controlId="passwordConfirmation">
-                  <FormLabel>Confirm Password</FormLabel>
-                  <FormControl type="password" placeholder="Confirm Password" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer1} />
-            <Row>
-              <Col lg={6}>
-                <FormGroup>
-                  <FormLabel>Add Skills</FormLabel>
-                  <FormSelect id="skills" ref={skillref}>
-                    <option>Select your skills</option>
-                    <option>Java</option>
-                    <option>CSS</option>
-                    <option>HTML</option>
-                    <option>PHP</option>
-                    <option>React</option>
-                    <option>MySQL</option>
-                    <option>PostgreSQL</option>
-                    <option>C++</option>
-                    <option>Object Oriented Programming</option>
-                    <option>Functional Programming</option>
-                  </FormSelect>
-                </FormGroup>
-              </Col>
-              <Col className={styles.righttext1}>
-                <button type="button" onClick={DisplaySkills} className={styles.save}>Add</button>
-              </Col>
-            </Row>
-            <div className={styles.formspacer1} />
-            <Skills />
-            <div className={styles.formspacer1} />
-            <button type="submit" className={styles.save}>Create Account</button>
-          </Form>
-        </div>
-      </Formik>
+      <div className={styles.formspacer} />
+      <div className={styles.centreConsole}>
+        <p id={styles.title1}>Student Registration</p>
+        <Formik
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            kentID: 0,
+            email: '',
+            skills: skillslist,
+          }}
+          onSubmit={(values, actions) => {
+            console.log({ values, actions });
+            alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+          }}
+        >
+          <div className={styles.textbox}>
+            <Form>
+              <Row>
+                <Col lg={{ span: 10, offset: 1 }}>
+                  <FormGroup controlId="firstname">
+                    <FormLabel>First Name</FormLabel>
+                    <FormControl type="text" placeholder="First Name" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+              <Row>
+                <Col lg={{ span: 10, offset: 1 }}>
+                  <FormGroup controlId="lastname">
+                    <FormLabel>Last Name</FormLabel>
+                    <FormControl type="text" placeholder="Last Name" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+              <Row>
+                <Col lg={{ span: 10, offset: 1 }}>
+                  <FormGroup controlId="kentId">
+                    <FormLabel>Kent ID</FormLabel>
+                    <FormControl type="text" placeholder="Kent ID" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+              <Row>
+                <Col lg={{ span: 10, offset: 1 }}>
+                  <FormGroup controlId="email">
+                    <FormLabel>Kent Email</FormLabel>
+                    <FormControl type="email" placeholder="example@kent.ac.uk" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+              <Row>
+                <Col lg={{ span: 10, offset: 1 }}>
+                  <FormGroup controlId="password">
+                    <FormLabel>Password</FormLabel>
+                    <FormControl type="password" placeholder="Password" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+              <Row>
+                <Col lg={{ span: 10, offset: 1 }}>
+                  <FormGroup controlId="passwordConfirmation">
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl type="password" placeholder="Confirm Password" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+              <Row>
+                <Col lg={{ span: 7, offset: 1 }}>
+                  <FormGroup>
+                    <FormLabel>Add Skills</FormLabel>
+                    <FormSelect id="skills" value={val} onChange={(e) => setVal(e.target.value)}>
+                      <option>Select your skills</option>
+                      <option>Java</option>
+                      <option>CSS</option>
+                      <option>HTML</option>
+                      <option>PHP</option>
+                      <option>React</option>
+                      <option>MySQL</option>
+                      <option>PostgreSQL</option>
+                      <option>C++</option>
+                      <option>Object Oriented Programming</option>
+                      <option>Functional Programming</option>
+                    </FormSelect>
+                  </FormGroup>
+                </Col>
+                <Col lg={3}>
+                  <button type="button" onClick={DisplaySkills} className={styles.save1}>Add</button>
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+              <Row>
+                <Col lg={{ span: 10, offset: 1 }}>
+                  <Skills />
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+              <Row>
+                <Col lg={{ span: 10, offset: 3 }}>
+                  <button type="submit" className={styles.save}>Create Account</button>
+                </Col>
+              </Row>
+              <div className={styles.formspacer} />
+            </Form>
+          </div>
+        </Formik>
+      </div>
+      <div className={styles.formspacer} />
     </>
   );
 };

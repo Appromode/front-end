@@ -17,6 +17,12 @@
     color: $default-white;
 }
 
+.centreConsole {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    width: 40%;
+}
+
 #img {
     display: inline;
     float: right;
@@ -86,8 +92,9 @@
 #title1 {
     color: $default-blue;
     font-size: large;
-    padding-top: 30px;
+    padding-top: 10px;
     font-weight: bold;
+    text-align: center;
 }
 
 .subtitle {
@@ -106,7 +113,7 @@
     font-weight: bold;
     color: $default-blue;
     font-size: small;
-    padding-top: 25px;
+    padding-top: 15px;
 }
 
 .lefttext {
@@ -130,10 +137,6 @@
 
 .formspacer {
     padding: 10px;
-}
-
-.formspacer1 {
-    padding: 20px;
 }
 
 .formspacer2 {
@@ -186,7 +189,24 @@
     border: none;
 }
 
+.save1 {
+    padding-right: 34px;
+    padding-left: 34px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 4px;
+    background-color: $default-green;
+    color: $default-white;
+    border: none;
+    margin-top: 27px;
+}
+
 .save:hover {
+    background-color: #178265;
+    color: white;
+}
+
+.save1:hover {
     background-color: #178265;
     color: white;
 }
@@ -201,10 +221,12 @@
 
 .tag {
     background-color: $default-blue;
-    display: inline;
+    display: inline-block;
     color: $default-white;
     padding: 8px;
     border-radius: 3px;
+    margin-right: 10px;
+    margin-top: 10px;
   }
 
 .body {
