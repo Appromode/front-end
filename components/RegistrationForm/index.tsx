@@ -65,7 +65,7 @@ const RegistrationForm:FC = () => {
           lastName: '',
           kentID: 0,
           email: '',
-          tags: skillslist,
+          skills: skillslist,
         }}
         onSubmit={(values, actions) => {
           console.log({ values, actions });
