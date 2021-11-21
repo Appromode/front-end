@@ -17,6 +17,7 @@ import {
   boolean,
 } from 'yup';
 import {
+  Container,
   Row,
   Col,
   FormGroup,
@@ -56,7 +57,7 @@ const GroupRegistrationForm: FC = () => {
   };
 
   return (
-    <>
+    <Container>
       <h2 className={styles.formHeading}>Group Registration</h2>
       <Formik
         initialValues={{
@@ -203,7 +204,7 @@ const GroupRegistrationForm: FC = () => {
           </Form>
         )}
       </Formik>
-    </>
+    </Container>
   );
 };
 
