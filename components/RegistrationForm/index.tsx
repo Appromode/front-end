@@ -27,8 +27,8 @@ const RegistrationForm:FC = () => {
     </Tooltip>
   );
 
-  const removeSkill = () => {
-    // Remove from array and then render again
+  const removeSkill = (skill :any) => {
+    setSkills(() => skillslist.filter((skills) => skills !== skill));
   };
 
   const AddSkill = () => (
@@ -36,14 +36,16 @@ const RegistrationForm:FC = () => {
       {
         skillslist.map((skill) => (
           <>
-            <div className={styles.tag}>{skill}</div>
-            <OverlayTrigger
-              placement="top"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-            >
-              <CloseButton className={styles.tagRemover} onClick={removeSkill} />
-            </OverlayTrigger>
+            <div className={styles.tagContainer}>
+              <div className={styles.tag}>{skill}</div>
+              <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}
+              >
+                <CloseButton className={styles.tagRemover} onClick={() => removeSkill(skill)} />
+              </OverlayTrigger>
+            </div>
           </>
         ))
       }
