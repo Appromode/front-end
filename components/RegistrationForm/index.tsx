@@ -27,6 +27,10 @@ const RegistrationForm:FC = () => {
     </Tooltip>
   );
 
+  const removeSkill = () => {
+    // Remove from array and then render again
+  };
+
   const AddSkill = () => (
     <div>
       {
@@ -38,7 +42,7 @@ const RegistrationForm:FC = () => {
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
             >
-              <CloseButton className={styles.tagRemover} />
+              <CloseButton className={styles.tagRemover} onClick={removeSkill} />
             </OverlayTrigger>
           </>
         ))
