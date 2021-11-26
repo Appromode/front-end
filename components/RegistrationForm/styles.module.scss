@@ -214,6 +214,10 @@
     width:100%;
 }
 
+.inputSpace {
+    width: 100%;
+}
+
 .save:hover {
     background-color: #178265;
     color: white;
@@ -223,6 +227,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 100%;
 }
 
 .addButton {

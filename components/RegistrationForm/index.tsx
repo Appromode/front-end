@@ -116,7 +116,6 @@ const RegistrationForm:FC = () => (
             <Row>
               <Col lg={{ span: 10, offset: 1 }}>
                 <FormGroup>
-                  <FormLabel>Add Tags</FormLabel>
                   <div className={styles.formspacer1} />
                   <Tags />
                 </FormGroup>
