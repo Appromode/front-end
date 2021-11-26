@@ -23,6 +23,22 @@
     width: 40%;
 }
 
+.userButton {
+    background-color: $default-blue;
+    color: $default-white;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.userButton:hover {
+    background-color: $default-lightblue;
+}
+
 #img {
     display: inline;
     float: right;
