@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 const Footer = () => (
   <Container id={styles.footer}>
-    Project registry
+    <p> Project registry </p>
   </Container>
 );
 
