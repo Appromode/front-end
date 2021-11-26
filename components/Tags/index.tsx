@@ -3,6 +3,9 @@ import {
   CloseButton,
   OverlayTrigger,
   Tooltip,
+  FormGroup,
+  FormLabel,
+  FormControl,
 } from 'react-bootstrap';
 import useFilter from '../../utils/useFilter';
 import Tag from '../Tag';
@@ -104,10 +107,12 @@ const Tags:FC = () => {
           ? results.map((tag) => (
             <div onClick={() => DisplaySkills(tag)} aria-hidden="true" className={styles.tagContainer}><Tag tagName={tag} key={tag} /></div>
           ))
-          : <div>Find Tag</div>
+          : <div className={styles.formspacer1} />
       }
-      <div className={styles.formspacer1} />
-      <input type="text" onChange={onChange} />
+      <FormGroup controlId="passwordConfirmation">
+        <FormLabel>Add Skills</FormLabel>
+        <FormControl type="text" onChange={onChange} placeholder="Add skills" />
+      </FormGroup>
       <Skills />
     </>
   );
