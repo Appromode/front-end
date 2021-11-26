@@ -35,7 +35,6 @@ const GroupRegistrationForm: FC = () => (
           groupDescription: string().min(10).max(100).required(),
           groupMembers: array().min(2).max(4).required(),
           groupFiles: array(),
-          isGroupVisible: boolean().required(),
         })
       }
     >
@@ -51,12 +50,6 @@ const GroupRegistrationForm: FC = () => (
             {(touched.groupDescription && errors.groupDescription) ? <Alert>{errors.groupDescription}</Alert> : ''}
             <FormLabel>Group Description</FormLabel>
             <Field type="text" name="groupDescription" as={FormControl} placeholder="A truly amazing group" />
-          </FormGroup>
-
-          <FormGroup controlId="isGroupVisible" className={styles.formGroup}>
-            {(touched.isGroupVisible && errors.isGroupVisible) ? <Alert>{errors.isGroupVisible}</Alert> : ''}
-            <FormLabel>Group Visibility</FormLabel>
-            <Field name="isGroupVisible" as={FormCheck} value={false} />
           </FormGroup>
 
           <Button type="submit">Create Group</Button>
