@@ -1,0 +1,14 @@
+@import '../../styles/colours.scss';
+
+#footer {
+  background-color: $default-blue;
+  font-weight: 300;
+  font-size: inherit;
+  padding: 16px;
+}
+
+#footerText {
+  color: $default-white;
+}
+
+
