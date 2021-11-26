@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, ChangeEvent } from 'react';
 import {
   Row,
   Col,
@@ -7,134 +7,155 @@ import {
   FormLabel,
   FormSelect,
   InputGroup,
+  Alert,
 } from 'react-bootstrap';
 import {
+  Field,
   Formik,
   Form,
 } from 'formik';
-import * as Yup from 'yup';
+import { object, string } from 'yup';
+import * as yup from 'yup';
 import Tags from '../Tags';
 import styles from './styles.module.scss';
 
-const SignupSchema = Yup.object().shape({
-  firstName: Yup.string().required('Required'),
-  lastName: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-});
+const RegistrationForm:FC = () => {
+  const [selectedRole, setSelectedRole] = useState('');
 
-const RegistrationForm:FC = () => (
-  <>
-    <div className={styles.formspacer} />
-    <div className={styles.centreConsole}>
-      <p id={styles.title1}>Student Registration</p>
-      <Formik
-        validationSchema={SignupSchema}
-        onSubmit={console.log}
-        initialValues={{
-          role: '',
-          firstName: '',
-          lastName: '',
-          kentID: 0,
-          email: '',
-          // skills: skillslist,
-        }}
-      >
-        <div className={styles.textbox}>
-          <Form>
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="role">
-                  <FormLabel>Role</FormLabel>
-                  <FormSelect>
-                    <option>Select a role</option>
-                    <option>Student</option>
-                    <option>Project Supervisor</option>
-                    <option>Module Conevenor</option>
-                    <option>Admin</option>
-                  </FormSelect>
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="firstname">
-                  <FormLabel>First Name</FormLabel>
-                  <FormControl name="firstName" type="text" placeholder="First Name" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="lastname">
-                  <FormLabel>Last Name</FormLabel>
-                  <FormControl type="text" placeholder="Last Name" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="kentId">
-                  <FormLabel>Kent ID</FormLabel>
-                  <FormControl type="text" placeholder="Kent ID" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="email">
-                  <FormLabel>Kent Email</FormLabel>
-                  <InputGroup>
-                    <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                    <FormControl type="email" placeholder="example@kent.ac.uk" />
-                  </InputGroup>
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="password">
-                  <FormLabel>Password</FormLabel>
-                  <FormControl type="password" placeholder="Password" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="passwordConfirmation">
-                  <FormLabel>Confirm Password</FormLabel>
-                  <FormControl type="password" placeholder="Confirm Password" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup>
-                  <div className={styles.formspacer1} />
-                  <Tags />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <div className={styles.formspacer} />
-            <Row>
-              <Col className={styles.buttonWrapper}>
-                <button type="submit" className={styles.save}>Create Account</button>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-          </Form>
-        </div>
-      </Formik>
-    </div>
-    <div className={styles.formspacer} />
-  </>
-);
+  const getRoleValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelectedRole(event.target.value);
+    console.log(selectedRole);
+  };
+
+  const roles = ['Student', 'Project Supervisor', 'Module Convenor', 'Admin'];
+
+  const roleOptions = roles.map((role) => (
+    <option>
+      {role}
+    </option>
+  ));
+
+  const validationSchema = object({
+    role: string().required('Please select a role'),
+    firstName: string().min(2, 'First name is too short!').max(30, 'First name is too long!').required('First name is required'),
+    lastName: string().min(2).max(30).required('Last name is Required'),
+    email: string().email('Invalid email').required('Your Kent email is required'),
+    password: string().required('A password is required'),
+    passwordConfirm: string().required('Password cannot be confirmed if this is left blank!').oneOf([yup.ref('password'), null], 'Passwords must match'),
+  });
+
+  return (
+    <>
+      <div className={styles.formspacer} />
+      <div className={styles.centreConsole}>
+        <p id={styles.title1}>Student Registration</p>
+        <Formik
+          enableReinitialize
+          validationSchema={validationSchema}
+          onSubmit={(values) => { console.log(values); }}
+          initialValues={{
+            role: selectedRole,
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            // skills: skillslist,
+          }}
+        >
+          {({ touched, errors }) => (
+            <div className={styles.textbox}>
+              <Form>
+                <Row>
+                  <Col lg={{ span: 10, offset: 1 }}>
+                    <FormGroup controlId="role">
+                      {(touched.role && errors.role) ? <Alert>{errors.role}</Alert> : ''}
+                      <FormLabel>Role</FormLabel>
+                      <Field name="role" value={selectedRole} onChange={getRoleValue} as={FormSelect}>
+                        <option hidden value="">Select a Role</option>
+                        {roleOptions}
+                      </Field>
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <div className={styles.formspacer} />
+                <Row>
+                  <Col lg={{ span: 10, offset: 1 }}>
+                    <FormGroup controlId="firstname">
+                      {(touched.firstName && errors.firstName) ? <Alert>{errors.firstName}</Alert> : ''}
+                      <FormLabel>First Name</FormLabel>
+                      <Field name="firstName" type="text" as={FormControl} placeholder="First Name" />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <div className={styles.formspacer} />
+                <Row>
+                  <Col lg={{ span: 10, offset: 1 }}>
+                    <FormGroup controlId="lastname">
+                      {(touched.lastName && errors.lastName) ? <Alert>{errors.lastName}</Alert> : ''}
+                      <FormLabel>Last Name</FormLabel>
+                      <Field type="text" name="lastName" as={FormControl} placeholder="Last Name" />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <div className={styles.formspacer} />
+                <Row>
+                  <Col lg={{ span: 10, offset: 1 }}>
+                    <FormGroup controlId="email">
+                      {(touched.email && errors.email) ? <Alert>{errors.email}</Alert> : ''}
+                      <FormLabel>Kent Email</FormLabel>
+                      <InputGroup>
+                        <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                        <Field type="email" name="email" as={FormControl} placeholder="example@kent.ac.uk" />
+                      </InputGroup>
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <div className={styles.formspacer} />
+                <Row>
+                  <Col lg={{ span: 10, offset: 1 }}>
+                    <FormGroup controlId="password">
+                      {(touched.password && errors.password) ? <Alert>{errors.password}</Alert> : ''}
+                      <FormLabel>Password</FormLabel>
+                      <Field type="password" name="password" as={FormControl} placeholder="Password" />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <div className={styles.formspacer} />
+                <Row>
+                  <Col lg={{ span: 10, offset: 1 }}>
+                    <FormGroup controlId="passwordConfirm">
+                      {(touched.passwordConfirm && errors.passwordConfirm) ? <Alert>{errors.passwordConfirm}</Alert> : ''}
+                      <FormLabel>Confirm Password</FormLabel>
+                      <Field type="password" name="passwordConfirm" as={FormControl} placeholder="Confirm Password" />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <div className={styles.formspacer} />
+                <Row>
+                  <Col lg={{ span: 10, offset: 1 }}>
+                    <FormGroup>
+                      <div className={styles.formspacer1} />
+                      <Tags />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <div className={styles.formspacer} />
+                <div className={styles.formspacer} />
+                <Row>
+                  <Col className={styles.buttonWrapper}>
+                    <button type="submit" className={styles.save}>Create Account</button>
+                  </Col>
+                </Row>
+                <div className={styles.formspacer} />
+              </Form>
+            </div>
+          )}
+        </Formik>
+      </div>
+      <div className={styles.formspacer} />
+    </>
+  );
+};
 
 export default RegistrationForm;
