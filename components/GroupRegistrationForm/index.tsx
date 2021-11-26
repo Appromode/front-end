@@ -1,11 +1,6 @@
 import React, { FC } from 'react';
 import { Formik, Form, Field } from 'formik';
-import {
-  object,
-  string,
-  array,
-  boolean,
-} from 'yup';
+import { object, string, array } from 'yup';
 import {
   Container,
   FormGroup,
@@ -13,7 +8,6 @@ import {
   FormControl,
   Button,
   Alert,
-  FormCheck,
 } from 'react-bootstrap';
 import styles from './styles.module.scss';
 
