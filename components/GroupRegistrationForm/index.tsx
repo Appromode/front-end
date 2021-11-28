@@ -9,6 +9,7 @@ import {
   Button,
   Alert,
 } from 'react-bootstrap';
+import Searcher from '../Searcher';
 import styles from './styles.module.scss';
 
 const GroupRegistrationForm: FC = () => (
@@ -45,6 +46,8 @@ const GroupRegistrationForm: FC = () => (
             <FormLabel>Group Description</FormLabel>
             <Field type="text" name="groupDescription" as={FormControl} placeholder="A truly amazing group" />
           </FormGroup>
+
+          <Searcher>Searcher</Searcher>
 
           <Button type="submit">Create Group</Button>
         </Form>
