@@ -17,9 +17,15 @@
     color: $default-white;
 }
 
+#centreSpace {
+    width: 45%;
+}
+
 .centreConsole {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 45%;
 }
 
@@ -153,6 +159,11 @@
 
 .formspacer {
     padding: 10px;
+}
+
+.formElementWrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .formspacer2 {

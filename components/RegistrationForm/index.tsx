@@ -46,8 +46,8 @@ const RegistrationForm:FC = () => {
 
   return (
     <>
-      <div className={styles.formspacer} />
       <div className={styles.centreConsole}>
+        {/** Instead of width 40 add padding */}
         <p id={styles.title1}>Student Registration</p>
         <Formik
           enableReinitialize
@@ -78,82 +78,85 @@ const RegistrationForm:FC = () => {
                     </FormGroup>
                   </Col>
                 </Row>
-                <div className={styles.formspacer} />
-                <Row>
-                  <Col lg={{ span: 10, offset: 1 }}>
-                    <FormGroup controlId="firstname">
-                      {(touched.firstName && errors.firstName) ? <Alert>{errors.firstName}</Alert> : ''}
-                      <FormLabel>First Name</FormLabel>
-                      <Field name="firstName" type="text" as={FormControl} placeholder="First Name" />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <div className={styles.formspacer} />
-                <Row>
-                  <Col lg={{ span: 10, offset: 1 }}>
-                    <FormGroup controlId="lastname">
-                      {(touched.lastName && errors.lastName) ? <Alert>{errors.lastName}</Alert> : ''}
-                      <FormLabel>Last Name</FormLabel>
-                      <Field type="text" name="lastName" as={FormControl} placeholder="Last Name" />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <div className={styles.formspacer} />
-                <Row>
-                  <Col lg={{ span: 10, offset: 1 }}>
-                    <FormGroup controlId="email">
-                      {(touched.email && errors.email) ? <Alert>{errors.email}</Alert> : ''}
-                      <FormLabel>Kent Email</FormLabel>
-                      <InputGroup>
-                        <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                        <Field type="email" name="email" as={FormControl} placeholder="example@kent.ac.uk" />
-                      </InputGroup>
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <div className={styles.formspacer} />
-                <Row>
-                  <Col lg={{ span: 10, offset: 1 }}>
-                    <FormGroup controlId="password">
-                      {(touched.password && errors.password) ? <Alert>{errors.password}</Alert> : ''}
-                      <FormLabel>Password</FormLabel>
-                      <Field type="password" name="password" as={FormControl} placeholder="Password" />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <div className={styles.formspacer} />
-                <Row>
-                  <Col lg={{ span: 10, offset: 1 }}>
-                    <FormGroup controlId="passwordConfirm">
-                      {(touched.passwordConfirm && errors.passwordConfirm) ? <Alert>{errors.passwordConfirm}</Alert> : ''}
-                      <FormLabel>Confirm Password</FormLabel>
-                      <Field type="password" name="passwordConfirm" as={FormControl} placeholder="Confirm Password" />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <div className={styles.formspacer} />
-                <Row>
-                  <Col lg={{ span: 10, offset: 1 }}>
-                    <FormGroup>
-                      <div className={styles.formspacer1} />
-                      <Tags />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <div className={styles.formspacer} />
-                <div className={styles.formspacer} />
-                <Row>
-                  <Col className={styles.buttonWrapper}>
-                    <button type="submit" className={styles.save}>Create Account</button>
-                  </Col>
-                </Row>
-                <div className={styles.formspacer} />
+                <div className={styles.formElementWrapper}>
+                  <Row>
+                    <Col lg={{ span: 10, offset: 1 }}>
+                      <FormGroup controlId="firstname">
+                        {(touched.firstName && errors.firstName) ? <Alert>{errors.firstName}</Alert> : ''}
+                        <FormLabel>First Name</FormLabel>
+                        <Field name="firstName" type="text" as={FormControl} placeholder="First Name" />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </div>
+                <div className={styles.formElementWrapper}>
+                  <Row>
+                    <Col lg={{ span: 10, offset: 1 }}>
+                      <FormGroup controlId="lastname">
+                        {(touched.lastName && errors.lastName) ? <Alert>{errors.lastName}</Alert> : ''}
+                        <FormLabel>Last Name</FormLabel>
+                        <Field type="text" name="lastName" as={FormControl} placeholder="Last Name" />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </div>
+                <div className={styles.formElementWrapper}>
+                  <Row>
+                    <Col lg={{ span: 10, offset: 1 }}>
+                      <FormGroup controlId="email">
+                        {(touched.email && errors.email) ? <Alert>{errors.email}</Alert> : ''}
+                        <FormLabel>Kent Email</FormLabel>
+                        <InputGroup>
+                          <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                          <Field type="email" name="email" as={FormControl} placeholder="example@kent.ac.uk" />
+                        </InputGroup>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </div>
+                <div className={styles.formElementWrapper}>
+                  <Row>
+                    <Col lg={{ span: 10, offset: 1 }}>
+                      <FormGroup controlId="password">
+                        {(touched.password && errors.password) ? <Alert>{errors.password}</Alert> : ''}
+                        <FormLabel>Password</FormLabel>
+                        <Field type="password" name="password" as={FormControl} placeholder="Password" />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </div>
+                <div className={styles.formElementWrapper}>
+                  <Row>
+                    <Col lg={{ span: 10, offset: 1 }}>
+                      <FormGroup controlId="passwordConfirm">
+                        {(touched.passwordConfirm && errors.passwordConfirm) ? <Alert>{errors.passwordConfirm}</Alert> : ''}
+                        <FormLabel>Confirm Password</FormLabel>
+                        <Field type="password" name="passwordConfirm" as={FormControl} placeholder="Confirm Password" />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </div>
+                <div className={styles.formElementWrapper}>
+                  <Row>
+                    <Col lg={{ span: 10, offset: 1 }}>
+                      <FormGroup>
+                        <Tags />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                </div>
+                <div className={styles.formElementWrapper}>
+                  <Row>
+                    <Col className={styles.buttonWrapper}>
+                      <button type="submit" className={styles.save}>Create Account</button>
+                    </Col>
+                  </Row>
+                </div>
               </Form>
             </div>
           )}
         </Formik>
       </div>
-      <div className={styles.formspacer} />
     </>
   );
 };
