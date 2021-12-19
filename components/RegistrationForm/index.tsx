@@ -14,8 +14,7 @@ import {
   Formik,
   Form,
 } from 'formik';
-import { object, string } from 'yup';
-import * as yup from 'yup';
+import { object, string, ref } from 'yup';
 import Tags from '../Tags';
 import styles from './styles.module.scss';
 
@@ -41,7 +40,7 @@ const RegistrationForm:FC = () => {
     lastName: string().min(2).max(30).required('Last name is Required'),
     email: string().email('Invalid email').required('Your Kent email is required'),
     password: string().required('A password is required'),
-    passwordConfirm: string().required('Password cannot be confirmed if this is left blank!').oneOf([yup.ref('password'), null], 'Passwords must match'),
+    passwordConfirm: string().required('Password cannot be confirmed if this is left blank!').oneOf([ref('password'), null], 'Passwords must match'),
   });
 
   return (
