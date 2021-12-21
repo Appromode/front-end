@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent } from 'react';
+import React, { FC } from 'react';
 import {
   Row,
   Col,
@@ -19,23 +19,23 @@ import Tags from '../Tags';
 import styles from './styles.module.scss';
 
 const RegistrationForm:FC = () => {
-  const [selectedRole, setSelectedRole] = useState('');
+  // const [selectedRole, setSelectedRole] = useState('');
 
-  const getRoleValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedRole(event.target.value);
-    console.log(selectedRole);
-  };
+  // const getRoleValue = (event: ChangeEvent<HTMLInputElement>) => {
+  // setSelectedRole(event.target.value);
+  // console.log(selectedRole);
+  // };
 
-  const roles = ['Student', 'Project Supervisor', 'Module Convenor', 'Admin'];
+  const kentRoles = ['Student', 'Project Supervisor', 'Module Convenor', 'Admin'];
 
-  const roleOptions = roles.map((role) => (
+  const roleOptions = kentRoles.map((role) => (
     <option>
       {role}
     </option>
   ));
 
-  const validationSchema = object({
-    role: string().required('Please select a role'),
+  const validationSchema = object().shape({
+    role: string().required('Please select a role').oneOf(kentRoles),
     firstName: string().min(2, 'First name is too short!').max(30, 'First name is too long!').required('First name is required'),
     lastName: string().min(2).max(30).required('Last name is Required'),
     email: string().email('Invalid email').required('Your Kent email is required'),
@@ -49,11 +49,10 @@ const RegistrationForm:FC = () => {
         {/** Instead of width 40 add padding */}
         <p id={styles.title1}>Student Registration</p>
         <Formik
-          enableReinitialize
           validationSchema={validationSchema}
           onSubmit={(values) => { console.log(values); }}
           initialValues={{
-            role: selectedRole,
+            role: '',
             firstName: '',
             lastName: '',
             email: '',
@@ -70,8 +69,8 @@ const RegistrationForm:FC = () => {
                     <FormGroup controlId="role">
                       {(touched.role && errors.role) ? <Alert>{errors.role}</Alert> : ''}
                       <FormLabel>Role</FormLabel>
-                      <Field name="role" value={selectedRole} onChange={getRoleValue} as={FormSelect}>
-                        <option hidden value="">Select a Role</option>
+                      <Field name="role" as={FormSelect}>
+                        <option hidden value="">Select a role</option>
                         {roleOptions}
                       </Field>
                     </FormGroup>
