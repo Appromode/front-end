@@ -10,7 +10,7 @@ export const getTags = () => {
   });
 };
 
-export const getTag = ({ id }: { id: number }) => {
+export const getTag = (id :number) => {
   const { data, error } = useSWR(`/api/Tag/${id}`, fetcher);
 
   return Object.freeze({
