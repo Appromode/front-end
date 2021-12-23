@@ -44,7 +44,7 @@ const RegistrationForm:FC = () => {
   });
 
   return (
-    <>
+    <Col xs={12} sm={12} md={{ span: 6, offset: 3 }}>
       <div className={styles.centreConsole}>
         {/** Instead of width 40 add padding */}
         <p id={styles.title1}>Student Registration</p>
@@ -65,7 +65,7 @@ const RegistrationForm:FC = () => {
             <div className={styles.textbox}>
               <Form>
                 <Row>
-                  <Col lg={{ span: 10, offset: 1 }}>
+                  <Col xs={{ span: 10, offset: 1 }} md={{ span: 10, offset: 1 }}>
                     <FormGroup controlId="role">
                       {(touched.role && errors.role) ? <Alert>{errors.role}</Alert> : ''}
                       <FormLabel>Role</FormLabel>
@@ -78,7 +78,7 @@ const RegistrationForm:FC = () => {
                 </Row>
                 <div className={styles.formElementWrapper}>
                   <Row>
-                    <Col lg={{ span: 10, offset: 1 }}>
+                    <Col xs={{ span: 10, offset: 1 }} md={{ span: 10, offset: 1 }}>
                       <FormGroup controlId="firstname">
                         {(touched.firstName && errors.firstName) ? <Alert>{errors.firstName}</Alert> : ''}
                         <FormLabel>First Name</FormLabel>
@@ -89,7 +89,7 @@ const RegistrationForm:FC = () => {
                 </div>
                 <div className={styles.formElementWrapper}>
                   <Row>
-                    <Col lg={{ span: 10, offset: 1 }}>
+                    <Col xs={{ span: 10, offset: 1 }} md={{ span: 10, offset: 1 }}>
                       <FormGroup controlId="lastname">
                         {(touched.lastName && errors.lastName) ? <Alert>{errors.lastName}</Alert> : ''}
                         <FormLabel>Last Name</FormLabel>
@@ -100,7 +100,7 @@ const RegistrationForm:FC = () => {
                 </div>
                 <div className={styles.formElementWrapper}>
                   <Row>
-                    <Col lg={{ span: 10, offset: 1 }}>
+                    <Col xs={{ span: 10, offset: 1 }} md={{ span: 10, offset: 1 }}>
                       <FormGroup controlId="email">
                         {(touched.email && errors.email) ? <Alert>{errors.email}</Alert> : ''}
                         <FormLabel>Kent Email</FormLabel>
@@ -114,7 +114,7 @@ const RegistrationForm:FC = () => {
                 </div>
                 <div className={styles.formElementWrapper}>
                   <Row>
-                    <Col lg={{ span: 10, offset: 1 }}>
+                    <Col xs={{ span: 10, offset: 1 }} md={{ span: 10, offset: 1 }}>
                       <FormGroup controlId="password">
                         {(touched.password && errors.password) ? <Alert>{errors.password}</Alert> : ''}
                         <FormLabel>Password</FormLabel>
@@ -125,7 +125,7 @@ const RegistrationForm:FC = () => {
                 </div>
                 <div className={styles.formElementWrapper}>
                   <Row>
-                    <Col lg={{ span: 10, offset: 1 }}>
+                    <Col xs={{ span: 10, offset: 1 }} md={{ span: 10, offset: 1 }}>
                       <FormGroup controlId="passwordConfirm">
                         {(touched.passwordConfirm && errors.passwordConfirm) ? <Alert>{errors.passwordConfirm}</Alert> : ''}
                         <FormLabel>Confirm Password</FormLabel>
@@ -136,7 +136,7 @@ const RegistrationForm:FC = () => {
                 </div>
                 <div className={styles.formElementWrapper}>
                   <Row>
-                    <Col lg={{ span: 10, offset: 1 }}>
+                    <Col xs={{ span: 10, offset: 1 }} md={{ span: 10, offset: 1 }}>
                       <FormGroup>
                         <Tags />
                       </FormGroup>
@@ -155,7 +155,7 @@ const RegistrationForm:FC = () => {
           )}
         </Formik>
       </div>
-    </>
+    </Col>
   );
 };
 
