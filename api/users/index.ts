@@ -10,7 +10,7 @@ export const getUsers = () => {
   });
 };
 
-export const getUser = ({ id }: { id: number }) => {
+export const getUser = (id: number) => {
   const { data, error } = useSWR(`/api/User/${id}`, fetcher);
 
   return Object.freeze({
