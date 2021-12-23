@@ -12,7 +12,7 @@ const GlobalFilter: FC<Filter> = ({ preGlobalFilteredRows, globalFilter, setGlob
       <FormLabel>Search</FormLabel>
       <FormControl
         type="text"
-        value={globalFilter}
+        value={globalFilter || ''}
         onChange={onChange}
         placeholder={`Search ${rowCount} rows`}
       />
