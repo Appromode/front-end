@@ -33,7 +33,9 @@ export const ProjectForum = () => (
       <div className={styles.projectIdea}>
         <Row>
           <Col xs={5} md={6}>
-            CO600 System
+            <div className={styles.projectTitle}>
+              CO600 System
+            </div>
           </Col>
           <Col xs={4} md={3}>
             Replies: 1
@@ -44,7 +46,9 @@ export const ProjectForum = () => (
         </Row>
         <Row>
           <Col xs={5} md={6}>
-            Started by bss25 (Student), 18th March 2021
+            <div className={styles.projectTitle}>
+              Started by bss25 (Student), 18th March 2021
+            </div>
           </Col>
           <Col xs={4} md={3}>
             Views: 120
