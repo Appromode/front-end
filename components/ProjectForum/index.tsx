@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   Col,
   Row,
@@ -6,7 +6,7 @@ import {
 import { getProjects } from '../../api/projects';
 import styles from './styles.module.scss';
 
-export const ProjectForum = () => {
+const ProjectForum:FC = () => {
   const { projects } = getProjects();
 
   return (
@@ -34,35 +34,37 @@ export const ProjectForum = () => {
             </Col>
           </Row>
         </div>
-        <div className={styles.projectIdea}>
-          <Row>
-            <Col xs={5} md={6}>
-              <div className={styles.projectTitle}>
-                CO600 System
-              </div>
-            </Col>
-            <Col xs={4} md={3}>
-              Replies: 1
-            </Col>
-            <Col xs={3} md={3}>
-              AW85
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={5} md={6}>
-              <div className={styles.projectTitle}>
-                Started by bss25 (Student), 18th March 2021
-                {console.log(projects)}
-              </div>
-            </Col>
-            <Col xs={4} md={3}>
-              Views: 120
-            </Col>
-            <Col xs={3} md={3}>
-              20th March 2021 19:56
-            </Col>
-          </Row>
-        </div>
+        {
+              projects
+                && projects.map((project :any) => (
+                  <div className={styles.projectIdea}>
+                    <Row>
+                      <Col xs={5} md={6}>
+                        <div className={styles.projectTitle}>
+                          {project.projectName}
+                        </div>
+                      </Col>
+                      <Col xs={4} md={3}>
+                        Replies: 1
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={5} md={6}>
+                        <div className={styles.projectTitle}>
+                          Started by bss25 (Student), 18th March 2021
+                          {console.log(projects)}
+                        </div>
+                      </Col>
+                      <Col xs={4} md={3}>
+                        Views: 120
+                      </Col>
+                      <Col xs={3} md={3}>
+                        {project.updatedAt}
+                      </Col>
+                    </Row>
+                  </div>
+                ))
+          }
       </div>
     </Col>
   );
