@@ -19,37 +19,37 @@ export const ProjectForum = () => (
       </Row>
       <div id={styles.tableTop}>
         <Row>
-          <Col lg={6}>
+          <Col xs={5} md={6}>
             <span id={styles.tableTitle}>Title</span>
           </Col>
-          <Col>
+          <Col xs={4} md={3}>
             Replies/Views
           </Col>
-          <Col>
+          <Col xs={3} md={3}>
             Last Post
           </Col>
         </Row>
       </div>
       <div className={styles.projectIdea}>
         <Row>
-          <Col lg={6}>
+          <Col xs={5} md={6}>
             CO600 System
           </Col>
-          <Col>
+          <Col xs={4} md={3}>
             Replies: 1
           </Col>
-          <Col>
+          <Col xs={3} md={3}>
             AW85
           </Col>
         </Row>
         <Row>
-          <Col lg={6}>
+          <Col xs={5} md={6}>
             Started by bss25 (Student), 18th March 2021
           </Col>
-          <Col>
+          <Col xs={4} md={3}>
             Views: 120
           </Col>
-          <Col>
+          <Col xs={3} md={3}>
             20th March 2021 19:56
           </Col>
         </Row>
