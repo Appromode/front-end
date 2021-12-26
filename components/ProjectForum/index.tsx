@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import {
   Col,
+  NavLink,
   Row,
 } from 'react-bootstrap';
 import Moment from 'moment';
@@ -40,33 +41,35 @@ const ProjectForum:FC = () => {
                 && projects.map((project :any) => {
                   if (project.deleted === false) {
                     return (
-                      <div className={styles.projectIdea}>
-                        <Row>
-                          <Col xs={5} md={6}>
-                            <div className={styles.projectTitle}>
-                              {project.projectName}
-                            </div>
-                          </Col>
-                          <Col xs={4} md={3}>
-                            Replies: 1
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xs={5} md={6}>
-                            <div className={styles.projectTitle}>
-                              Started by bss25 (Student),
-                              {Moment(project.createdAt).format(' Do MMM YYYY HH:mm')}
-                              {console.log(projects)}
-                            </div>
-                          </Col>
-                          <Col xs={4} md={3}>
-                            Views: 120
-                          </Col>
-                          <Col xs={3} md={3}>
-                            {Moment(project.updatedAt).format('DD/MM/YYYY, HH:mm')}
-                          </Col>
-                        </Row>
-                      </div>
+                      <NavLink href="/project-forum/forum-post">
+                        <div className={styles.projectIdea}>
+                          <Row>
+                            <Col xs={5} md={6}>
+                              <div className={styles.projectTitle}>
+                                {project.projectName}
+                              </div>
+                            </Col>
+                            <Col xs={4} md={3}>
+                              Replies: 1
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col xs={5} md={6}>
+                              <div className={styles.projectTitle}>
+                                Started by bss25 (Student),
+                                {Moment(project.createdAt).format(' Do MMM YYYY HH:mm')}
+                                {console.log(projects)}
+                              </div>
+                            </Col>
+                            <Col xs={4} md={3}>
+                              Views: 120
+                            </Col>
+                            <Col xs={3} md={3}>
+                              {Moment(project.updatedAt).format('DD/MM/YYYY, HH:mm')}
+                            </Col>
+                          </Row>
+                        </div>
+                      </NavLink>
                     );
                   }
                   return null;

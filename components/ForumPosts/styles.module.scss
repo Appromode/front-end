@@ -1,0 +1,62 @@
+@import '../../styles/colours.scss';
+
+#title {
+    color: $default-blue;
+    font-size: large;
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#centreConsole {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px 0px;
+    padding: 20px;
+}
+
+#heading1 {
+    font-weight: bold;
+    color: $default-blue;
+    padding-left: 10px;
+}
+
+#subtitle {
+    float: right;
+    color: $default-blue;
+    padding-right: 10px;
+}
+
+#tableTop {
+    background-color: $default-lightblue;
+    color: $default-white;
+    font-weight: bold;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 10px 0px;
+}
+
+#tableTitle {
+    padding-left: 10px;
+}
+
+.projectTitle {
+    padding-left: 10px;
+}
+
+.projectIdea {
+    margin-top: 10px;
+    padding: 10px 0px;
+    background-color: $default-grey;
+    color: white;
+    border-radius: 8px;
+    font-size: small;
+}
+
+
+.projectIdea:hover {
+    background-color: $default-lightgrey;
+    color: black;
+}
+

@@ -3,16 +3,16 @@ import {
   Container,
   Row,
 } from 'react-bootstrap';
-import DefaultForum from '../../../components/ProjectForum';
+import ForumPosts from '../../../components/ForumPosts';
 
 // Schema needs to be defined for the form
 
-export const ProjectForum: FC = () => (
+export const ForumPost: FC = () => (
   <Container>
     <Row>
-      <DefaultForum />
+      <ForumPosts />
     </Row>
   </Container>
 );
 
-export default ProjectForum;
+export default ForumPost;
