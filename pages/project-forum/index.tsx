@@ -3,7 +3,7 @@ import {
   Container,
   Row,
 } from 'react-bootstrap';
-import DefaultForum from '../components/ProjectForum';
+import DefaultForum from '../../components/ProjectForum';
 
 // Schema needs to be defined for the form
 
