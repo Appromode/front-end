@@ -54,7 +54,8 @@ const ProjectForum:FC = () => {
                         <Row>
                           <Col xs={5} md={6}>
                             <div className={styles.projectTitle}>
-                              Started by bss25 (Student), 18th March 2021
+                              Started by bss25 (Student),
+                              {Moment(project.createdAt).format(' Do MMM YYYY HH:mm')}
                               {console.log(projects)}
                             </div>
                           </Col>
