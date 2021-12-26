@@ -3,6 +3,7 @@ import {
   Col,
   Row,
 } from 'react-bootstrap';
+import Moment from 'moment';
 import { getProjects } from '../../api/projects';
 import styles from './styles.module.scss';
 
@@ -59,7 +60,7 @@ const ProjectForum:FC = () => {
                         Views: 120
                       </Col>
                       <Col xs={3} md={3}>
-                        {project.updatedAt}
+                        {Moment(project.updatedAt).format('DD/MM/YYYY, HH:mm')}
                       </Col>
                     </Row>
                   </div>
