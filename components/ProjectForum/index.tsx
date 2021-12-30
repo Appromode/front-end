@@ -9,6 +9,8 @@ import styles from './styles.module.scss';
 
 const ProjectForum:FC = () => {
   const { projects } = getProjects();
+  const numProjects = projects.length;
+  // const [threadNo, setThreadNo] = useState();
 
   return (
     <Col lg={{ span: 10, offset: 1 }}>
@@ -19,7 +21,11 @@ const ProjectForum:FC = () => {
             <div id={styles.heading1}>CO600 Project Proposals</div>
           </Col>
           <Col>
-            <div id={styles.subtitle}>Threads 1 to 1</div>
+            <div id={styles.subtitle}>
+              Threads 1 to
+              {' '}
+              {numProjects}
+            </div>
           </Col>
         </Row>
         <div id={styles.tableTop}>
@@ -72,6 +78,7 @@ const ProjectForum:FC = () => {
                     );
                   }
                   return null;
+                  // Message sayiing there are no project avilable
                 })
           }
       </div>
