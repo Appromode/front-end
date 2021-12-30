@@ -9,8 +9,6 @@ import styles from './styles.module.scss';
 
 const ProjectForum:FC = () => {
   const { projects } = getProjects();
-  const numProjects = projects.length;
-  // const [threadNo, setThreadNo] = useState();
 
   return (
     <Col lg={{ span: 10, offset: 1 }}>
@@ -22,9 +20,7 @@ const ProjectForum:FC = () => {
           </Col>
           <Col>
             <div id={styles.subtitle}>
-              Threads 1 to
-              {' '}
-              {numProjects}
+              Threads 1 to 1
             </div>
           </Col>
         </Row>
@@ -46,12 +42,13 @@ const ProjectForum:FC = () => {
                 && projects.map((project :any) => {
                   if (project.deleted === false) {
                     return (
-                      <div className={styles.projectIdea}>
+                      <div className={styles.projectIdea} key={project.projectId}>
                         <a href="/project-forum/forum-post" className={styles.navLink}>
                           <Row>
                             <Col xs={5} md={6}>
                               <div className={styles.projectTitle}>
                                 {project.projectName}
+                                {projects.length}
                               </div>
                             </Col>
                             <Col xs={4} md={3}>
