@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import {
   Col,
-  NavLink,
   Row,
 } from 'react-bootstrap';
 import Moment from 'moment';
@@ -41,8 +40,8 @@ const ProjectForum:FC = () => {
                 && projects.map((project :any) => {
                   if (project.deleted === false) {
                     return (
-                      <NavLink href="/project-forum/forum-post">
-                        <div className={styles.projectIdea}>
+                      <div className={styles.projectIdea}>
+                        <a href="/project-forum/forum-post" className={styles.navLink}>
                           <Row>
                             <Col xs={5} md={6}>
                               <div className={styles.projectTitle}>
@@ -68,8 +67,8 @@ const ProjectForum:FC = () => {
                               {Moment(project.updatedAt).format('DD/MM/YYYY, HH:mm')}
                             </Col>
                           </Row>
-                        </div>
-                      </NavLink>
+                        </a>
+                      </div>
                     );
                   }
                   return null;

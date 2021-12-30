@@ -52,6 +52,7 @@
     color: white;
     border-radius: 8px;
     font-size: small;
+    text-decoration: none;
 }
 
 
@@ -60,3 +61,11 @@
     color: black;
 }
 
+.navLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navLink:hover {
+    color: inherit;
+}
