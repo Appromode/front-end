@@ -13,7 +13,7 @@ declare module 'react-table' {
   }
 
   interface PreGlobalFilteredRows {
-    preGlobalFilteredRows: Array<Row>;
+    preGlobalFilteredRows: Rows;
   }
 
   interface SetGlobalFilter {
