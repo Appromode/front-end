@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
+import poster from '../../utils/poster';
 
 export const getTags = () => {
   const { data, error } = useSWR('/api/Tag', fetcher);
@@ -10,7 +11,7 @@ export const getTags = () => {
   });
 };
 
-export const getTag = ({ id }: { id: number }) => {
+export const getTag = (id :number) => {
   const { data, error } = useSWR(`/api/Tag/${id}`, fetcher);
 
   return Object.freeze({
@@ -18,3 +19,5 @@ export const getTag = ({ id }: { id: number }) => {
     error,
   });
 };
+
+export const postTag = (data: { tagName: string }) => poster('/api/Tag', 'POST', data);
