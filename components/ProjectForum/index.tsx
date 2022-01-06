@@ -4,11 +4,11 @@ import {
   Row,
 } from 'react-bootstrap';
 import Moment from 'moment';
-import { getProjects } from '../../api/projects';
+import { getComments } from '../../api/comments';
 import styles from './styles.module.scss';
 
 const ProjectForum:FC = () => {
-  const { projects } = getProjects();
+  const { comments } = getComments();
 
   return (
     <Col lg={{ span: 10, offset: 1 }}>
@@ -18,11 +18,6 @@ const ProjectForum:FC = () => {
           <Col>
             <div id={styles.heading1}>CO600 Project Proposals</div>
           </Col>
-          <Col>
-            <div id={styles.subtitle}>
-              Threads 1 to 1
-            </div>
-          </Col>
         </Row>
         <div id={styles.tableTop}>
           <Row>
@@ -30,7 +25,7 @@ const ProjectForum:FC = () => {
               <span id={styles.tableTitle}>Title</span>
             </Col>
             <Col xs={4} md={3}>
-              Replies/Views
+              Replies
             </Col>
             <Col xs={3} md={3}>
               Last Post
@@ -38,36 +33,34 @@ const ProjectForum:FC = () => {
           </Row>
         </div>
         {
-              projects
-                && projects.map((project :any) => {
-                  if (project.deleted === false) {
+              comments
+                && comments.map((comment :any) => {
+                  if (comment.deleted === false) {
                     return (
-                      <div className={styles.projectIdea} key={project.projectId}>
+                      <div className={styles.projectIdea} key={comment.projectId}>
                         <a href="/project-forum/forum-post" className={styles.navLink}>
                           <Row>
                             <Col xs={5} md={6}>
                               <div className={styles.projectTitle}>
-                                {project.projectName}
-                                {projects.length}
+                                {comment.projectId}
                               </div>
-                            </Col>
-                            <Col xs={4} md={3}>
-                              Replies: 1
                             </Col>
                           </Row>
                           <Row>
                             <Col xs={5} md={6}>
                               <div className={styles.projectTitle}>
                                 Started by bss25 (Student),
-                                {Moment(project.createdAt).format(' Do MMM YYYY HH:mm')}
-                                {console.log(projects)}
+                                {Moment(comment.createdAt).format(' Do MMM YYYY HH:mm')}
+                                {console.log(comments)}
                               </div>
                             </Col>
                             <Col xs={4} md={3}>
-                              Views: 120
+                              Replies:
+                              {' '}
+                              {comment.replies}
                             </Col>
                             <Col xs={3} md={3}>
-                              {Moment(project.updatedAt).format('DD/MM/YYYY, HH:mm')}
+                              {Moment(comment.updatedAt).format('DD/MM/YYYY, HH:mm')}
                             </Col>
                           </Row>
                         </a>
