@@ -6,7 +6,6 @@ import {
   FormGroup,
   FormLabel,
   FormControl,
-  Button,
   Alert,
 } from 'react-bootstrap';
 import styles from './styles.module.scss';
@@ -21,7 +20,6 @@ const GroupRegistrationForm: FC = () => (
         groupDescription: '',
         groupMembers: [],
         files: [],
-        isGroupVisible: false,
       }}
       onSubmit={() => undefined}
       validationSchema={
@@ -33,7 +31,7 @@ const GroupRegistrationForm: FC = () => (
         })
       }
     >
-      {({ values, touched, errors }) => (
+      {({ touched, errors }) => (
         <Form>
           <FormGroup controlId="groupName" className={styles.formGroup}>
             {(touched.groupName && errors.groupName) ? <Alert>{errors.groupName}</Alert> : ''}
@@ -47,12 +45,14 @@ const GroupRegistrationForm: FC = () => (
             <Field type="text" name="groupDescription" as={FormControl} placeholder="A truly amazing group" />
           </FormGroup>
 
-          {/* <Searcher cols={tagColumns} allData={tags || []} /> */}
-          {console.log(values.groupMembers)}
-
           <UserSearch />
 
-          <Button type="submit">Create Group</Button>
+          <button
+            type="submit"
+            className="p-2 bg-blue-900 text-white my-2 rounded-sm"
+          >
+            Create Group
+          </button>
         </Form>
       )}
     </Formik>
