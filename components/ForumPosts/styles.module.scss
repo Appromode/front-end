@@ -41,16 +41,18 @@
     padding-left: 10px;
 }
 
-.projectTitle {
-    padding-left: 10px;
-}
+.keyInfo {
+    background-color: $default-blue;
+    display: inline-block;
+    color: $default-white;
+    padding: 8px;
+    margin-left: 10px;
+    border-radius: 3px;
+  }
 
 .projectIdea {
     margin-top: 10px;
     padding: 10px 0px;
-    background-color: $default-grey;
-    color: white;
-    border-radius: 8px;
     font-size: small;
 }
 

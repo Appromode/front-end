@@ -72,7 +72,6 @@ const ProjectForum:FC = () => {
                   return (
                     <div />
                   );
-                  // Message sayiing there are no project avilable
                 })
           }
       </div>
