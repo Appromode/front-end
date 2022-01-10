@@ -35,39 +35,43 @@ const ProjectForum:FC = () => {
         {
               comments
                 && comments.map((comment :any) => {
-                  if (comment.deleted === false) {
+                  if (comment.comment.deleted === false) {
                     return (
-                      <div className={styles.projectIdea} key={comment.projectId}>
+                      <div className={styles.projectIdea} key={comment.project.projectId}>
                         <a href="/project-forum/forum-post" className={styles.navLink}>
                           <Row>
                             <Col xs={5} md={6}>
                               <div className={styles.projectTitle}>
-                                {comment.projectId}
+                                {comment.project.projectName}
                               </div>
                             </Col>
                           </Row>
                           <Row>
                             <Col xs={5} md={6}>
                               <div className={styles.projectTitle}>
-                                Started by bss25 (Student),
-                                {Moment(comment.createdAt).format(' Do MMM YYYY HH:mm')}
-                                {console.log(comments)}
+                                Started by
+                                {' '}
+                                {comment.comment.userId}
+                                ,
+                                {Moment(comment.comment.createdAt).format(' Do MMM YYYY HH:mm')}
                               </div>
                             </Col>
                             <Col xs={4} md={3}>
                               Replies:
                               {' '}
-                              {comment.replies}
+                              {comment.comment.replies}
                             </Col>
                             <Col xs={3} md={3}>
-                              {Moment(comment.updatedAt).format('DD/MM/YYYY, HH:mm')}
+                              {Moment(comment.comment.updatedAt).format('DD/MM/YYYY, HH:mm')}
                             </Col>
                           </Row>
                         </a>
                       </div>
                     );
                   }
-                  return null;
+                  return (
+                    <div />
+                  );
                   // Message sayiing there are no project avilable
                 })
           }
