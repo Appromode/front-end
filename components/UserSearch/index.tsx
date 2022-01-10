@@ -3,11 +3,18 @@ import { useTable, useGlobalFilter } from 'react-table';
 import { useFormikContext } from 'formik';
 import GlobalFilter from '../GlobalFilter';
 import { getUsers } from '../../api/users';
+import GroupRegistrationForm from '../../types/group-registration-form';
+import removeArrayItem from '../../utils/removeArrayItem';
+import getById from '../../utils/getById';
 
-const UserSearch:FC = ({ children }) => {
-  const { setFieldValue } = useFormikContext();
+const UserSearch:FC = () => {
+  const { values, setFieldValue } = useFormikContext<GroupRegistrationForm>();
 
   const columns = useMemo(() => [
+    {
+      Header: 'Username',
+      accessor: 'userName',
+    },
     {
       Header: 'First Name',
       accessor: 'firstName',
@@ -45,23 +52,24 @@ const UserSearch:FC = ({ children }) => {
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
+        label="Find Group Members"
       />
       {
         globalFilter ? (
-          <div className="shadow overflow-hidden border-1 border-gray-200">
-            <table {...getTableProps()} className="divide-y divide-gray-200 w-full">
+          <div className="border-1 overflow-x-scroll md:overflow-x-visible border-gray-300">
+            <table {...getTableProps()} className="divide-y divide-gray-200 w-full table-auto">
               <thead className="bg-gray-50 w-full">
                 {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                       <th
                         {...column.getHeaderProps()}
-                        className="px-6 py-3 font-medium text-gray-500 uppercase text-base"
+                        className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap"
                       >
                         {column.render('Header')}
                       </th>
                     ))}
-                    <th>Invite</th>
+                    <th className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap">{}</th>
                   </tr>
                 ))}
               </thead>
@@ -78,14 +86,20 @@ const UserSearch:FC = ({ children }) => {
                           {cell.render('Cell')}
                         </td>
                       ))}
-                      <td>
-                        <button
-                          type="button"
-                          className="m-2 px-6 py-2 whitespace-nowrap bg-indigo-500 text-white rounded-sm"
-                          onClick={() => setFieldValue('groupMembers', 'Added')}
-                        >
-                          Invite
-                        </button>
+                      <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
+                        {
+                          getById(values.groupMembers, row.original.id) !== undefined ? (
+                            <div>Added</div>
+                          ) : (
+                            <button
+                              type="button"
+                              className="text-green-800"
+                              onClick={() => setFieldValue('groupMembers', [...values.groupMembers, row.original])}
+                            >
+                              Add Member
+                            </button>
+                          )
+                        }
                       </td>
                     </tr>
                   );
@@ -93,9 +107,34 @@ const UserSearch:FC = ({ children }) => {
               </tbody>
             </table>
           </div>
-        ) : <div>Invite Users To Your Group</div>
+        ) : ''
       }
-      {children}
+      {
+        values.groupMembers.length > 0 ? (
+          <>
+            <h1 className="mt-3">Added Group Members</h1>
+            <div className="border border-gray-600 rounded-sm my-3">
+              <ul className="divide-y">
+                {
+                  values.groupMembers.map((groupMember, index) => (
+                    <li className="flex flex-col p-4">
+                      <span className="flex flex-row justify-between">
+                        <p>{groupMember.email}</p>
+                        <button
+                          type="button"
+                          onClick={() => setFieldValue('groupMembers', removeArrayItem(values.groupMembers, index))}
+                        >
+                          Remove
+                        </button>
+                      </span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </>
+        ) : <div className="my-3">No group members added</div>
+      }
     </>
   );
 };
