@@ -40,7 +40,11 @@ const ForumPosts:FC = () => {
                     </Row>
                     <Row>
                       <Col>
-                      <Image src="./lock.svg" />
+                        <Image
+                          src="/lock.svg"
+                          width={500}
+                          height={500}
+                        />
                         <div className={styles.projectStatus}>
                           Open for further replies.
                         </div>
