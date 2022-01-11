@@ -3,9 +3,28 @@
 #title {
     color: $default-blue;
     font-size: large;
-    padding-top: 10px;
     font-weight: bold;
-    text-align: center;
+}
+
+.titleContainer {
+    padding-left: 20px;
+}
+
+.firstInfo {
+    padding-left: 10px;
+    font-size: small;
+    color: $default-grey;
+}
+
+.projectStatus {
+    padding: 8px;
+    margin-left: 10px;
+    font-size: small;
+    border-left-style: solid;
+    border-color: $default-blue;
+    background-color: $default-white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 4px;
 }
 
 #centreConsole {
@@ -17,13 +36,13 @@
 #heading1 {
     font-weight: bold;
     color: $default-blue;
-    padding-left: 10px;
+    text-align: center;
 }
 
-#subtitle {
-    float: right;
+.subtitle {
+    padding-left: 10px;
     color: $default-blue;
-    padding-right: 10px;
+    font-weight: bold;
 }
 
 #tableTop {
@@ -43,9 +62,9 @@
 
 .keyInfo {
     background-color: $default-blue;
-    display: inline-block;
     color: $default-white;
     padding: 8px;
+    display: inline-block;
     margin-left: 10px;
     border-radius: 3px;
   }
@@ -62,3 +81,10 @@
     color: black;
 }
 
+.projDesc {
+    font-size: medium;
+    padding-left: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: $default-blue;
+}
