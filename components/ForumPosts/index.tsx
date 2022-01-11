@@ -3,6 +3,7 @@ import {
   Col,
   Row,
 } from 'react-bootstrap';
+import Image from 'next/image';
 import Moment from 'moment';
 import { getComments } from '../../api/comments';
 import styles from './styles.module.scss';
@@ -39,6 +40,7 @@ const ForumPosts:FC = () => {
                     </Row>
                     <Row>
                       <Col>
+                      <Image src="./lock.svg" />
                         <div className={styles.projectStatus}>
                           Open for further replies.
                         </div>
