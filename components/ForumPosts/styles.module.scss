@@ -7,7 +7,7 @@
 }
 
 .titleContainer {
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .firstInfo {
@@ -20,14 +20,18 @@
     padding: 8px;
     margin-left: 10px;
     font-size: small;
-    border-left-style: solid;
-    border-color: $default-blue;
+    border-left: 3px solid $default-blue;
     background-color: $default-white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 4px;
 }
 
-#icon {
+.icon {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.infoContainer {
     display: inline-block;
     margin-right: 5px;
 }

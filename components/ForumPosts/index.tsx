@@ -22,33 +22,49 @@ const ForumPosts:FC = () => {
                 return (
                   <div key={comment.project.projectId}>
                     <Row>
-                      <div className={styles.titleContainer}>
-                        <div id={styles.title}>{comment.project.projectName}</div>
-                      </div>
-                    </Row>
-                    <Row>
-                      <Col xs={1} md={1}>
-                        <div className={styles.firstInfo}>
-                          {comment.comment.userId}
+                      <Col xs={4} md={4}>
+                        <div className={styles.titleContainer}>
+                          <div id={styles.title}>{comment.project.projectName}</div>
                         </div>
                       </Col>
-                      <Col xs={2} md={2}>
+                    </Row>
+                    <Row>
+                      <Col xs={1} md={6}>
                         <div className={styles.firstInfo}>
-                          {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                          <div className={styles.infoContainer}>
+                            <Image
+                              src="/user.svg"
+                              width={15}
+                              height={15}
+                            />
+                          </div>
+                          <div className={styles.infoContainer}>
+                            {comment.comment.userId}
+                          </div>
+                          <div className={styles.infoContainer}>
+                            <Image
+                              src="/clock.svg"
+                              width={15}
+                              height={15}
+                            />
+                          </div>
+                          <div className={styles.infoContainer}>
+                            {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                          </div>
                         </div>
                       </Col>
                     </Row>
                     <Row>
                       <Col>
                         <div className={styles.projectStatus}>
-                          <div id={styles.icon}>
-                            <Image
-                              src="/unlocked.svg"
-                              width={35}
-                              height={35}
-                            />
+                          <Image
+                            src="/unlocked.svg"
+                            width={30}
+                            height={30}
+                          />
+                          <div className={styles.icon}>
+                            Open for further replies.
                           </div>
-                          Open for further replies.
                         </div>
                       </Col>
                     </Row>
