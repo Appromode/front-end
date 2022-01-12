@@ -46,17 +46,12 @@
 #keyInfoContainer {
     color: $default-blue;
     display: inline-block;
-    margin-left: 10px;
-    margin-top: 10px;
     font-size: small;
     text-align: center;
     background-color: $default-white;
     padding: 10px 10px;
-    border-style: solid;
-    border-color: $default-lightgrey;
     border-width: 1px;
-    border-left: 3px solid $default-blue;
-    border-bottom-left-radius: 4px;
+    border-right: 1px solid $default-lightgrey;
     border-top-left-radius: 4px;
   }
 
@@ -97,15 +92,12 @@
 
 #descContainer {
     display: inline-block;
-    margin-top: 10px;
     font-size: small;
     background-color: $default-white;
-    border-style: solid;
-    border-color: $default-lightgrey;
-    border-width: 1px;
     border-radius: 4px;
     width: 100%;
     border-left: 3px solid $default-blue;
+    border-bottom: 1px solid $default-lightgrey;
 }
 
 .projectIdea {
@@ -131,4 +123,19 @@
 #iconPadding {
     padding-right: 10px;
     display: inline-block;
+}
+
+.innerContainer {
+    display: inline-flex;
+    border-top: 1px solid $default-lightgrey;
+    border-bottom: 1px solid $default-lightgrey;
+    border-left: 3px solid $default-blue;
+    border-right: 1px solid $default-lightgrey;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.innerContainerPadding {
+    padding-left: 10px;
+    padding-top: 10px;
 }
