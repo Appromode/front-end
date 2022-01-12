@@ -22,14 +22,14 @@ const ForumPosts:FC = () => {
                 return (
                   <div key={comment.project.projectId}>
                     <Row>
-                      <Col xs={4} md={4}>
+                      <Col xs={9} md={4}>
                         <div className={styles.titleContainer}>
                           <div id={styles.title}>{comment.project.projectName}</div>
                         </div>
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={1} md={6}>
+                      <Col xs={9} md={4}>
                         <div className={styles.firstInfo}>
                           <div className={styles.infoContainer}>
                             <Image
@@ -59,13 +59,53 @@ const ForumPosts:FC = () => {
                         <div className={styles.projectStatus}>
                           <Image
                             src="/unlocked.svg"
-                            width={30}
-                            height={30}
+                            width={15}
+                            height={15}
                           />
                           <div className={styles.icon}>
                             Open for further replies.
                           </div>
                         </div>
+                      </Col>
+                    </Row>
+                    <div id={styles.keyInfoContainer}>
+                      <Row>
+                        <Col>
+                          <Row>
+                            <Col>
+                              <div className={styles.keyInfo}>
+                                Intended Group Size
+                              </div>
+                              <Image
+                                src="/group.svg"
+                                width={75}
+                                height={75}
+                              />
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <div className={styles.keyInfo}>
+                                Supervisor
+                              </div>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              Supervisor Contact Details
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </div>
+                    <Row>
+                      <Col>
+                        Requirements
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        {comment.comment.commentText}
                       </Col>
                     </Row>
                     <div className={styles.projectIdea}>

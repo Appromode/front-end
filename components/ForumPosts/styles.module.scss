@@ -17,7 +17,7 @@
 }
 
 .projectStatus {
-    padding: 8px;
+    padding: 5px;
     margin-left: 10px;
     font-size: small;
     border-left: 3px solid $default-blue;
@@ -69,13 +69,10 @@
     padding-left: 10px;
 }
 
-.keyInfo {
-    background-color: $default-blue;
-    color: $default-white;
-    padding: 8px;
+#keyInfoContainer {
+    color: $default-blue;
     display: inline-block;
     margin-left: 10px;
-    border-radius: 3px;
   }
 
 .projectIdea {
