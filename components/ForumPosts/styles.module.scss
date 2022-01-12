@@ -45,7 +45,6 @@
 
 #keyInfoContainer {
     color: $default-blue;
-    width: 100%;
     display: inline-block;
     margin-left: 10px;
     margin-top: 10px;
@@ -65,7 +64,11 @@
     font-size: small;
     color: $default-blue;
     border-bottom: solid 1px $default-lightgrey;
-    padding: 5px;
+    padding: 5px 0px;
+}
+
+.container {
+    padding: 0px 10px;
 }
 
 #keyInfo {
@@ -88,12 +91,12 @@
 #requirements {
     color: $default-blue;
     border-bottom: 1px solid $default-lightgrey;
-    padding: 5px;
+    padding: 5px 0px;
     font-weight: bold;
 }
 
 #descContainer {
-    width: 100%;
+    display: inline-block;
     margin-top: 10px;
     font-size: small;
     background-color: $default-white;
@@ -102,6 +105,7 @@
     border-width: 1px;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+    width: 100%;
 }
 
 .projectIdea {
@@ -119,4 +123,9 @@
 .projDesc {
     font-size: medium;
     padding-left: 5px;
+}
+
+#threadNo {
+    display: inline-block;
+    float: right;
 }

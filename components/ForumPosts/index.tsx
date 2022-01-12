@@ -17,7 +17,7 @@ const ForumPosts:FC = () => {
         <div id={styles.centreConsole}>
           {
             comments
-            && comments.map((comment :any) => {
+            && comments.map((comment :any, i :number) => {
               if (comment.project.isClosed === false) {
                 return (
                   <div key={comment.project.projectId}>
@@ -100,13 +100,21 @@ const ForumPosts:FC = () => {
                       </Col>
                       <Col xs={7} md={10}>
                         <div id={styles.descContainer}>
-                          <div id={styles.requirements}>
-                            Requirements
+                          <div className={styles.container}>
+                            <div id={styles.requirements}>
+                              Requirements
+                              <div id={styles.threadNo}>
+                                #
+                                {i + 1}
+                              </div>
+                            </div>
                           </div>
                           <Row>
                             <Col>
-                              <div className={styles.commentTime}>
-                                {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                              <div className={styles.container}>
+                                <div className={styles.commentTime}>
+                                  {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                                </div>
                               </div>
                               <Row>
                                 <Col>
