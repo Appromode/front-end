@@ -72,7 +72,7 @@ const ForumPosts:FC = () => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={7} md={2}>
+                      <Col xs={5} md={2}>
                         <div id={styles.keyInfoContainer}>
                           <Row>
                             <Col>
@@ -99,63 +99,29 @@ const ForumPosts:FC = () => {
                         </div>
                       </Col>
                       <Col xs={7} md={10}>
-                        <div id={styles.requirements}>
-                          Requirements
-                        </div>
-                        <Row>
-                          <Col>
-                            <div className={styles.commentTime}>
-                              {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
-                            </div>
-                            <Row>
-                              <Col>
-                                Project Desciption
-                                <Row>
+                        <div id={styles.descContainer}>
+                          <div id={styles.requirements}>
+                            Requirements
+                          </div>
+                          <Row>
+                            <Col>
+                              <div className={styles.commentTime}>
+                                {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                              </div>
+                              <Row>
+                                <Col>
                                   <Col>
-                                    {comment.comment.commentText}
+                                    <div className={styles.projDesc}>
+                                      {comment.comment.commentText}
+                                    </div>
                                   </Col>
-                                </Row>
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </div>
                       </Col>
                     </Row>
-                    <div className={styles.projectIdea}>
-                      <Row>
-                        <Col xs={3} md={3}>
-                          <div className={styles.infoContainer}>
-                            <div className={styles.keyInfo}>{comment.project.projectName}</div>
-                          </div>
-                        </Col>
-                        <Col xs={2} md={2}>
-                          <div className={styles.infoContainer}>
-                            <div className={styles.keyInfo}>
-                              {comment.comment.userId}
-                            </div>
-                          </div>
-                        </Col>
-                        <Col xs={2} md={2}>
-                          <div className={styles.infoContainer}>
-                            <div className={styles.keyInfo}>
-                              Open
-                            </div>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col xs={2} md={3}>
-                          <div className={styles.projDesc}>Project Description</div>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <div>
-                            {comment.comment.commentText}
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
                   </div>
                 );
               }

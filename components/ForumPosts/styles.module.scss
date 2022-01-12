@@ -57,12 +57,15 @@
     border-color: $default-lightgrey;
     border-width: 1px;
     border-left: 3px solid $default-blue;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
   }
 
 .commentTime {
     font-size: small;
     color: $default-blue;
     border-bottom: solid 1px $default-lightgrey;
+    padding: 5px;
 }
 
 #keyInfo {
@@ -84,15 +87,21 @@
 
 #requirements {
     color: $default-blue;
+    border-bottom: 1px solid $default-lightgrey;
+    padding: 5px;
+    font-weight: bold;
+}
+
+#descContainer {
     width: 100%;
     margin-top: 10px;
-    margin-right: 10px;
     font-size: small;
     background-color: $default-white;
-    padding: 10px 10px;
     border-style: solid;
     border-color: $default-lightgrey;
     border-width: 1px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .projectIdea {
@@ -109,8 +118,5 @@
 
 .projDesc {
     font-size: medium;
-    padding-left: 10px;
-    text-align: center;
-    font-weight: bold;
-    color: $default-blue;
+    padding-left: 5px;
 }
