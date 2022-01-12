@@ -29,13 +29,14 @@ const ForumPosts:FC = () => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={9} md={4}>
+                      <Col xs={9} md={3}>
                         <div className={styles.firstInfo}>
                           <div className={styles.infoContainer}>
                             <Image
                               src="/user.svg"
                               width={15}
                               height={15}
+                              alt="User Icon"
                             />
                           </div>
                           <div className={styles.infoContainer}>
@@ -46,6 +47,7 @@ const ForumPosts:FC = () => {
                               src="/clock.svg"
                               width={15}
                               height={15}
+                              alt="Clock Icon"
                             />
                           </div>
                           <div className={styles.infoContainer}>
@@ -61,6 +63,7 @@ const ForumPosts:FC = () => {
                             src="/unlocked.svg"
                             width={15}
                             height={15}
+                            alt="Unlocked icon"
                           />
                           <div className={styles.icon}>
                             Open for further replies.
@@ -68,39 +71,37 @@ const ForumPosts:FC = () => {
                         </div>
                       </Col>
                     </Row>
-                    <div id={styles.keyInfoContainer}>
-                      <Row>
-                        <Col>
+                    <Row>
+                      <Col xs={7} md={2}>
+                        <div id={styles.keyInfoContainer}>
                           <Row>
                             <Col>
-                              <div className={styles.keyInfo}>
-                                Intended Group Size
-                              </div>
                               <Image
-                                src="/group.svg"
+                                src="/supervisor.svg"
                                 width={75}
                                 height={75}
+                                alt="Supervisor Icon"
                               />
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <div className={styles.keyInfo}>
+                              <div id={styles.keyInfo}>
                                 Supervisor
                               </div>
                             </Col>
                           </Row>
                           <Row>
                             <Col>
-                              Supervisor Contact Details
+                              <a href="mailto:foo@bar.org.uk" id={styles.link}>
+                                <div id={styles.contact}>
+                                  Supervisor Email
+                                </div>
+                              </a>
                             </Col>
                           </Row>
-                        </Col>
-                      </Row>
-                    </div>
-                    <Row>
-                      <Col>
-                        Requirements
+                        </div>
+                      </Col>
+                      <Col xs={7} md={10}>
+                        <div id={styles.requirements}>
+                          Requirements
+                        </div>
                       </Col>
                     </Row>
                     <Row>

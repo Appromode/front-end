@@ -71,9 +71,48 @@
 
 #keyInfoContainer {
     color: $default-blue;
+    width: 100%;
     display: inline-block;
     margin-left: 10px;
+    margin-top: 10px;
+    font-size: small;
+    text-align: center;
+    background-color: $default-white;
+    padding: 10px 10px;
+    border-style: solid;
+    border-color: $default-lightgrey;
+    border-width: 1px;
+    border-left: 3px solid $default-blue;
   }
+
+#keyInfo {
+    font-weight: bold;
+}
+
+#contact {
+    background-color: $default-blue;
+    color: $default-white;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 5px; 
+}
+
+#link {
+    text-decoration: 'none';
+    color: inherit;
+}
+
+#requirements {
+    color: $default-blue;
+    width: 100%;
+    margin-top: 10px;
+    font-size: small;
+    background-color: $default-white;
+    padding: 10px 10px;
+    border-style: solid;
+    border-color: $default-lightgrey;
+    border-width: 1px;
+}
 
 .projectIdea {
     margin-top: 10px;
