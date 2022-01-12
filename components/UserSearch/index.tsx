@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { useTable, useGlobalFilter } from 'react-table';
 import { useFormikContext } from 'formik';
+import { Alert } from 'react-bootstrap';
 import GlobalFilter from '../GlobalFilter';
 import { getUsers } from '../../api/users';
 import GroupRegistrationForm from '../../types/group-registration-form';
@@ -8,7 +9,12 @@ import removeArrayItem from '../../utils/removeArrayItem';
 import getById from '../../utils/getById';
 
 const UserSearch:FC = () => {
-  const { values, setFieldValue } = useFormikContext<GroupRegistrationForm>();
+  const {
+    values,
+    errors,
+    touched,
+    setFieldValue,
+  } = useFormikContext<GroupRegistrationForm>();
 
   const columns = useMemo(() => [
     {
@@ -48,6 +54,7 @@ const UserSearch:FC = () => {
 
   return (
     <>
+      {(touched.groupMembers && errors.groupMembers) ? <Alert>{errors.groupMembers}</Alert> : ''}
       <GlobalFilter
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
@@ -55,8 +62,8 @@ const UserSearch:FC = () => {
         label="Find Group Members"
       />
       {
-        globalFilter ? (
-          <div className="border-1 overflow-x-scroll md:overflow-x-visible border-gray-300">
+        rows.length > 0 ? (
+          <div className="border-1 overflow-x-scroll lg:overflow-x-visible border-gray-300">
             <table {...getTableProps()} className="divide-y divide-gray-200 w-full table-auto">
               <thead className="bg-gray-50 w-full">
                 {headerGroups.map((headerGroup) => (
@@ -107,7 +114,7 @@ const UserSearch:FC = () => {
               </tbody>
             </table>
           </div>
-        ) : ''
+        ) : <div>No results</div>
       }
       {
         values.groupMembers.length > 0 ? (
