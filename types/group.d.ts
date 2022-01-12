@@ -1,10 +1,10 @@
 import { User } from './user';
 
-interface GroupRegistrationForm {
+interface Group {
   groupName: string,
   groupDescription: string,
   groupMembers: User[],
   files: [],
 }
 
-export default GroupRegistrationForm;
+export default Group;
