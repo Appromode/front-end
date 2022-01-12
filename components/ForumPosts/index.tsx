@@ -101,9 +101,17 @@ const ForumPosts:FC = () => {
                       <Col xs={7} md={10}>
                         <div id={styles.descContainer}>
                           <div className={styles.container}>
-                            <div id={styles.requirements}>
-                              Requirements
+                            <div id={styles.commentTime}>
+                              {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
                               <div id={styles.threadNo}>
+                                <div id={styles.iconPadding}>
+                                  <Image
+                                    src="/share.svg"
+                                    width={15}
+                                    height={15}
+                                    alt="Share Icon"
+                                  />
+                                </div>
                                 #
                                 {i + 1}
                               </div>
@@ -112,19 +120,17 @@ const ForumPosts:FC = () => {
                           <Row>
                             <Col>
                               <div className={styles.container}>
-                                <div className={styles.commentTime}>
-                                  {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                                <div className={styles.requirements}>
+                                  Requirements
                                 </div>
-                              </div>
-                              <Row>
-                                <Col>
+                                <Row>
                                   <Col>
                                     <div className={styles.projDesc}>
                                       {comment.comment.commentText}
                                     </div>
                                   </Col>
-                                </Col>
-                              </Row>
+                                </Row>
+                              </div>
                             </Col>
                           </Row>
                         </div>

@@ -60,15 +60,14 @@
     border-top-left-radius: 4px;
   }
 
-.commentTime {
-    font-size: small;
+#commentTime {
     color: $default-blue;
     border-bottom: solid 1px $default-lightgrey;
     padding: 5px 0px;
 }
 
 .container {
-    padding: 0px 10px;
+    padding: 0px 5px;
 }
 
 #keyInfo {
@@ -88,8 +87,9 @@
     color: inherit;
 }
 
-#requirements {
+.requirements {
     color: $default-blue;
+    font-weight: bold;
     border-bottom: 1px solid $default-lightgrey;
     padding: 5px 0px;
     font-weight: bold;
@@ -103,9 +103,9 @@
     border-style: solid;
     border-color: $default-lightgrey;
     border-width: 1px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-radius: 4px;
     width: 100%;
+    border-left: 3px solid $default-blue;
 }
 
 .projectIdea {
@@ -122,10 +122,13 @@
 
 .projDesc {
     font-size: medium;
-    padding-left: 5px;
 }
 
 #threadNo {
-    display: inline-block;
     float: right;
+}
+
+#iconPadding {
+    padding-right: 10px;
+    display: inline-block;
 }
