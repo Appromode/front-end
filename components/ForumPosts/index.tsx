@@ -102,11 +102,23 @@ const ForumPosts:FC = () => {
                         <div id={styles.requirements}>
                           Requirements
                         </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        {comment.comment.commentText}
+                        <Row>
+                          <Col>
+                            <div className={styles.commentTime}>
+                              {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                            </div>
+                            <Row>
+                              <Col>
+                                Project Desciption
+                                <Row>
+                                  <Col>
+                                    {comment.comment.commentText}
+                                  </Col>
+                                </Row>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
                     <div className={styles.projectIdea}>
