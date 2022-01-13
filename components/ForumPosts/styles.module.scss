@@ -49,7 +49,7 @@
     display: inline-block;
     font-size: small;
     text-align: center;
-    background-color: $default-white;
+    background-color: $default-lightgrey;
     padding: 10px 10px;
     border-width: 1px;
   }
@@ -102,9 +102,8 @@
     display: inline-block;
     font-size: small;
     background-color: $default-white;
-    border-radius: 4px;
     width: 100%;
-    border-left: 3px solid $default-blue;
+    border-left: 1px solid $default-grey;
 }
 
 .projectIdea {
@@ -134,10 +133,10 @@
 
 .innerContainer {
     display: inline-flex;
-    border-top: 1px solid $default-lightgrey;
-    border-bottom: 1px solid $default-lightgrey;
+    border-top: 1px solid $default-grey;
+    border-bottom: 1px solid $default-grey;
     border-left: 3px solid $default-blue;
-    border-right: 1px solid $default-lightgrey;
+    border-right: 1px solid $default-grey;
     border-radius: 4px;
     width: 100%;
 }

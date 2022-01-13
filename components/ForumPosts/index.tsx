@@ -83,6 +83,9 @@ const ForumPosts:FC = () => {
                               alt="Supervisor Icon"
                             />
                             <div id={styles.keyInfo}>
+                              Name
+                            </div>
+                            <div>
                               Supervisor
                             </div>
                             <a href="mailto:foo@bar.org.uk" className={styles.link}>
@@ -140,6 +143,9 @@ const ForumPosts:FC = () => {
                           alt="Supervisor Icon"
                         />
                         <div id={styles.keyInfo}>
+                          Name
+                        </div>
+                        <div>
                           Supervisor
                         </div>
                         <a href="mailto:foo@bar.org.uk" className={styles.link}>
