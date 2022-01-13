@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import {
   Col,
+  OverlayTrigger,
+  Popover,
   Row,
 } from 'react-bootstrap';
 import Image from 'next/image';
@@ -102,12 +104,30 @@ const ForumPosts:FC = () => {
                                 </a>
                                 <div id={styles.threadNo}>
                                   <div id={styles.iconPadding}>
-                                    <Image
-                                      src="/share.svg"
-                                      width={15}
-                                      height={15}
-                                      alt="Share Icon"
-                                    />
+                                    <OverlayTrigger
+                                      placement="top"
+                                      trigger="click"
+                                      key={comment.comment.commentId}
+                                      overlay={(
+                                        <Popover id={comment.comment.commentId}>
+                                          <Popover.Header as="h3">Share this thread</Popover.Header>
+                                          <Popover.Body>
+                                            <strong>Holy guacamole!</strong>
+                                            {' '}
+                                            Check this info.
+                                          </Popover.Body>
+                                        </Popover>
+                                      )}
+                                    >
+                                      <div>
+                                        <Image
+                                          src="/share.svg"
+                                          width={15}
+                                          height={15}
+                                          alt="Share Icon"
+                                        />
+                                      </div>
+                                    </OverlayTrigger>
                                   </div>
                                   <a href={`#${comment.comment.commentId}`} className={styles.threadLink}>
                                     #
