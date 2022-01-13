@@ -51,8 +51,6 @@
     background-color: $default-white;
     padding: 10px 10px;
     border-width: 1px;
-    border-right: 1px solid $default-lightgrey;
-    border-top-left-radius: 4px;
   }
 
 #commentTime {
@@ -87,7 +85,6 @@
     font-weight: bold;
     border-bottom: 1px solid $default-lightgrey;
     padding: 5px 0px;
-    font-weight: bold;
 }
 
 #descContainer {
@@ -97,7 +94,6 @@
     border-radius: 4px;
     width: 100%;
     border-left: 3px solid $default-blue;
-    border-bottom: 1px solid $default-lightgrey;
 }
 
 .projectIdea {
@@ -136,6 +132,6 @@
 }
 
 .innerContainerPadding {
-    padding-left: 10px;
+    padding-left: 20px;
     padding-top: 10px;
 }

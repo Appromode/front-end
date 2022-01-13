@@ -72,75 +72,53 @@ const ForumPosts:FC = () => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col>
-                        <div className={styles.innerContainerPadding}>
-                          <div className={styles.innerContainer}>
-                            <Col xs={5} md={2}>
-                              <div id={styles.keyInfoContainer}>
-                                <Row>
-                                  <Col>
+                      <div className={styles.innerContainerPadding}>
+                        <div className={styles.innerContainer}>
+                          <div id={styles.keyInfoContainer}>
+                            <Image
+                              src="/supervisor.svg"
+                              width={75}
+                              height={75}
+                              alt="Supervisor Icon"
+                            />
+                            <div id={styles.keyInfo}>
+                              Supervisor
+                            </div>
+                            <a href="mailto:foo@bar.org.uk" id={styles.link}>
+                              <div id={styles.contact}>
+                                Supervisor Email
+                              </div>
+                            </a>
+                          </div>
+                          <div id={styles.descContainer}>
+                            <div className={styles.container}>
+                              <div id={styles.commentTime}>
+                                {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                                <div id={styles.threadNo}>
+                                  <div id={styles.iconPadding}>
                                     <Image
-                                      src="/supervisor.svg"
-                                      width={75}
-                                      height={75}
-                                      alt="Supervisor Icon"
+                                      src="/share.svg"
+                                      width={15}
+                                      height={15}
+                                      alt="Share Icon"
                                     />
-                                    <div id={styles.keyInfo}>
-                                      Supervisor
-                                    </div>
-                                  </Col>
-                                </Row>
-                                <Row>
-                                  <Col>
-                                    <a href="mailto:foo@bar.org.uk" id={styles.link}>
-                                      <div id={styles.contact}>
-                                        Supervisor Email
-                                      </div>
-                                    </a>
-                                  </Col>
-                                </Row>
-                              </div>
-                            </Col>
-                            <Col xs={7} md={10}>
-                              <div id={styles.descContainer}>
-                                <div className={styles.container}>
-                                  <div id={styles.commentTime}>
-                                    {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
-                                    <div id={styles.threadNo}>
-                                      <div id={styles.iconPadding}>
-                                        <Image
-                                          src="/share.svg"
-                                          width={15}
-                                          height={15}
-                                          alt="Share Icon"
-                                        />
-                                      </div>
-                                      #
-                                      {i + 1}
-                                    </div>
                                   </div>
+                                  #
+                                  {i + 1}
                                 </div>
-                                <Row>
-                                  <Col>
-                                    <div className={styles.container}>
-                                      <div className={styles.requirements}>
-                                        Requirements
-                                      </div>
-                                      <Row>
-                                        <Col>
-                                          <div className={styles.projDesc}>
-                                            {comment.comment.commentText}
-                                          </div>
-                                        </Col>
-                                      </Row>
-                                    </div>
-                                  </Col>
-                                </Row>
                               </div>
-                            </Col>
+                            </div>
+                            <div className={styles.container}>
+                              <div className={styles.requirements}>
+                                Requirements
+                              </div>
+                              <div className={styles.projDesc}>
+                                {comment.comment.commentText}
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </Col>
+                      </div>
                     </Row>
                   </div>
                 );
