@@ -35,7 +35,8 @@ const ProjectForum:FC = () => {
         {
               comments
                 && comments.map((comment :any) => {
-                  if (comment.comment.deleted === false) {
+                  const parentProj = comment.comment.parentCommentId === comment.comment.commentId;
+                  if ((comment.comment.deleted === false) && (parentProj)) {
                     return (
                       <div className={styles.projectIdea} key={comment.project.projectId}>
                         <a href="/project-forum/forum-post" className={styles.navLink}>
