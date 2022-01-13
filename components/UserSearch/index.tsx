@@ -4,7 +4,7 @@ import { useFormikContext } from 'formik';
 import { Alert } from 'react-bootstrap';
 import GlobalFilter from '../GlobalFilter';
 import { getUsers } from '../../api/users';
-import GroupRegistrationForm from '../../types/group-registration-form';
+import Group from '../../types/group';
 import removeArrayItem from '../../utils/removeArrayItem';
 import getById from '../../utils/getById';
 
@@ -14,7 +14,7 @@ const UserSearch:FC = () => {
     errors,
     touched,
     setFieldValue,
-  } = useFormikContext<GroupRegistrationForm>();
+  } = useFormikContext<Group>();
 
   const columns = useMemo(() => [
     {
