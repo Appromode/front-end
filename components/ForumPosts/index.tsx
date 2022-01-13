@@ -74,7 +74,7 @@ const ForumPosts:FC = () => {
                     </Row>
                     <Row>
                       <div className={styles.innerContainerPadding}>
-                        <div className={styles.innerContainer}>
+                        <div className={styles.innerContainer} id={comment.comment.commentId}>
                           <div id={styles.keyInfoContainer}>
                             <Image
                               src="/supervisor.svg"
@@ -85,7 +85,7 @@ const ForumPosts:FC = () => {
                             <div id={styles.keyInfo}>
                               Supervisor
                             </div>
-                            <a href="mailto:foo@bar.org.uk" id={styles.link}>
+                            <a href="mailto:foo@bar.org.uk" className={styles.link}>
                               <div id={styles.contact}>
                                 Supervisor Email
                               </div>
@@ -94,7 +94,9 @@ const ForumPosts:FC = () => {
                           <div id={styles.descContainer}>
                             <div className={styles.container}>
                               <div id={styles.commentTime}>
-                                {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                                <a href={`#${comment.comment.commentId}`} className={styles.link}>
+                                  {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                                </a>
                                 <div id={styles.threadNo}>
                                   <div id={styles.iconPadding}>
                                     <Image
@@ -104,8 +106,10 @@ const ForumPosts:FC = () => {
                                       alt="Share Icon"
                                     />
                                   </div>
-                                  #
-                                  {i + 1}
+                                  <a href={`#${comment.comment.commentId}`} className={styles.threadLink}>
+                                    #
+                                    {i + 1}
+                                  </a>
                                 </div>
                               </div>
                             </div>
@@ -127,7 +131,7 @@ const ForumPosts:FC = () => {
               return (
                 <Row>
                   <div className={styles.innerContainerPadding}>
-                    <div className={styles.innerContainer}>
+                    <div className={styles.innerContainer} id={comment.comment.commentId}>
                       <div id={styles.keyInfoContainer}>
                         <Image
                           src="/supervisor.svg"
@@ -138,7 +142,7 @@ const ForumPosts:FC = () => {
                         <div id={styles.keyInfo}>
                           Supervisor
                         </div>
-                        <a href="mailto:foo@bar.org.uk" id={styles.link}>
+                        <a href="mailto:foo@bar.org.uk" className={styles.link}>
                           <div id={styles.contact}>
                             Supervisor Email
                           </div>
@@ -147,7 +151,9 @@ const ForumPosts:FC = () => {
                       <div id={styles.descContainer}>
                         <div className={styles.container}>
                           <div id={styles.commentTime}>
-                            {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                            <a href={`#${comment.comment.commentId}`} className={styles.link}>
+                              {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                            </a>
                             <div id={styles.threadNo}>
                               <div id={styles.iconPadding}>
                                 <Image
@@ -157,8 +163,10 @@ const ForumPosts:FC = () => {
                                   alt="Share Icon"
                                 />
                               </div>
-                              #
-                              {i + 1}
+                              <a href={`#${comment.comment.commentId}`} className={styles.threadLink}>
+                                #
+                                {i + 1}
+                              </a>
                             </div>
                           </div>
                         </div>

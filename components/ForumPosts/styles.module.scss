@@ -76,8 +76,18 @@
     margin-bottom: 5px; 
 }
 
-#link {
-    text-decoration: 'none';
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.threadLink {
+    text-decoration: none;
     color: inherit;
 }
 
