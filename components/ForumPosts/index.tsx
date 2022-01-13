@@ -18,7 +18,8 @@ const ForumPosts:FC = () => {
           {
             comments
             && comments.map((comment :any, i :number) => {
-              if (comment.project.isClosed === false) {
+              const firstPost = comment.comment.parentCommentId === comment.comment.commentId;
+              if ((comment.project.isClosed === false) && (firstPost)) {
                 return (
                   <div key={comment.project.projectId}>
                     <Row>
@@ -124,41 +125,55 @@ const ForumPosts:FC = () => {
                 );
               }
               return (
-                <div className={styles.projectIdea} key={comment.project.projectId}>
-                  <Row>
-                    <Col xs={3} md={3}>
-                      <div className={styles.infoContainer}>
-                        <div className={styles.keyInfo}>{comment.project.projectName}</div>
+                <Row>
+                  <div className={styles.innerContainerPadding}>
+                    <div className={styles.innerContainer}>
+                      <div id={styles.keyInfoContainer}>
+                        <Image
+                          src="/supervisor.svg"
+                          width={75}
+                          height={75}
+                          alt="Supervisor Icon"
+                        />
+                        <div id={styles.keyInfo}>
+                          Supervisor
+                        </div>
+                        <a href="mailto:foo@bar.org.uk" id={styles.link}>
+                          <div id={styles.contact}>
+                            Supervisor Email
+                          </div>
+                        </a>
                       </div>
-                    </Col>
-                    <Col xs={2} md={2}>
-                      <div className={styles.infoContainer}>
-                        <div className={styles.keyInfo}>
-                          {comment.comment.userId}
+                      <div id={styles.descContainer}>
+                        <div className={styles.container}>
+                          <div id={styles.commentTime}>
+                            {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
+                            <div id={styles.threadNo}>
+                              <div id={styles.iconPadding}>
+                                <Image
+                                  src="/share.svg"
+                                  width={15}
+                                  height={15}
+                                  alt="Share Icon"
+                                />
+                              </div>
+                              #
+                              {i + 1}
+                            </div>
+                          </div>
+                        </div>
+                        <div className={styles.container}>
+                          <div className={styles.requirements}>
+                            Requirements
+                          </div>
+                          <div className={styles.projDesc}>
+                            {comment.comment.commentText}
+                          </div>
                         </div>
                       </div>
-                    </Col>
-                    <Col xs={2} md={2}>
-                      <div className={styles.infoContainer}>
-                        <div className={styles.keyInfo}>
-                          Closed
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={2} md={3}>
-                      <div className={styles.projDesc}>Project Description</div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <div>
-                        {comment.comment.commentText}
-                      </div>
-                    </Col>
-                  </Row>
-                </div>
+                    </div>
+                  </div>
+                </Row>
               );
             })
           }
