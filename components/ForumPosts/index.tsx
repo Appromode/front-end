@@ -21,6 +21,19 @@ const ForumPosts:FC = () => {
             comments
             && comments.map((comment :any, i :number) => {
               const firstPost = comment.comment.parentCommentId === comment.comment.commentId;
+              const editedTime = () => {
+                if (comment.comment.createdAt !== comment.comment.updatedAt) {
+                  return (
+                    <div>
+                      Last Edited:
+                      {' '}
+                      {Moment(comment.comment.createdAt).format(' Do MMM YYYY HH:mm')}
+                    </div>
+                  );
+                } return (
+                  <div />
+                );
+              };
               if ((comment.project.isClosed === false) && (firstPost)) {
                 return (
                   <div key={comment.project.projectId}>
@@ -144,6 +157,7 @@ const ForumPosts:FC = () => {
                                 {comment.comment.commentText}
                               </div>
                             </div>
+                            {editedTime()}
                           </div>
                         </div>
                       </div>
