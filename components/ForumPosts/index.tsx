@@ -24,10 +24,10 @@ const ForumPosts:FC = () => {
               const editedTime = () => {
                 if (comment.comment.createdAt !== comment.comment.updatedAt) {
                   return (
-                    <div>
+                    <div id={styles.lastEdited}>
                       Last Edited:
                       {' '}
-                      {Moment(comment.comment.createdAt).format(' Do MMM YYYY HH:mm')}
+                      {Moment(comment.comment.updatedAt).format(' Do MMM YYYY, HH:mm')}
                     </div>
                   );
                 } return (
@@ -218,6 +218,7 @@ const ForumPosts:FC = () => {
                             {comment.comment.commentText}
                           </div>
                         </div>
+                        {editedTime()}
                       </div>
                     </div>
                   </div>
