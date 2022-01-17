@@ -88,7 +88,7 @@ const ForumPosts:FC = () => {
                       </Col>
                     </Row>
                     <Row>
-                      <div className={styles.innerContainerPadding}>
+                      <div className={styles.messageContainer}>
                         <div className={styles.innerContainer} id={comment.comment.commentId}>
                           <div id={styles.keyInfoContainer}>
                             <Image
@@ -158,6 +158,9 @@ const ForumPosts:FC = () => {
                               </div>
                             </div>
                             {editedTime()}
+                            <div className={styles.replyButton}>
+                              Reply
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -166,63 +169,86 @@ const ForumPosts:FC = () => {
                 );
               }
               return (
-                <Row>
-                  <div className={styles.innerContainerPadding}>
-                    <div className={styles.innerContainer} id={comment.comment.commentId}>
-                      <div id={styles.keyInfoContainer}>
-                        <Image
-                          src="/supervisor.svg"
-                          width={75}
-                          height={75}
-                          alt="Supervisor Icon"
-                        />
-                        <div id={styles.keyInfo}>
-                          Name
-                        </div>
-                        <div>
-                          Supervisor
-                        </div>
-                        <a href="mailto:foo@bar.org.uk" className={styles.link}>
-                          <div id={styles.contact}>
-                            Supervisor Email
+                <div key={comment.project.projectId}>
+                  <Row>
+                    <div className={styles.messageContainer}>
+                      <div className={styles.innerContainer} id={comment.comment.commentId}>
+                        <div id={styles.keyInfoContainer}>
+                          <Image
+                            src="/supervisor.svg"
+                            width={75}
+                            height={75}
+                            alt="Supervisor Icon"
+                          />
+                          <div id={styles.keyInfo}>
+                            Name
                           </div>
-                        </a>
-                      </div>
-                      <div id={styles.descContainer}>
-                        <div className={styles.container}>
-                          <div id={styles.commentTime}>
-                            <a href={`#${comment.comment.commentId}`} className={styles.link}>
-                              {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
-                            </a>
-                            <div id={styles.threadNo}>
-                              <div id={styles.iconPadding}>
-                                <Image
-                                  src="/share.svg"
-                                  width={15}
-                                  height={15}
-                                  alt="Share Icon"
-                                />
-                              </div>
-                              <a href={`#${comment.comment.commentId}`} className={styles.threadLink}>
-                                #
-                                {i + 1}
+                          <div>
+                            Supervisor
+                          </div>
+                          <a href="mailto:foo@bar.org.uk" className={styles.link}>
+                            <div id={styles.contact}>
+                              Supervisor Email
+                            </div>
+                          </a>
+                        </div>
+                        <div id={styles.descContainer}>
+                          <div className={styles.container}>
+                            <div id={styles.commentTime}>
+                              <a href={`#${comment.comment.commentId}`} className={styles.link}>
+                                {Moment(comment.comment.createdAt).format(' Do MMM YYYY')}
                               </a>
+                              <div id={styles.threadNo}>
+                                <div id={styles.iconPadding}>
+                                  <OverlayTrigger
+                                    placement="top"
+                                    trigger="click"
+                                    key={comment.comment.commentId}
+                                    overlay={(
+                                      <Popover id={comment.comment.commentId}>
+                                        <Popover.Header as="h3">Share this thread</Popover.Header>
+                                        <Popover.Body>
+                                          <strong>Holy guacamole!</strong>
+                                          {' '}
+                                          Check this info.
+                                        </Popover.Body>
+                                      </Popover>
+                                    )}
+                                  >
+                                    <div>
+                                      <Image
+                                        src="/share.svg"
+                                        width={15}
+                                        height={15}
+                                        alt="Share Icon"
+                                      />
+                                    </div>
+                                  </OverlayTrigger>
+                                </div>
+                                <a href={`#${comment.comment.commentId}`} className={styles.threadLink}>
+                                  #
+                                  {i + 1}
+                                </a>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className={styles.container}>
-                          <div className={styles.requirements}>
-                            Requirements
+                          <div className={styles.container}>
+                            <div className={styles.requirements}>
+                              Requirements
+                            </div>
+                            <div className={styles.projDesc}>
+                              {comment.comment.commentText}
+                            </div>
                           </div>
-                          <div className={styles.projDesc}>
-                            {comment.comment.commentText}
+                          {editedTime()}
+                          <div className={styles.replyButton}>
+                            Reply
                           </div>
                         </div>
-                        {editedTime()}
                       </div>
                     </div>
-                  </div>
-                </Row>
+                  </Row>
+                </div>
               );
             })
           }
