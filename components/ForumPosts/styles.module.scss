@@ -51,7 +51,6 @@
     text-align: center;
     background-color: $default-lightgrey;
     padding: 10px;
-    border-width: 1px;
     margin-left: 10px;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px; 
@@ -172,18 +171,11 @@
     color: #8c8c8c;
 }
 
-.replyContainer {
-    margin-top: 10px;
-    border-right: 1px solid $default-lightgrey;
-}
-
-.replyBox {
-    display: inline-block;
-}
-
 .userReply {
     border-radius: 4px;
     border: 1px solid $default-lightgrey;
+    padding: 10px;
+    margin: 10px;
 }
 
 .userInfoReply {
@@ -195,7 +187,6 @@
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
-    border-width: 1px;
     margin-left: 10px;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px; 
@@ -203,3 +194,22 @@
     border-top: 1px solid $default-lightgrey;
     border-bottom: 1px solid $default-lightgrey;
   }
+
+#postReplyButton {
+    color: $default-white;
+    background-color: $default-blue;
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+#postReplyButton:hover {
+    background-color: $default-lightblue;
+}

@@ -279,32 +279,49 @@ const ForumPosts:FC = () => {
               Open for further replies.
             </div>
           </div>
-          <div className={styles.replyContainer}>
-            <div className={styles.userInfoReply}>
-              <Image
-                src="/supervisor.svg"
-                width={75}
-                height={75}
-                alt="Supervisor Icon"
-              />
-              <div id={styles.keyInfo}>
-                Name
-              </div>
-              <div>
-                Supervisor
-              </div>
-              <a href="mailto:foo@bar.org.uk" className={styles.link}>
-                <div id={styles.contact}>
-                  Supervisor Email
+          <Row>
+            <div className={styles.messageContainer}>
+              <div className={styles.innerContainer}>
+                <div className={styles.keyInfoContainer}>
+                  <Image
+                    src="/supervisor.svg"
+                    width={75}
+                    height={75}
+                    alt="Supervisor Icon"
+                  />
+                  <div id={styles.keyInfo}>
+                    Name
+                  </div>
+                  <div>
+                    Supervisor
+                  </div>
+                  <a href="mailto:foo@bar.org.uk" className={styles.link}>
+                    <div id={styles.contact}>
+                      Supervisor Email
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
-            <div className={styles.replyBox}>
-              <div className={styles.userReply}>
-                This is a reply box
+                <div id={styles.descContainer}>
+                  <div className={styles.userReply}>
+                    Write your reply...
+                  </div>
+                  <div>
+                    <button type="submit" id={styles.postReplyButton}>
+                      <Image
+                        src="/reply-blue.svg"
+                        width={25}
+                        height={25}
+                        alt="Share Icon"
+                      />
+                      <div className={styles.replyText}>
+                        Post Reply
+                      </div>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </Row>
         </div>
       </Col>
     </>
