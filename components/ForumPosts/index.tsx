@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 import {
   Col,
   OverlayTrigger,
+  FormControl,
+  FormGroup,
   Popover,
   Row,
 } from 'react-bootstrap';
@@ -303,7 +305,9 @@ const ForumPosts:FC = () => {
                 </div>
                 <div id={styles.descContainer}>
                   <div className={styles.userReply}>
-                    Write your reply...
+                    <FormGroup controlId="reply">
+                      <FormControl rows={3} as="textarea" placeholder="Write your reply..." />
+                    </FormGroup>
                   </div>
                   <div>
                     <button type="submit" id={styles.postReplyButton}>
