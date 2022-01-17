@@ -14,6 +14,7 @@ import styles from './styles.module.scss';
 
 const ForumPosts:FC = () => {
   const { comments } = getComments();
+  const linkValue = 'http://localhost:3000/project-forum/forum-post';
 
   return (
     <>
@@ -127,9 +128,9 @@ const ForumPosts:FC = () => {
                                         <Popover id={comment.comment.commentId}>
                                           <Popover.Header as="h3">Share this thread</Popover.Header>
                                           <Popover.Body>
-                                            <strong>Holy guacamole!</strong>
-                                            {' '}
-                                            Check this info.
+                                            <div>
+                                              <input type="text" value={linkValue} className={styles.copyLink} readOnly />
+                                            </div>
                                           </Popover.Body>
                                         </Popover>
                                       )}
