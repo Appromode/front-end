@@ -36,7 +36,7 @@ const ForumPosts:FC = () => {
               };
               if ((comment.project.isClosed === false) && (firstPost)) {
                 return (
-                  <div key={comment.project.projectId}>
+                  <div key={comment.comment.commentId}>
                     <Row>
                       <Col xs={9} md={4}>
                         <div className={styles.titleContainer}>
@@ -159,7 +159,15 @@ const ForumPosts:FC = () => {
                             </div>
                             {editedTime()}
                             <div className={styles.replyButton}>
-                              Reply
+                              <Image
+                                src="/reply.svg"
+                                width={15}
+                                height={15}
+                                alt="Share Icon"
+                              />
+                              <div className={styles.replyText}>
+                                Reply
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -169,7 +177,7 @@ const ForumPosts:FC = () => {
                 );
               }
               return (
-                <div key={comment.project.projectId}>
+                <div key={comment.comment.commentId}>
                   <Row>
                     <div className={styles.messageContainer}>
                       <div className={styles.innerContainer} id={comment.comment.commentId}>
@@ -242,7 +250,15 @@ const ForumPosts:FC = () => {
                           </div>
                           {editedTime()}
                           <div className={styles.replyButton}>
-                            Reply
+                            <Image
+                              src="/reply.svg"
+                              width={15}
+                              height={15}
+                              alt="Share Icon"
+                            />
+                            <div className={styles.replyText}>
+                              Reply
+                            </div>
                           </div>
                         </div>
                       </div>
