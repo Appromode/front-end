@@ -90,7 +90,7 @@ const ForumPosts:FC = () => {
                     <Row>
                       <div className={styles.messageContainer}>
                         <div className={styles.innerContainer} id={comment.comment.commentId}>
-                          <div id={styles.keyInfoContainer}>
+                          <div className={styles.keyInfoContainer}>
                             <Image
                               src="/supervisor.svg"
                               width={75}
@@ -181,7 +181,7 @@ const ForumPosts:FC = () => {
                   <Row>
                     <div className={styles.messageContainer}>
                       <div className={styles.innerContainer} id={comment.comment.commentId}>
-                        <div id={styles.keyInfoContainer}>
+                        <div className={styles.keyInfoContainer}>
                           <Image
                             src="/supervisor.svg"
                             width={75}
@@ -277,6 +277,32 @@ const ForumPosts:FC = () => {
             />
             <div className={styles.icon}>
               Open for further replies.
+            </div>
+          </div>
+          <div className={styles.replyContainer}>
+            <div className={styles.userInfoReply}>
+              <Image
+                src="/supervisor.svg"
+                width={75}
+                height={75}
+                alt="Supervisor Icon"
+              />
+              <div id={styles.keyInfo}>
+                Name
+              </div>
+              <div>
+                Supervisor
+              </div>
+              <a href="mailto:foo@bar.org.uk" className={styles.link}>
+                <div id={styles.contact}>
+                  Supervisor Email
+                </div>
+              </a>
+            </div>
+            <div className={styles.replyBox}>
+              <div className={styles.userReply}>
+                This is a reply box
+              </div>
             </div>
           </div>
         </div>
