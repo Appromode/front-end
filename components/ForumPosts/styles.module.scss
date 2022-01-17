@@ -210,6 +210,17 @@
     border: 1px solid transparent;
 }
 
+#buttonContainer {
+    margin-top: 55px;
+}
+
 #postReplyButton:hover {
     background-color: $default-lightblue;
+}
+
+.replyStyleButtons {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px 0px 10px 10px;
 }

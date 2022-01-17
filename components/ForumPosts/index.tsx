@@ -304,12 +304,15 @@ const ForumPosts:FC = () => {
                   </a>
                 </div>
                 <div id={styles.descContainer}>
+                  <div className={styles.replyStyleButtons}>
+                    Font buttons
+                  </div>
                   <div className={styles.userReply}>
                     <FormGroup controlId="reply">
                       <FormControl rows={3} as="textarea" placeholder="Write your reply..." />
                     </FormGroup>
                   </div>
-                  <div>
+                  <div id={styles.buttonContainer}>
                     <button type="submit" id={styles.postReplyButton}>
                       <Image
                         src="/reply-blue.svg"
