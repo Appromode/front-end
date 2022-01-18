@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
+import poster from '../../utils/poster';
 
 export const getUsers = () => {
   const { data, error } = useSWR('/api/User', fetcher);
@@ -18,3 +19,5 @@ export const getUser = (id: number) => {
     error,
   });
 };
+
+export const postUser = (data: { userName: string, email: string, password: string }) => poster('/api/UserLogin', 'POST', data);
