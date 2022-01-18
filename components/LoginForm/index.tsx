@@ -9,8 +9,10 @@ import {
 import {
   Formik,
   Form,
+  Field,
 } from 'formik';
 import styles from './styles.module.scss';
+import { postUser } from '../../api/users';
 
 const LoginForm:FC = () => (
   <>
@@ -19,14 +21,10 @@ const LoginForm:FC = () => (
       <p id={styles.title1}>Account Login</p>
       <Formik
         initialValues={{
-          kentEmail: '',
+          email: '',
           password: '',
         }}
-        onSubmit={(values, actions) => {
-          console.log({ values, actions });
-          alert(JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-        }}
+        onSubmit={(values) => postUser(values)}
       >
         <div className={styles.textbox}>
           <Form>
@@ -34,7 +32,7 @@ const LoginForm:FC = () => (
               <Col lg={{ span: 10, offset: 1 }}>
                 <FormGroup controlId="email">
                   <FormLabel>Kent Email</FormLabel>
-                  <FormControl type="email" placeholder="example@kent.ac.uk" />
+                  <Field name="email" type="email" placeholder="example@kent.ac.uk" as={FormControl} />
                 </FormGroup>
               </Col>
             </Row>
