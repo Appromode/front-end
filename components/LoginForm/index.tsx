@@ -49,6 +49,11 @@ const LoginForm:FC = () => (
             </Row>
             <div className={styles.formspacer} />
             <div className={styles.formspacer} />
+            <Row>
+              <Col className={styles.buttonWrapper}>
+                <button type="submit" className={styles.save}>Login</button>
+              </Col>
+            </Row>
           </Form>
         </div>
       </Formik>
