@@ -20,4 +20,4 @@ export const getUser = (id: number) => {
   });
 };
 
-export const postUser = (data: { userName: string, email: string, password: string }) => poster('/api/UserLogin', 'POST', data);
+export const postUser = (data: { email: string, password: string }) => poster('/api/UserLogin', 'POST', data);
