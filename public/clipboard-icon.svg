@@ -1,0 +1,23 @@
+<svg width="387" height="465" viewBox="0 0 387 465" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g clip-path="url(#clip0_19_39)">
+<rect width="387" height="465" fill="white"/>
+<style>
+    :hover path {
+        stroke: #6B87BB;
+        cursor: pointer;
+    }    
+</style>
+<path d="M368 217V385H98V15H302.761L368 60.7971V217Z" fill="white" stroke="#05345C" stroke-width="30"/>
+<path d="M302.077 80.6707L303.414 21.5097C303.469 19.1139 306.171 17.7455 308.134 19.1201L361.932 56.7898C363.895 58.1644 363.534 61.1721 361.301 62.0424L306.165 83.5337C304.171 84.3109 302.028 82.8103 302.077 80.6707Z" fill="white" stroke="#05345C" stroke-width="14"/>
+<path d="M301 282V450H31V80H235.761L301 125.797V282Z" fill="white" stroke="#05345C" stroke-width="30"/>
+<path d="M238.077 145.671L239.414 86.5097C239.469 84.1139 242.171 82.7455 244.134 84.1201L297.932 121.79C299.895 123.164 299.534 126.172 297.301 127.042L242.165 148.534C240.171 149.311 238.028 147.81 238.077 145.671Z" fill="white" stroke="#05345C" stroke-width="14"/>
+<path d="M71.5 213.5H256.5" stroke="#05345C" stroke-width="28"/>
+<path d="M71 287H256" stroke="#05345C" stroke-width="28"/>
+<path d="M71 358H182" stroke="#05345C" stroke-width="28"/>
+</g>
+<defs>
+<clipPath id="clip0_19_39">
+<rect width="387" height="465" fill="white"/>
+</clipPath>
+</defs>
+</svg>

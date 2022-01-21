@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import {
   Col,
   OverlayTrigger,
-  FormControl,
-  FormGroup,
   Popover,
   Row,
 } from 'react-bootstrap';
 import Image from 'next/image';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Moment from 'moment';
+import TextEditor from '../TextEditor';
 import { getComments } from '../../api/comments';
 import styles from './styles.module.scss';
 
@@ -128,7 +128,21 @@ const ForumPosts:FC = () => {
                                         <Popover id={comment.comment.commentId}>
                                           <Popover.Header as="h3">Share this thread</Popover.Header>
                                           <Popover.Body>
-                                            <div>
+                                            <div id={styles.shareContainer}>
+                                              <CopyToClipboard
+                                                text={linkValue}
+                                              >
+                                                <div id={styles.clipboardIcon}>
+                                                  <object
+                                                    data="/clipboard-icon.svg"
+                                                    type="image/svg+xml"
+                                                    width={30}
+                                                    height={30}
+                                                    aria-label="Share Icon"
+                                                    className={styles.test}
+                                                  />
+                                                </div>
+                                              </CopyToClipboard>
                                               <input type="text" value={linkValue} className={styles.copyLink} readOnly />
                                             </div>
                                           </Popover.Body>
@@ -305,18 +319,13 @@ const ForumPosts:FC = () => {
                   </a>
                 </div>
                 <div id={styles.descContainer}>
-                  <div className={styles.replyStyleButtons}>
-                    Font buttons
-                  </div>
                   <div className={styles.userReply}>
-                    <FormGroup controlId="reply">
-                      <FormControl rows={3} as="textarea" placeholder="Write your reply..." />
-                    </FormGroup>
+                    <TextEditor />
                   </div>
                   <div id={styles.buttonContainer}>
                     <button type="submit" id={styles.postReplyButton}>
                       <Image
-                        src="/reply-blue.svg"
+                        src="/post-reply.svg"
                         width={25}
                         height={25}
                         alt="Share Icon"

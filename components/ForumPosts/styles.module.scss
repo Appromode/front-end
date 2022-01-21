@@ -133,6 +133,7 @@
 #iconPadding {
     padding-right: 10px;
     display: inline-block;
+    position: relative;
 }
 
 #iconPadding:hover {
@@ -173,9 +174,13 @@
 
 .userReply {
     border-radius: 4px;
-    border: 1px solid $default-lightgrey;
+    border: 2px solid $default-lightgrey;
     padding: 10px;
     margin: 10px;
+}
+
+.userReply:hover {
+    border: 2px solid $default-lightblue;
 }
 
 .userInfoReply {
@@ -226,7 +231,32 @@
 }
 
 .copyLink {
-    border: 1px solid $default-lightgrey;
     border-radius: 4px;
     padding: 10px;
+    border-width: 0px;
+}
+
+#shareContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $default-lightgrey;
+    border-radius: 4px;
+}
+
+#clipboardIcon {
+    padding: 10px 10px;
+    display: inline-block;
+    border-right: 1px solid $default-lightgrey;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    cursor: pointer;
+}
+
+.test:hover path {
+    fill: white;
+}
+
+.test:active {
+    pointer-events: none;
 }
