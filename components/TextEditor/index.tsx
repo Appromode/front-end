@@ -24,6 +24,7 @@ import {
 import { withHistory } from 'slate-history';
 import { cx, css } from '@emotion/css';
 import styles from './styles.module.scss';
+import SignUp from '../../pages/sign-up';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -33,14 +34,15 @@ const HOTKEYS = {
 };
 
 interface BaseProps {
-  className: string
-  [key: string]: unknown
+  className: string;
+  data: any[];
+  [key: string]: unknown;
 }
 type OrNull<T> = T | null
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
-const TextEditor:FC = () => {
+const TextEditor:FC<BaseProps> = ({ data }) => {
   const Leaf = ({ attributes, children, leaf }) => {
     if (leaf.bold) {
       children = <strong>{children}</strong>;
@@ -96,7 +98,7 @@ const TextEditor:FC = () => {
         { text: 'bold', bold: true },
         {
           text:
-            ', or add a semantically rendered code in the middle of the page, like this:',
+            ', or add semantically rendered code in the middle of the page, like this:',
         },
       ],
     },
@@ -148,160 +150,176 @@ const TextEditor:FC = () => {
   const CodeButton = ({ format, icon }) => {
     const editor = useSlate();
     return (
-      <Button
-        active={isMarkActive(editor, format)}
-        onMouseDown={event => {
-          event.preventDefault();
-          toggleMark(editor, format);
-        }}
-        className={styles.buttons}
-      >
-        <Image
-          src="/code-icon.svg"
-          width={15}
-          height={15}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          active={isMarkActive(editor, format)}
+          onMouseDown={event => {
+            event.preventDefault();
+            toggleMark(editor, format);
+          }}
+          className={styles.buttons}
+        >
+          <Image
+            src="/code-icon.svg"
+            width={15}
+            height={15}
+          />
+        </Button>
+      </div>
     );
   };
 
   const BoldButton = ({ format, icon }) => {
     const editor = useSlate();
     return (
-      <Button
-        active={isMarkActive(editor, format)}
-        onMouseDown={event => {
-          event.preventDefault();
-          toggleMark(editor, format);
-        }}
-        className={styles.buttons}
-      >
-        <Image
-          src="/bold-icon.svg"
-          width={15}
-          height={15}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          active={isMarkActive(editor, format)}
+          onMouseDown={event => {
+            event.preventDefault();
+            toggleMark(editor, format);
+          }}
+          className={styles.buttons}
+        >
+          <Image
+            src="/bold-icon.svg"
+            width={15}
+            height={15}
+          />
+        </Button>
+      </div>
     );
   };
 
   const ItalicButton = ({ format, icon }) => {
     const editor = useSlate();
     return (
-      <Button
-        active={isMarkActive(editor, format)}
-        onMouseDown={event => {
-          event.preventDefault();
-          toggleMark(editor, format);
-        }}
-        className={styles.buttons}
-      >
-        <Image
-          src="/italic-icon.svg"
-          width={15}
-          height={15}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          active={isMarkActive(editor, format)}
+          onMouseDown={event => {
+            event.preventDefault();
+            toggleMark(editor, format);
+          }}
+          className={styles.buttons}
+        >
+          <Image
+            src="/italic-icon.svg"
+            width={15}
+            height={15}
+          />
+        </Button>
+      </div>
     );
   };
 
   const UnderlineButton = ({ format, icon }) => {
     const editor = useSlate();
     return (
-      <Button
-        active={isMarkActive(editor, format)}
-        onMouseDown={event => {
-          event.preventDefault();
-          toggleMark(editor, format);
-        }}
-        className={styles.buttons}
-      >
-        <Image
-          src="/underline-icon.svg"
-          width={15}
-          height={17}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          active={isMarkActive(editor, format)}
+          onMouseDown={event => {
+            event.preventDefault();
+            toggleMark(editor, format);
+          }}
+          className={styles.buttons}
+        >
+          <Image
+            src="/underline-icon.svg"
+            width={15}
+            height={17}
+          />
+        </Button>
+      </div>
     );
   };
 
   const HeadOneButton = ({ format, icon }) => {
     const editor = useSlate();
     return (
-      <Button
-        active={isBlockActive(editor, format)}
-        onMouseDown={event => {
-          event.preventDefault();
-          toggleBlock(editor, format);
-        }}
-        className={styles.buttons}
-      >
-        <Image
-          src="/head1-icon.svg"
-          width={15}
-          height={17}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          active={isBlockActive(editor, format)}
+          onMouseDown={event => {
+            event.preventDefault();
+            toggleBlock(editor, format);
+          }}
+          className={styles.buttons}
+        >
+          <Image
+            src="/head1-icon.svg"
+            width={15}
+            height={17}
+          />
+        </Button>
+      </div>
     );
   };
 
   const HeadTwoButton = ({ format, icon }) => {
     const editor = useSlate();
     return (
-      <Button
-        active={isBlockActive(editor, format)}
-        onMouseDown={event => {
-          event.preventDefault();
-          toggleBlock(editor, format);
-        }}
-        className={styles.buttons}
-      >
-        <Image
-          src="/head2-icon.svg"
-          width={15}
-          height={17}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          active={isBlockActive(editor, format)}
+          onMouseDown={event => {
+            event.preventDefault();
+            toggleBlock(editor, format);
+          }}
+          className={styles.buttons}
+        >
+          <Image
+            src="/head2-icon.svg"
+            width={15}
+            height={17}
+          />
+        </Button>
+      </div>
     );
   };
 
   const NumberedButton = ({ format, icon }) => {
     const editor = useSlate();
     return (
-      <Button
-        active={isBlockActive(editor, format)}
-        onMouseDown={event => {
-          event.preventDefault();
-          toggleBlock(editor, format);
-        }}
-        className={styles.buttons}
-      >
-        <Image
-          src="/numbered-list-icon.svg"
-          width={15}
-          height={17}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          active={isBlockActive(editor, format)}
+          onMouseDown={event => {
+            event.preventDefault();
+            toggleBlock(editor, format);
+          }}
+          className={styles.buttons}
+        >
+          <Image
+            src="/number-icon.svg"
+            width={20}
+            height={17}
+          />
+        </Button>
+      </div>
     );
   };
 
   const BulletedButton = ({ format, icon }) => {
     const editor = useSlate();
     return (
-      <Button
-        active={isBlockActive(editor, format)}
-        onMouseDown={event => {
-          event.preventDefault();
-          toggleBlock(editor, format);
-        }}
-        className={styles.buttons}
-      >
-        <Image
-          src="/bulleted-list-icon.svg"
-          width={15}
-          height={17}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          active={isBlockActive(editor, format)}
+          onMouseDown={event => {
+            event.preventDefault();
+            toggleBlock(editor, format);
+          }}
+          className={styles.buttons}
+        >
+          <Image
+            src="/bulleted-list-icon.svg"
+            width={20}
+            height={17}
+          />
+        </Button>
+      </div>
     );
   };
 
@@ -309,10 +327,25 @@ const TextEditor:FC = () => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+  const userId = data.map((a) => a.id);
+  const quotedText = data.map((a) => a.quote);
+  const QuoteNull = () => (
+    data.length > 0 && (
+      <div className={styles.quotedText}>
+        <div className={styles.userId}>
+          {userId}
+          {': '}
+        </div>
+        <div>
+          {quotedText}
+        </div>
+      </div>
+    )
+  );
 
   return (
     <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
-      <div>
+      <div className={styles.buttonContainer}>
         <BoldButton format="bold" icon="format_bold" />
         <ItalicButton format="italic" icon="format_italic" />
         <UnderlineButton format="underline" icon="format_underlined" />
@@ -322,6 +355,7 @@ const TextEditor:FC = () => {
         <NumberedButton format="numbered-list" icon="format_list_numbered" />
         <BulletedButton format="bulleted-list" icon="format_list_bulleted" />
       </div>
+      <QuoteNull />
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
