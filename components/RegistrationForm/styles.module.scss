@@ -17,10 +17,31 @@
     color: $default-white;
 }
 
+#centreSpace {
+    width: 45%;
+}
+
 .centreConsole {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: auto;
-    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.userButton {
+    background-color: $default-blue;
+    color: $default-white;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.userButton:hover {
+    background-color: $default-lightblue;
 }
 
 #img {
@@ -139,6 +160,11 @@
     padding: 10px;
 }
 
+.formElementWrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .formspacer2 {
     padding-left: 178px;
 }
@@ -198,6 +224,10 @@
     width:100%;
 }
 
+.inputSpace {
+    width: 100%;
+}
+
 .save:hover {
     background-color: #178265;
     color: white;
@@ -207,6 +237,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 100%;
+    margin-bottom: 10px;
 }
 
 .addButton {
