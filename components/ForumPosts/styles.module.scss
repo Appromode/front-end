@@ -102,7 +102,7 @@
     padding: 5px 0px;
 }
 
-#descContainer {
+.descContainer {
     display: inline-block;
     font-size: small;
     background-color: $default-white;
@@ -158,6 +158,12 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    background-color: inherit;
+    border: none;
+}
+
+.replyButton:hover {
+    color: $default-lightblue;
 }
 
 .replyText {
@@ -251,12 +257,4 @@
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
     cursor: pointer;
-}
-
-.test:hover path {
-    fill: white;
-}
-
-.test:active {
-    pointer-events: none;
 }

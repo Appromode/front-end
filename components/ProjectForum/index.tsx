@@ -38,7 +38,7 @@ const ProjectForum:FC = () => {
                   const parentProj = comment.comment.parentCommentId === comment.comment.commentId;
                   if ((comment.comment.deleted === false) && (parentProj)) {
                     return (
-                      <div className={styles.projectIdea} key={comment.project.projectId}>
+                      <div className={styles.projectIdea} key={comment.comment.commentId}>
                         <a href="/project-forum/forum-post" className={styles.navLink}>
                           <Row>
                             <Col xs={5} md={6}>
@@ -71,7 +71,7 @@ const ProjectForum:FC = () => {
                     );
                   }
                   return (
-                    <div />
+                    <div key={comment.comment.commentId} />
                   );
                 })
           }

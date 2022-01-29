@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Col,
   OverlayTrigger,
@@ -15,6 +15,13 @@ import styles from './styles.module.scss';
 const ForumPosts:FC = () => {
   const { comments } = getComments();
   const linkValue = 'http://localhost:3000/project-forum/forum-post';
+  const [data, setData] = useState([]);
+  const addToPool = (userid: string, quoteText: string) => {
+    setData(() => [{ id: userid, quote: quoteText }]);
+  };
+  const handleClick = (commentText: string, commentUserId: string) => {
+    addToPool(commentUserId, commentText);
+  };
 
   return (
     <>
@@ -112,7 +119,7 @@ const ForumPosts:FC = () => {
                               </div>
                             </a>
                           </div>
-                          <div id={styles.descContainer}>
+                          <div className={styles.descContainer}>
                             <div className={styles.container}>
                               <div id={styles.commentTime}>
                                 <a href={`#${comment.comment.commentId}`} className={styles.link}>
@@ -170,22 +177,24 @@ const ForumPosts:FC = () => {
                               <div className={styles.requirements}>
                                 Requirements
                               </div>
-                              <div className={styles.projDesc}>
+                              <div className={styles.projDesc} id={`comment${comment.comment.commentId}`}>
                                 {comment.comment.commentText}
                               </div>
                             </div>
                             {editedTime()}
-                            <div className={styles.replyButton}>
-                              <Image
-                                src="/reply.svg"
-                                width={15}
-                                height={15}
-                                alt="Share Icon"
-                              />
-                              <div className={styles.replyText}>
-                                Reply
-                              </div>
-                            </div>
+                            <a href="#forum-reply" className={styles.replyLink}>
+                              <button className={styles.replyButton} type="button" onClick={() => handleClick(comment.comment.commentText, comment.comment.userId)}>
+                                <Image
+                                  src="/reply.svg"
+                                  width={15}
+                                  height={15}
+                                  alt="Share Icon"
+                                />
+                                <div className={styles.replyText}>
+                                  Reply
+                                </div>
+                              </button>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -217,7 +226,7 @@ const ForumPosts:FC = () => {
                             </div>
                           </a>
                         </div>
-                        <div id={styles.descContainer}>
+                        <div className={styles.descContainer}>
                           <div className={styles.container}>
                             <div id={styles.commentTime}>
                               <a href={`#${comment.comment.commentId}`} className={styles.link}>
@@ -318,9 +327,9 @@ const ForumPosts:FC = () => {
                     </div>
                   </a>
                 </div>
-                <div id={styles.descContainer}>
+                <div className={styles.descContainer} id="forum-reply">
                   <div className={styles.userReply}>
-                    <TextEditor />
+                    <TextEditor data={data} className="" />
                   </div>
                   <div id={styles.buttonContainer}>
                     <button type="submit" id={styles.postReplyButton}>
