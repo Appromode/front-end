@@ -1,6 +1,6 @@
 type Method = 'PUT' | 'PATCH' | 'POST';
 
-const poster = (url: string, method: Method, data: object) => (
+const poster = <T>(url: string, method: Method, data: object): Promise<T> => (
   fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}${url}`, {
     method,
     headers: {
