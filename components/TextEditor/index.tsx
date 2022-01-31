@@ -20,11 +20,11 @@ import {
   createEditor,
   Descendant,
   Element as SlateElement,
+  BaseEditor,
 } from 'slate';
 import { withHistory } from 'slate-history';
 import { cx, css } from '@emotion/css';
 import styles from './styles.module.scss';
-import SignUp from '../../pages/sign-up';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -43,7 +43,8 @@ type OrNull<T> = T | null
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
 const TextEditor:FC<BaseProps> = ({ data }) => {
-  const Leaf = ({ attributes, children, leaf }) => {
+  const Leaf = ({ attributes, children, leaf } :
+    {attributes: any, children: any, leaf: any}) => {
     if (leaf.bold) {
       children = <strong>{children}</strong>;
     }
@@ -59,7 +60,8 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     return <span {...attributes}>{children}</span>;
   };
 
-  const Element = ({ attributes, children, element }) => {
+  const Element = ({ attributes, children, element } :
+    {attributes: any, children: any, element: any}) => {
     switch (element.type) {
       case 'block-quote':
         return <blockquote {...attributes}>{children}</blockquote>;
@@ -147,13 +149,59 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     ),
   );
 
-  const CodeButton = ({ format, icon }) => {
+  const isMarkActive = (editor: BaseEditor, format: string | number) => {
+    const marks = Editor.marks(editor);
+    return marks ? marks[format] === true : false;
+  };
+
+  const isBlockActive = (editor: BaseEditor, format: any) => {
+    const { selection } = editor;
+    if (!selection) return false;
+    const [match] = Array.from(
+      Editor.nodes(editor, {
+        at: Editor.unhangRange(editor, selection),
+        match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === format,
+      }),
+    );
+    return !!match;
+  };
+
+  const toggleBlock = (editor: BaseEditor, format: string) => {
+    const isActive = isBlockActive(editor, format);
+    const isList = LIST_TYPES.includes(format);
+    Transforms.unwrapNodes(editor, {
+      match: (n) => !Editor.isEditor(n)
+        && SlateElement.isElement(n)
+        && LIST_TYPES.includes(n.type),
+      split: true,
+    });
+    const newProperties: Partial<SlateElement> = {
+      type: isActive ? 'paragraph'
+        : isList ? 'list-item' : format,
+    };
+    Transforms.setNodes<SlateElement>(editor, newProperties);
+    if (!isActive && isList) {
+      const block = { type: format, children: [] };
+      Transforms.wrapNodes(editor, block);
+    }
+  };
+
+  const toggleMark = (editor: BaseEditor, format: string) => {
+    const isActive = isMarkActive(editor, format);
+    if (isActive) {
+      Editor.removeMark(editor, format);
+    } else {
+      Editor.addMark(editor, format, true);
+    }
+  };
+
+  const CodeButton = ({ format } : {format: any }) => {
     const editor = useSlate();
     return (
       <div className={styles.buttons}>
         <Button
           active={isMarkActive(editor, format)}
-          onMouseDown={event => {
+          onMouseDown={(event: { preventDefault: () => void; }) => {
             event.preventDefault();
             toggleMark(editor, format);
           }}
@@ -169,13 +217,13 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     );
   };
 
-  const BoldButton = ({ format, icon }) => {
+  const BoldButton = ({ format } : {format: any }) => {
     const editor = useSlate();
     return (
       <div className={styles.buttons}>
         <Button
           active={isMarkActive(editor, format)}
-          onMouseDown={event => {
+          onMouseDown={(event: { preventDefault: () => void; }) => {
             event.preventDefault();
             toggleMark(editor, format);
           }}
@@ -191,13 +239,13 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     );
   };
 
-  const ItalicButton = ({ format, icon }) => {
+  const ItalicButton = ({ format } : {format: any }) => {
     const editor = useSlate();
     return (
       <div className={styles.buttons}>
         <Button
           active={isMarkActive(editor, format)}
-          onMouseDown={event => {
+          onMouseDown={(event: { preventDefault: () => void; }) => {
             event.preventDefault();
             toggleMark(editor, format);
           }}
@@ -213,13 +261,13 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     );
   };
 
-  const UnderlineButton = ({ format, icon }) => {
+  const UnderlineButton = ({ format } : {format: any }) => {
     const editor = useSlate();
     return (
       <div className={styles.buttons}>
         <Button
           active={isMarkActive(editor, format)}
-          onMouseDown={event => {
+          onMouseDown={(event: { preventDefault: () => void; }) => {
             event.preventDefault();
             toggleMark(editor, format);
           }}
@@ -235,13 +283,13 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     );
   };
 
-  const HeadOneButton = ({ format, icon }) => {
+  const HeadOneButton = ({ format } : {format: any }) => {
     const editor = useSlate();
     return (
       <div className={styles.buttons}>
         <Button
           active={isBlockActive(editor, format)}
-          onMouseDown={event => {
+          onMouseDown={(event: { preventDefault: () => void; }) => {
             event.preventDefault();
             toggleBlock(editor, format);
           }}
@@ -257,13 +305,13 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     );
   };
 
-  const HeadTwoButton = ({ format, icon }) => {
+  const HeadTwoButton = ({ format } : {format: any }) => {
     const editor = useSlate();
     return (
       <div className={styles.buttons}>
         <Button
           active={isBlockActive(editor, format)}
-          onMouseDown={event => {
+          onMouseDown={(event: { preventDefault: () => void; }) => {
             event.preventDefault();
             toggleBlock(editor, format);
           }}
@@ -279,13 +327,13 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     );
   };
 
-  const NumberedButton = ({ format, icon }) => {
+  const NumberedButton = ({ format } : {format: any }) => {
     const editor = useSlate();
     return (
       <div className={styles.buttons}>
         <Button
           active={isBlockActive(editor, format)}
-          onMouseDown={event => {
+          onMouseDown={(event: { preventDefault: () => void; }) => {
             event.preventDefault();
             toggleBlock(editor, format);
           }}
@@ -301,13 +349,13 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
     );
   };
 
-  const BulletedButton = ({ format, icon }) => {
+  const BulletedButton = ({ format } : {format: any }) => {
     const editor = useSlate();
     return (
       <div className={styles.buttons}>
         <Button
           active={isBlockActive(editor, format)}
-          onMouseDown={event => {
+          onMouseDown={(event: { preventDefault: () => void; }) => {
             event.preventDefault();
             toggleBlock(editor, format);
           }}
@@ -344,16 +392,16 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
   );
 
   return (
-    <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
+    <Slate editor={editor} value={value} onChange={() => setValue(value)}>
       <div className={styles.buttonContainer}>
-        <BoldButton format="bold" icon="format_bold" />
-        <ItalicButton format="italic" icon="format_italic" />
-        <UnderlineButton format="underline" icon="format_underlined" />
-        <CodeButton format="code" icon="code" />
-        <HeadOneButton format="heading-one" icon="looks_one" />
-        <HeadTwoButton format="heading-two" icon="looks_two" />
-        <NumberedButton format="numbered-list" icon="format_list_numbered" />
-        <BulletedButton format="bulleted-list" icon="format_list_bulleted" />
+        <BoldButton format="bold" />
+        <ItalicButton format="italic" />
+        <UnderlineButton format="underline" />
+        <CodeButton format="code" />
+        <HeadOneButton format="heading-one" />
+        <HeadTwoButton format="heading-two" />
+        <NumberedButton format="numbered-list" />
+        <BulletedButton format="bulleted-list" />
       </div>
       <QuoteNull />
       <Editable
@@ -363,67 +411,17 @@ const TextEditor:FC<BaseProps> = ({ data }) => {
         spellCheck
         autoFocus
         onKeyDown={(event) => {
-          for (const hotkey in HOTKEYS) {
+          Object.keys(HOTKEYS).forEach((hotkey) => {
             if (isHotkey(hotkey, event as any)) {
               event.preventDefault();
               const mark = HOTKEYS[hotkey];
               toggleMark(editor, mark);
             }
-          }
+          });
         }}
       />
     </Slate>
   );
-};
-
-const toggleBlock = (editor, format) => {
-  const isActive = isBlockActive(editor, format);
-  const isList = LIST_TYPES.includes(format);
-
-  Transforms.unwrapNodes(editor, {
-    match: (n) => !Editor.isEditor(n)
-      && SlateElement.isElement(n)
-      && LIST_TYPES.includes(n.type),
-    split: true,
-  });
-  const newProperties: Partial<SlateElement> = {
-    type: isActive ? 'paragraph' : isList ? 'list-item' : format,
-  };
-  Transforms.setNodes<SlateElement>(editor, newProperties);
-
-  if (!isActive && isList) {
-    const block = { type: format, children: [] };
-    Transforms.wrapNodes(editor, block);
-  }
-};
-
-const toggleMark = (editor, format) => {
-  const isActive = isMarkActive(editor, format);
-
-  if (isActive) {
-    Editor.removeMark(editor, format);
-  } else {
-    Editor.addMark(editor, format, true);
-  }
-};
-
-const isBlockActive = (editor, format) => {
-  const { selection } = editor;
-  if (!selection) return false;
-
-  const [match] = Array.from(
-    Editor.nodes(editor, {
-      at: Editor.unhangRange(editor, selection),
-      match: (n) => !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === format,
-    }),
-  );
-
-  return !!match;
-};
-
-const isMarkActive = (editor, format) => {
-  const marks = Editor.marks(editor);
-  return marks ? marks[format] === true : false;
 };
 
 export default TextEditor;

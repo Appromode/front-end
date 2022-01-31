@@ -1,14 +1,26 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Col,
+  FormControl,
+  FormGroup,
   Row,
 } from 'react-bootstrap';
 import Moment from 'moment';
+import Image from 'next/image';
+import {
+  Formik,
+  Form,
+} from 'formik';
 import { getComments } from '../../api/comments';
 import styles from './styles.module.scss';
+import TextEditor from '../TextEditor';
 
 const ProjectForum:FC = () => {
   const { comments } = getComments();
+  const [state, setState] = useState(false);
+  const handleClick = () => {
+    setState(true);
+  };
 
   return (
     <Col lg={{ span: 10, offset: 1 }}>
@@ -16,7 +28,23 @@ const ProjectForum:FC = () => {
         <div id={styles.title}>Project Forum</div>
         <Row>
           <Col>
-            <div id={styles.heading1}>CO600 Project Proposals</div>
+            <div id={styles.headingContainer}>
+              <div id={styles.heading1}>CO600 Project Proposals</div>
+            </div>
+          </Col>
+          <Col>
+            <a href="#post-thread">
+              <button type="button" id={styles.replyButton} onClick={() => (handleClick())}>
+                <Image
+                  src="/post-icon.svg"
+                  width={18}
+                  height={18}
+                />
+                <div id={styles.buttonText}>
+                  Post Thread...
+                </div>
+              </button>
+            </a>
           </Col>
         </Row>
         <div id={styles.tableTop}>
@@ -74,6 +102,53 @@ const ProjectForum:FC = () => {
                     <div key={comment.comment.commentId} />
                   );
                 })
+          }
+        {
+            state
+              ? (
+                <Row>
+                  <Col>
+                    <Formik
+                      initialValues={{
+                        threadTitle: '',
+                        threadText: '',
+                      }}
+                      onSubmit={(values, actions) => {
+                        console.log({ values, actions });
+                        alert(JSON.stringify(values, null, 2));
+                        actions.setSubmitting(false);
+                      }}
+                    >
+                      <Form>
+                        <div className={styles.descContainer} id="post-thread">
+                          <div id={styles.threadTitle}>Post Thread</div>
+                          <div id={styles.formPadding}>
+                            <FormGroup controlId="title">
+                              <FormControl type="text" placeholder="Thread title" />
+                            </FormGroup>
+                          </div>
+                          <div className={styles.userReply}>
+                            <TextEditor className="" data={[]} />
+                          </div>
+                          <div id={styles.buttonContainer}>
+                            <button type="button" id={styles.submit}>
+                              <Image
+                                src="/post-icon.svg"
+                                width={18}
+                                height={18}
+                              />
+                              <div id={styles.buttonText}>
+                                Post Thread...
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </Form>
+                    </Formik>
+                  </Col>
+                </Row>
+              )
+              : (<div />)
           }
       </div>
     </Col>

@@ -14,6 +14,12 @@
     padding: 20px;
 }
 
+#headingContainer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 #heading1 {
     font-weight: bold;
     color: $default-blue;
@@ -68,4 +74,83 @@
 
 .navLink:hover {
     color: inherit;
+}
+
+#replyButton {
+    color: $default-white;
+    background-color: $default-blue;
+    float: right;
+    padding: 5px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+#replyButton:hover {
+    background-color: $default-lightblue;
+}
+
+#buttonText {
+    display: inline-block;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.userReply {
+    border-radius: 4px;
+    border: 2px solid $default-lightgrey;
+    padding: 10px;
+    margin: 10px;
+}
+
+.userReply:hover {
+    border: 2px solid $default-lightblue;
+}
+
+.descContainer {
+    display: inline-block;
+    font-size: small;
+    background-color: $default-white;
+    width: 100%;
+    border: 1px solid $default-lightgrey;
+    border-radius: 4px;
+    position: relative;
+    margin-top: 10px;
+}
+
+#threadTitle {
+    color: $default-blue;
+    font-weight: bold;
+    margin: 10px;
+    font-size: large;
+}
+
+#formPadding {
+    margin: 10px;
+}
+
+#submit {
+    color: $default-white;
+    background-color: $default-blue;
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+#submit:hover {
+    background-color: $default-lightblue;
+}
+
+#buttonContainer {
+    margin-top: 55px;
 }
