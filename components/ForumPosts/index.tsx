@@ -130,6 +130,7 @@ const ForumPosts:FC = () => {
                                     <OverlayTrigger
                                       placement="top"
                                       trigger="click"
+                                      rootClose
                                       key={comment.comment.commentId}
                                       overlay={(
                                         <Popover id={comment.comment.commentId}>
@@ -140,13 +141,11 @@ const ForumPosts:FC = () => {
                                                 text={linkValue}
                                               >
                                                 <div id={styles.clipboardIcon}>
-                                                  <object
-                                                    data="/clipboard-icon.svg"
-                                                    type="image/svg+xml"
+                                                  <Image
+                                                    src="/clipboard-icon.svg"
                                                     width={30}
                                                     height={30}
-                                                    aria-label="Share Icon"
-                                                    className={styles.test}
+                                                    alt="Supervisor Icon"
                                                   />
                                                 </div>
                                               </CopyToClipboard>
