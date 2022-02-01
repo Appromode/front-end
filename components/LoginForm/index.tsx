@@ -1,63 +1,43 @@
-import React, { FC } from 'react';
-import {
-  Row,
-  Col,
-  FormControl,
-  FormGroup,
-  FormLabel,
-} from 'react-bootstrap';
-import {
-  Formik,
-  Form,
-  Field,
-} from 'formik';
-import styles from './styles.module.scss';
+import React, { FC, useContext } from 'react';
+import { Formik, Form } from 'formik';
 import { postUser } from '../../api/users';
+import { AuthContext } from '../../stores/AuthContext';
+import Input from '../Input';
+import Label from '../Label';
 
-const LoginForm:FC = () => (
-  <>
-    <div className={styles.formspacer} />
-    <div className={styles.centreConsole}>
-      <p id={styles.title1}>Account Login</p>
+const LoginForm:FC = () => {
+  const { setUser } = useContext(AuthContext);
+
+  return (
+    <div className="container mx-auto">
       <Formik
         initialValues={{
           email: '',
           password: '',
         }}
-        onSubmit={(values) => postUser(values)}
+        onSubmit={(values, { setSubmitting, setStatus }) => {
+          setSubmitting(true);
+          postUser(values)
+            .then((data) => setUser(data))
+            .catch(() => setStatus('There was an issue, try again later'));
+        }}
       >
-        <div className={styles.textbox}>
+        <>
+          <h1>Login</h1>
           <Form>
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="email">
-                  <FormLabel>Kent Email</FormLabel>
-                  <Field name="email" type="email" placeholder="example@kent.ac.uk" as={FormControl} />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <Row>
-              <Col lg={{ span: 10, offset: 1 }}>
-                <FormGroup controlId="password">
-                  <FormLabel>Password</FormLabel>
-                  <Field name="password" type="password" placeholder="Password" as={FormControl} />
-                </FormGroup>
-              </Col>
-            </Row>
-            <div className={styles.formspacer} />
-            <div className={styles.formspacer} />
-            <Row>
-              <Col className={styles.buttonWrapper}>
-                <button type="submit" className={styles.save}>Login</button>
-              </Col>
-            </Row>
+            <div className="my-3">
+              <Label htmlFor="email">Email</Label>
+              <Input name="email" id="email" type="email" placeholder="example@kent.ac.uk" />
+            </div>
+            <div className="my-3">
+              <Label htmlFor="password">Password</Label>
+              <Input name="password" id="password" type="password" placeholder="Password123" />
+            </div>
+            <button type="submit" className="px-3 py-2 upper bg-emerald-600 text-white rounded">Login</button>
           </Form>
-        </div>
+        </>
       </Formik>
     </div>
-    <div className={styles.formspacer} />
-  </>
-);
-
+  );
+};
 export default LoginForm;
