@@ -1,10 +1,11 @@
 import { User } from './user';
 
-interface Group {
-  groupName: string,
-  groupDescription: string,
-  groupMembers: User[],
-  files: [],
-}
+type Group = {
+  groupName: string;
+  groupDescription: string;
+  groupMembers: User[];
+  groupTags: [];
+  groupFiles: [];
+};
 
 export default Group;

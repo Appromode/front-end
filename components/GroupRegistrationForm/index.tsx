@@ -18,7 +18,8 @@ const GroupRegistrationForm: FC = () => {
     groupName: '',
     groupDescription: '',
     groupMembers: [],
-    files: [],
+    groupTags: [],
+    groupFiles: [],
   };
 
   return (
