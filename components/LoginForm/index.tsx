@@ -4,17 +4,20 @@ import { postUser } from '../../api/users';
 import { AuthContext } from '../../stores/AuthContext';
 import Input from '../Input';
 import Label from '../Label';
+import Login from '../../types/login';
 
 const LoginForm:FC = () => {
   const { setUser } = useContext(AuthContext);
 
+  const initialValues: Login = {
+    email: '',
+    password: '',
+  };
+
   return (
     <div className="container mx-auto">
       <Formik
-        initialValues={{
-          email: '',
-          password: '',
-        }}
+        initialValues={initialValues}
         onSubmit={(values, { setSubmitting, setStatus }) => {
           setSubmitting(true);
           postUser(values)
