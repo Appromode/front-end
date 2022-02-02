@@ -41,7 +41,7 @@ const LoginForm:FC = () => (
               <Col lg={{ span: 10, offset: 1 }}>
                 <FormGroup controlId="password">
                   <FormLabel>Password</FormLabel>
-                  <FormControl type="password" placeholder="Password" />
+                  <Field name="password" type="password" placeholder="password" as={FormControl} />
                 </FormGroup>
               </Col>
             </Row>
