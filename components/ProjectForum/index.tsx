@@ -13,7 +13,7 @@ import {
 } from 'formik';
 import { getComments } from '../../api/comments';
 import styles from './styles.module.scss';
-import TextEditor from '../TextEditor';
+import Editor from '../Editor';
 
 const ProjectForum:FC = () => {
   const { comments } = getComments();
@@ -49,14 +49,23 @@ const ProjectForum:FC = () => {
         </Row>
         <div id={styles.tableTop}>
           <Row>
-            <Col xs={5} md={6}>
-              <span id={styles.tableTitle}>Title</span>
+            <Col xs={1} md={1}>
+              <Col xs={2} md={1}>
+                <span id={styles.tableTitle}>Status</span>
+              </Col>
             </Col>
-            <Col xs={4} md={3}>
-              Replies
-            </Col>
-            <Col xs={3} md={3}>
-              Last Post
+            <Col>
+              <Row>
+                <Col xs={6} md={6}>
+                  <span id={styles.tableTitle}>Title</span>
+                </Col>
+                <Col xs={3} md={3}>
+                  Replies
+                </Col>
+                <Col xs={3} md={3}>
+                  Last Post
+                </Col>
+              </Row>
             </Col>
           </Row>
         </div>
@@ -64,34 +73,62 @@ const ProjectForum:FC = () => {
               comments
                 && comments.map((comment :any) => {
                   const parentProj = comment.comment.parentCommentId === comment.comment.commentId;
+                  const statusCheck = () => {
+                    if (!comment.project.isClosed) {
+                      return (
+                        <div className={styles.status}>
+                          <Image
+                            src="/unlocked.svg"
+                            width={45}
+                            height={45}
+                          />
+                        </div>
+                      );
+                    } return (
+                      <div className={styles.status}>
+                        <Image
+                          src="/locked.svg"
+                          width={45}
+                          height={45}
+                        />
+                      </div>
+                    );
+                  };
                   if ((comment.comment.deleted === false) && (parentProj)) {
                     return (
                       <div className={styles.projectIdea} key={comment.comment.commentId}>
                         <a href="/project-forum/forum-post" className={styles.navLink}>
                           <Row>
-                            <Col xs={5} md={6}>
-                              <div className={styles.projectTitle}>
-                                {comment.project.projectName}
-                              </div>
+                            <Col xs={1} md={1}>
+                              {statusCheck()}
                             </Col>
-                          </Row>
-                          <Row>
-                            <Col xs={5} md={6}>
-                              <div className={styles.projectTitle}>
-                                Started by
-                                {' '}
-                                {comment.comment.userId}
-                                ,
-                                {Moment(comment.comment.createdAt).format(' Do MMM YYYY HH:mm')}
-                              </div>
-                            </Col>
-                            <Col xs={4} md={3}>
-                              Replies:
-                              {' '}
-                              {comment.comment.replies}
-                            </Col>
-                            <Col xs={3} md={3}>
-                              {Moment(comment.comment.updatedAt).format('DD/MM/YYYY, HH:mm')}
+                            <Col xs={11} md={11}>
+                              <Row>
+                                <Col xs={6} md={6}>
+                                  <div className={styles.projectTitle}>
+                                    {comment.project.projectName}
+                                  </div>
+                                </Col>
+                              </Row>
+                              <Row>
+                                <Col xs={6} md={6}>
+                                  <div className={styles.projectTitle}>
+                                    Started by
+                                    {' '}
+                                    {comment.comment.userId}
+                                    ,
+                                    {Moment(comment.comment.createdAt).format(' Do MMM YYYY HH:mm')}
+                                  </div>
+                                </Col>
+                                <Col xs={3} md={3}>
+                                  Replies:
+                                  {' '}
+                                  {comment.comment.replies}
+                                </Col>
+                                <Col xs={3} md={3}>
+                                  {Moment(comment.comment.updatedAt).format('DD/MM/YYYY, HH:mm')}
+                                </Col>
+                              </Row>
                             </Col>
                           </Row>
                         </a>
@@ -128,7 +165,7 @@ const ProjectForum:FC = () => {
                             </FormGroup>
                           </div>
                           <div className={styles.userReply}>
-                            <TextEditor className="" data={[]} />
+                            <Editor data={[]} />
                           </div>
                           <div id={styles.buttonContainer}>
                             <button type="button" id={styles.submit}>

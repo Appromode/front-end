@@ -56,7 +56,8 @@
     border-bottom-left-radius: 4px; 
     border-left: 1px solid $default-lightgrey;
     border-top: 1px solid $default-lightgrey;
-    border-bottom: 1px solid $default-lightgrey
+    border-bottom: 1px solid $default-lightgrey;
+    max-width: 110px;
   }
 
 #commentTime {
@@ -78,6 +79,8 @@
     color: $default-white;
     border-radius: 3px;
     cursor: pointer;
+    padding: 2px 5px;
+    word-wrap: break-word;
 }
 
 .link {
@@ -180,10 +183,6 @@
     border: 2px solid $default-lightgrey;
     padding: 10px;
     margin: 10px;
-}
-
-.userReply:hover {
-    border: 2px solid $default-lightblue;
 }
 
 .userInfoReply {

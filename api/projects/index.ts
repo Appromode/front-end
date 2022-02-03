@@ -18,3 +18,12 @@ export const getProject = (id :number) => {
     error,
   });
 };
+
+export const getProjectComments = (id :number) => {
+  const { data, error } = useSWR(`/api/Project/${id}/comments`, fetcher);
+
+  return Object.freeze({
+    project: data,
+    error,
+  });
+};

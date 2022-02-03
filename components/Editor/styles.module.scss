@@ -1,11 +1,16 @@
 @import '../../styles/colours.scss';
 
 .buttons {
-    margin-right: 15px;
-    display: inline-block;
+    background-color: $default-white;
+    border: none;
 }
 
 .buttonContainer {
+    padding-right: 15px;
+    display: inline-block;
+}
+
+.toolbar {
     border-bottom: 1px solid $default-lightgrey;
     margin-bottom: 10px;
 }
