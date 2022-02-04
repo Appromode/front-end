@@ -1,5 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { Formik, Form } from 'formik';
+import { object, SchemaOf, string } from 'yup';
 import { postUser } from '../../api/users';
 import { AuthContext } from '../../stores/AuthContext';
 import Input from '../Input';
@@ -14,6 +15,11 @@ const LoginForm:FC = () => {
     password: '',
   };
 
+  const validationSchema: SchemaOf<Login> = object().shape({
+    email: string().email().required(),
+    password: string().required(),
+  });
+
   return (
     <div className="container mx-auto">
       <Formik
@@ -24,6 +30,7 @@ const LoginForm:FC = () => {
             .then((data) => setUser(data))
             .catch(() => setStatus('There was an issue, try again later'));
         }}
+        validationSchema={validationSchema}
       >
         <>
           <h1>Login</h1>
