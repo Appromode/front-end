@@ -181,9 +181,6 @@ const ForumPosts:FC = () => {
                                     </div>
                                   </div>
                                   <div className={styles.container}>
-                                    <div className={styles.requirements}>
-                                      Requirements
-                                    </div>
                                     <div className={styles.projDesc} id={`comment${comment.commentId}`}>
                                       {comment.commentText}
                                     </div>
@@ -195,7 +192,7 @@ const ForumPosts:FC = () => {
                                         src="/reply.svg"
                                         width={15}
                                         height={15}
-                                        alt="Share Icon"
+                                        alt="Reply Icon"
                                       />
                                       <div className={styles.replyText}>
                                         Reply
@@ -287,9 +284,6 @@ const ForumPosts:FC = () => {
                                   </div>
                                 </div>
                                 <div className={styles.container}>
-                                  <div className={styles.requirements}>
-                                    Requirements
-                                  </div>
                                   <div className={styles.projDesc} id={`comment${comment.commentId}`}>
                                     {comment.commentText}
                                   </div>

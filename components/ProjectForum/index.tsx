@@ -3,7 +3,9 @@ import {
   Col,
   FormControl,
   FormGroup,
+  OverlayTrigger,
   Row,
+  Tooltip,
 } from 'react-bootstrap';
 import Moment from 'moment';
 import Image from 'next/image';
@@ -21,6 +23,16 @@ const ProjectForum:FC = () => {
   const handleClick = () => {
     setState(true);
   };
+  const renderOpenMsg = (props: any) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Open Thread
+    </Tooltip>
+  );
+  const renderClosedMsg = (props: any) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Closed Thread
+    </Tooltip>
+  );
 
   return (
     <Col lg={{ span: 10, offset: 1 }}>
@@ -76,22 +88,34 @@ const ProjectForum:FC = () => {
                   const statusCheck = () => {
                     if (!comment.project.isClosed) {
                       return (
+                        <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 400 }}
+                          overlay={renderOpenMsg}
+                        >
+                          <div className={styles.status}>
+                            <Image
+                              src="/unlocked.svg"
+                              width={45}
+                              height={45}
+                            />
+                          </div>
+                        </OverlayTrigger>
+                      );
+                    } return (
+                      <OverlayTrigger
+                        placement="top"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={renderClosedMsg}
+                      >
                         <div className={styles.status}>
                           <Image
-                            src="/unlocked.svg"
+                            src="/locked.svg"
                             width={45}
                             height={45}
                           />
                         </div>
-                      );
-                    } return (
-                      <div className={styles.status}>
-                        <Image
-                          src="/locked.svg"
-                          width={45}
-                          height={45}
-                        />
-                      </div>
+                      </OverlayTrigger>
                     );
                   };
                   if ((comment.comment.deleted === false) && (parentProj)) {

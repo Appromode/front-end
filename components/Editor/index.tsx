@@ -177,8 +177,8 @@ const Editor: FC<EditorProps> = ({ data }) => {
       new CodeExtension(),
       new HeadingExtension(1),
       new OrderedListExtension()],
-    content: '<p>This is editable, <b>please use this box</b> to enter your <em>post!</em></p>'
-    + '<p>You can do things like turn a selection of text <b>bold</b>, or add semantically rendered code in the middle of the page, like this:</p>'
+    content: '<p>This is editable, <b>please use this box</b> to type up your <em>post!</em></p>'
+    + '<p>You can do things like turn a selection of text <b>bold</b>, or add semantically rendered code to the page, like this:</p>'
     + '<p><code spellcheck="false"> < Pop your code here > </code></p>',
     stringHandler: htmlToProsemirrorNode,
   });
