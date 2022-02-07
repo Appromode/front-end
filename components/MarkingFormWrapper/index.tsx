@@ -11,8 +11,9 @@ const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, ...props
   const [step, setStep] = useState(0);
   const currentChild = childrenArray[step];
 
-  const next = () => setStep(step + 1);
-  const previous = () => setStep(step - 1);
+  const next = () => step < childrenArray.length - 1 && setStep(step + 1);
+
+  const previous = () => step > 0 && setStep(step - 1);
 
   return (
     <Formik {...props}>
