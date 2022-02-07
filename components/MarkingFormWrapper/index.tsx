@@ -1,4 +1,4 @@
-import React, { useState, Children } from 'react';
+import React, { FC, Children, useState } from 'react';
 import {
   FormikValues,
   FormikConfig,
@@ -6,7 +6,7 @@ import {
   Form,
 } from 'formik';
 
-const MarkingFormWrapper = ({ children, ...props }: FormikConfig<FormikValues>) => {
+const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, ...props }) => {
   const childrenArray = Children.toArray(children);
   const [step, setStep] = useState(0);
   const currentChild = childrenArray[step];
@@ -16,19 +16,21 @@ const MarkingFormWrapper = ({ children, ...props }: FormikConfig<FormikValues>) 
 
   return (
     <Formik {...props}>
-      <Form>{currentChild}</Form>
-      <button
-        type="button"
-        onClick={() => previous()}
-      >
-        Previous
-      </button>
-      <button
-        type="button"
-        onClick={() => next()}
-      >
-        Next
-      </button>
+      <>
+        <Form>{currentChild}</Form>
+        <button
+          type="button"
+          onClick={() => previous()}
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          onClick={() => next()}
+        >
+          Next
+        </button>
+      </>
     </Formik>
   );
 };
