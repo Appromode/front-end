@@ -19,12 +19,14 @@ const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, ...props
     <Formik {...props}>
       <>
         <Form>{currentChild}</Form>
-        <button
-          type="button"
-          onClick={() => previous()}
-        >
-          Previous
-        </button>
+        {step > 0 ? (
+          <button
+            type="button"
+            onClick={() => previous()}
+          >
+            Previous
+          </button>
+        ) : null }
         <button
           type="button"
           onClick={() => next()}

@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { object, number } from 'yup';
+import { object, number, SchemaOf } from 'yup';
 import MarkingFormWrapper from '../MarkingFormWrapper';
+import Marks from '../../types/marks';
 
 const MarkingForm: FC = () => {
   const initialValues = {
@@ -12,7 +13,7 @@ const MarkingForm: FC = () => {
     criticalReflection: 0,
   };
 
-  const validationSchema = object().shape({
+  const validationSchema: SchemaOf<Marks> = object().shape({
     taskDifficulty: number().required(),
     technicalAchievements: number().required(),
     technicalContributions: number().required(),

@@ -4,4 +4,6 @@ import Marks from '../../types/marks';
 
 export const getMark = () => fetcher('/api/Mark');
 
-export const postMark = (marks: Marks) => poster('/api/Group', 'POST', marks);
+export const postMark = (marks: Marks) => poster('/api/Mark', 'POST', marks);
+
+export const putMark = (marks: Marks) => poster('/api/Mark', 'PUT', marks);
