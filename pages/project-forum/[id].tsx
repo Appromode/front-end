@@ -3,11 +3,9 @@ import {
   Container,
   Row,
 } from 'react-bootstrap';
-import ForumPosts from '../../../components/ForumPosts';
+import ForumPosts from '../../components/ForumPosts';
 
-// Schema needs to be defined for the form
-
-export const ForumPost: FC = () => (
+const Posts: FC = () => (
   <Container>
     <Row>
       <ForumPosts />
@@ -15,4 +13,4 @@ export const ForumPost: FC = () => (
   </Container>
 );
 
-export default ForumPost;
+export default Posts;

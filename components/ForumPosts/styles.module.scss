@@ -83,6 +83,10 @@
     word-wrap: break-word;
 }
 
+#contact:hover {
+    background-color: $default-lightblue;
+}
+
 .link {
     text-decoration: none;
     color: #8c8c8c;
@@ -90,7 +94,7 @@
 
 .link:hover {
     color: inherit;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .threadLink {

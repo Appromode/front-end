@@ -7,6 +7,7 @@ import {
   Row,
   Tooltip,
 } from 'react-bootstrap';
+import Link from 'next/link';
 import Moment from 'moment';
 import Image from 'next/image';
 import {
@@ -120,8 +121,14 @@ const ProjectForum:FC = () => {
                   };
                   if ((comment.comment.deleted === false) && (parentProj)) {
                     return (
-                      <div className={styles.projectIdea} key={comment.comment.commentId}>
-                        <a href="/project-forum/forum-post" className={styles.navLink}>
+                      <Link
+                        href={{
+                          pathname: `/project-forum/${comment.comment.commentId}`,
+                          query: { id: comment.comment.commentId },
+                        }}
+                        key={comment.comment.commentId}
+                      >
+                        <div className={styles.projectIdea}>
                           <Row>
                             <Col xs={1} md={1}>
                               {statusCheck()}
@@ -155,8 +162,8 @@ const ProjectForum:FC = () => {
                               </Row>
                             </Col>
                           </Row>
-                        </a>
-                      </div>
+                        </div>
+                      </Link>
                     );
                   }
                   return (
