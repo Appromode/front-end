@@ -121,7 +121,6 @@ export const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, .
             ) }
             <button
               type="submit"
-              onClick={() => next()}
               className="px-4 py-2
               rounded-md
               bg-[#373A3C]
