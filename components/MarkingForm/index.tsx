@@ -1,13 +1,8 @@
-/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FC } from 'react';
-import {
-  FormGroup,
-  FormLabel,
-  FormCheck,
-} from 'react-bootstrap';
 import { object, number, SchemaOf } from 'yup';
-import MarkingFormWrapper from '../MarkingFormWrapper';
-import styles from '../RegistrationForm/styles.module.scss';
+import { Field } from 'formik';
+import { MarkingFormWrapper, FormikStep } from '../MarkingFormWrapper';
 import Marks from '../../types/marks';
 
 const MarkingForm: FC = () => {
@@ -21,12 +16,12 @@ const MarkingForm: FC = () => {
   };
 
   const validationSchema: SchemaOf<Marks> = object().shape({
-    taskDifficulty: number().required(),
-    technicalAchievements: number().required(),
-    technicalContributions: number().required(),
-    projectContributions: number().required(),
-    teamworkSkills: number().required(),
-    criticalReflection: number().required(),
+    taskDifficulty: number().required('You need to select a mark'),
+    technicalAchievements: number().required('You need to select a mark'),
+    technicalContributions: number().required('You need to select a mark'),
+    projectContributions: number().required('You need to select a mark'),
+    teamworkSkills: number().required('You need to select a mark'),
+    criticalReflection: number().required('You need to select a mark'),
   });
 
   return (
@@ -35,359 +30,571 @@ const MarkingForm: FC = () => {
       onSubmit={() => {}}
       validationSchema={validationSchema}
     >
-      <div className={styles.checkbox}>
-        <FormGroup>
-          <h1 id={styles.gradeaspect}>Intrinsic difficulty and scope of tasks attempted by student</h1>
-          <p className={styles.subtitle}>Well below expectation</p>
-          <FormLabel htmlFor="none" />
-          <FormCheck id="none" type="checkbox" label="None or trivial" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="smalltasks" />
-          <FormCheck id="smalltasks" type="checkbox" label="Small tasks not requiring knowledge from course" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="basictasks" />
-          <FormCheck id="basictasks" type="checkbox" label="Basic tasks, minimal course knowledge" />
-        </FormGroup>
-        <p className={styles.subtitle}>Below</p>
-        <FormGroup>
-          <FormLabel htmlFor="insufficient" />
-          <FormCheck id="insufficient" type="checkbox" label="Insufficient to show necessary competence" />
-        </FormGroup>
-        <p className={styles.subtitle}>Third</p>
-        <FormGroup>
-          <FormLabel htmlFor="straightforward" />
-          <FormCheck id="straightforward" type="checkbox" label="Straightforward; involves application of knowledge and skills from course" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.2</p>
-        <FormGroup>
-          <FormLabel htmlFor="mostlystraightforward" />
-          <FormCheck id="mostlystraightforward" type="checkbox" label="Largely straightforward but requires some new learning" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.1</p>
-        <FormGroup>
-          <FormLabel htmlFor="slightlychallenging" />
-          <FormCheck id="slightlychallenging" type="checkbox" label="Some elements challenging; requires new learning and good understanding" />
-        </FormGroup>
-        <p className={styles.subtitle}>First Class</p>
-        <FormGroup>
-          <FormLabel htmlFor="subschallenge" />
-          <FormCheck id="subschallenge" type="checkbox" label="Substantial challenge; highly complex; must gain advanced knowledge" />
-        </FormGroup>
-        <p className={styles.subtitle}>Beyond First</p>
-        <FormGroup>
-          <FormLabel htmlFor="challenge" />
-          <FormCheck id="challenge" type="checkbox" label="Challenge and scope in top 5% of projects" />
-        </FormGroup>
-        <p className={styles.subtitle}>Well Beyond</p>
-        <FormGroup>
-          <FormLabel htmlFor="beyondchallenge" />
-          <FormCheck id="beyondchallenge" type="checkbox" label="Challenge and scope in top 1% of projects" />
-        </FormGroup>
-        <div className={styles.container}>
-          <div className={styles.navbar}>
-            <button type="button" className={styles.save}>Save</button>
-            <span className={styles.formspacer} />
-            <button type="button" className={styles.next}>Next</button>
+      <FormikStep label="Number1">
+        <div>
+          <h1 className="pt-2 font-bold text-lg text-[#05345C]">
+            Intrinsic difficulty and scope of tasks attempted by student
+          </h1>
+          <p className="pt-3 font-bold text-md ml-3">Well below expectation</p>
+          <label>
+            <Field name="taskDifficulty" type="radio" value="0" className="ml-3" />
+            <div className="ml-3 inline-block">
+              None or trivial
+            </div>
+          </label>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="15" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Small tasks not requiring knowledge from course
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="25" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Basic tasks, minimal course knowledge
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Below</p>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="35" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Insufficient to show necessary competence
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Third</p>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="45" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Straightforward; involves application of knowledge and skills from course
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.2</p>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="50" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Largely straightforward but requires some new learning
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.1</p>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="60" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Some elements challenging; requires new learning and good understanding
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">First Class</p>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="70" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Substantial challenge; highly complex; must gain advanced knowledge
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Beyond First</p>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="80" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Challenge and scope in top 5% of projects
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Well Beyond</p>
+          <div className="form-group">
+            <label>
+              <Field name="taskDifficulty" type="radio" value="90" className="ml-3" label="" />
+              <div className="ml-3 inline-block">
+                Challenge and scope in top 1% of projects
+              </div>
+            </label>
           </div>
         </div>
-      </div>
+      </FormikStep>
 
-      <div className={styles.checkbox}>
-        <FormGroup>
-          <h1 id={styles.gradeaspect}>Quality of technical achievements and contributions</h1>
-          <p className={styles.subtitle}>Well below expectation</p>
-          <FormLabel htmlFor="none" />
-          <FormCheck id="none" type="checkbox" label="None or trivial" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="verypoor" />
-          <FormCheck id="verypoor" type="checkbox" label="Very poor; shows little understanding" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="poor" />
-          <FormCheck id="poor" type="checkbox" label="Poor; a little progress but standard low" />
-        </FormGroup>
-        <p className={styles.subtitle}>Below</p>
-        <FormGroup>
-          <FormLabel htmlFor="unsatisfactory" />
-          <FormCheck id="unsatisfactory" type="checkbox" label="Unsatisfactory but some understanding shown" />
-        </FormGroup>
-        <p className={styles.subtitle}>Third</p>
-        <FormGroup>
-          <FormLabel htmlFor="fair" />
-          <FormCheck id="fair" type="checkbox" label="Fair but pedestrian attempt; shows basic competence" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.2</p>
-        <FormGroup>
-          <FormLabel htmlFor="competent" />
-          <FormCheck id="competent" type="checkbox" label="Competent attempt at straightforward tasks" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.1</p>
-        <FormGroup>
-          <FormLabel htmlFor="good" />
-          <FormCheck id="good" type="checkbox" label="Good attempt at all tasks; able to cope with difficulties" />
-        </FormGroup>
-        <p className={styles.subtitle}>First Class</p>
-        <FormGroup>
-          <FormLabel htmlFor="demonstrated" />
-          <FormCheck id="demonstrated" type="checkbox" label="Demonstrated initiative and creative problem-solving ability" />
-        </FormGroup>
-        <p className={styles.subtitle}>Beyond First</p>
-        <FormGroup>
-          <FormLabel htmlFor="experienced" />
-          <FormCheck id="experienced" type="checkbox" label="c.f. experienced professional" />
-        </FormGroup>
-        <p className={styles.subtitle}>Well Beyond</p>
-        <FormGroup>
-          <FormLabel htmlFor="top" />
-          <FormCheck id="top" type="checkbox" label="c.f. top professional" />
-        </FormGroup>
-        <div className={styles.container}>
-          <div className={styles.navbar}>
-            <button type="button" className={styles.save}>Save</button>
-            <span className={styles.formspacer} />
-            <button type="button" className={styles.next}>Next</button>
+      <FormikStep label="Number2">
+        <div>
+          <div className="form-group">
+            <h1 className="pt-2 font-bold text-lg text-[#05345C]">
+              Quality of technical achievements and contributions
+            </h1>
+            <p className="pt-3 font-bold text-md ml-3">Well below expectation</p>
+            <label>
+              <Field name="technicalAchievements" type="radio" value="0" className="ml-3" />
+              <div className="ml-3 inline-block">
+                None or trivial
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="15" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Very poor; shows little understanding
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="25" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Poor; a little progress but standard low
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Below</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="35" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Unsatisfactory but some understanding shown
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Third</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="45" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Fair but pedestrian attempt; shows basic competence
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.2</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="50" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Competent attempt at straightforward tasks
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.1</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="60" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Good attempt at all tasks; able to cope with difficulties
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">First Class</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="70" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Demonstrated initiative and creative problem-solving ability
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Beyond First</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="80" className="ml-3" />
+              <div className="ml-3 inline-block">
+                c.f. experienced professional
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Well Beyond</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalAchievements" type="radio" value="90" className="ml-3" />
+              <div className="ml-3 inline-block">
+                c.f. top professional
+              </div>
+            </label>
           </div>
         </div>
-      </div>
+      </FormikStep>
 
-      <div className={styles.checkbox}>
-        <FormGroup>
-          <h1 id={styles.gradeaspect}>Quantity of technical contributions</h1>
-          <p className={styles.subtitle}>Well below expectation</p>
-          <FormLabel htmlFor="none" />
-          <FormCheck id="none" type="checkbox" label="None or trivial" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="few" />
-          <FormCheck id="few" type="checkbox" label="A few small contributions" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="patchy" />
-          <FormCheck id="patchy" type="checkbox" label="Patchy with key tasks neglected" />
-        </FormGroup>
-        <p className={styles.subtitle}>Below</p>
-        <FormGroup>
-          <FormLabel htmlFor="insufficient" />
-          <FormCheck id="insufficient" type="checkbox" label="Attempted several tasks but insufficient" />
-        </FormGroup>
-        <p className={styles.subtitle}>Third</p>
-        <FormGroup>
-          <FormLabel htmlFor="adequate" />
-          <FormCheck id="adequate" type="checkbox" label="Modest but adequate contribution overall" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.2</p>
-        <FormGroup>
-          <FormLabel htmlFor="satisfactory" />
-          <FormCheck id="satisfactory" type="checkbox" label="Satisfactory contribution across most tasks throughout project" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.1</p>
-        <FormGroup>
-          <FormLabel htmlFor="solid" />
-          <FormCheck id="solid" type="checkbox" label="Solid contribution across all tasks and throughout project" />
-        </FormGroup>
-        <p className={styles.subtitle}>First Class</p>
-        <FormGroup>
-          <FormLabel htmlFor="strong" />
-          <FormCheck id="strong" type="checkbox" label="Consistently strong contribution across all tasks and throughout project" />
-        </FormGroup>
-        <p className={styles.subtitle}>Beyond First</p>
-        <FormGroup>
-          <FormLabel htmlFor="highly" />
-          <FormCheck id="highly" type="checkbox" label="Highly industrious and productive" />
-        </FormGroup>
-        <p className={styles.subtitle}>Well Beyond</p>
-        <FormGroup>
-          <FormLabel htmlFor="exceptionally" />
-          <FormCheck id="exceptionally" type="checkbox" label="Exceptionally industrious and productive" />
-        </FormGroup>
-        <div className={styles.container}>
-          <div className={styles.navbar}>
-            <button type="button" className={styles.save}>Save</button>
-            <span className={styles.formspacer} />
-            <button type="button" className={styles.next}>Next</button>
+      <FormikStep label="Number3">
+        <div>
+          <div className="form-group">
+            <h1 className="pt-2 font-bold text-lg text-[#05345C]">Quantity of technical contributions</h1>
+            <p className="pt-3 font-bold text-md ml-3">Well below expectation</p>
+            <label>
+              <Field name="technicalContributions" type="radio" value="0" className="ml-3" />
+              <div className="ml-3 inline-block">
+                None or trivial
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="15" className="ml-3" />
+              <div className="ml-3 inline-block">
+                A few small contributions
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="25" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Patchy with key tasks neglected
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Below</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="35" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Attempted several tasks but insufficient
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Third</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="45" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Modest but adequate contribution overall
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.2</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="50" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Satisfactory contribution across most tasks throughout project
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.1</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="60" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Solid contribution across all tasks and throughout project
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">First Class</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="70" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Consistently strong contribution across all tasks and throughout project
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Beyond First</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="80" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Highly industrious and productive
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Well Beyond</p>
+          <div className="form-group">
+            <label>
+              <Field name="technicalContributions" type="radio" value="90" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Exceptionally industrious and productive
+              </div>
+            </label>
           </div>
         </div>
-      </div>
+      </FormikStep>
 
-      <div className={styles.checkbox}>
-        <FormGroup>
-          <h1 id={styles.gradeaspect}>Contributions to project process</h1>
-          <p className={styles.subtitle}>Well below expectation</p>
-          <FormLabel htmlFor="none" />
-          <FormCheck id="none" type="checkbox" label="None or trivial" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="few" />
-          <FormCheck id="few" type="checkbox" label="A few small contributions of very poor quality" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="some" />
-          <FormCheck id="some" type="checkbox" label="Some contributions but quality poor" />
-        </FormGroup>
-        <p className={styles.subtitle}>Below</p>
-        <FormGroup>
-          <FormLabel htmlFor="unsatisfactory" />
-          <FormCheck id="unsatisfactory" type="checkbox" label="Unsatisfactory but some understanding shown" />
-        </FormGroup>
-        <p className={styles.subtitle}>Third</p>
-        <FormGroup>
-          <FormLabel htmlFor="adequate" />
-          <FormCheck id="adequate" type="checkbox" label="Modest but adequate contribution; shows basic competence" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.2</p>
-        <FormGroup>
-          <FormLabel htmlFor="competent" />
-          <FormCheck id="competent" type="checkbox" label="Competent attempt at basic process tasks throughout project" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.1</p>
-        <FormGroup>
-          <FormLabel htmlFor="good" />
-          <FormCheck id="good" type="checkbox" label="Good attempt at process tasks; able to adapt when difficulties arise" />
-        </FormGroup>
-        <p className={styles.subtitle}>First Class</p>
-        <FormGroup>
-          <FormLabel htmlFor="major" />
-          <FormCheck id="major" type="checkbox" label="Managed a major area of the process very effectively and documented it well" />
-        </FormGroup>
-        <p className={styles.subtitle}>Beyond First</p>
-        <FormGroup>
-          <FormLabel htmlFor="experience" />
-          <FormCheck id="experience" type="checkbox" label="c.f. experienced professional" />
-        </FormGroup>
-        <p className={styles.subtitle}>Well Beyond</p>
-        <FormGroup>
-          <FormLabel htmlFor="top" />
-          <FormCheck id="top" type="checkbox" label="c.f. top professional" />
-        </FormGroup>
-        <div className={styles.container}>
-          <div className={styles.navbar}>
-            <button type="button" className={styles.save}>Save</button>
-            <span className={styles.formspacer} />
-            <button type="button" className={styles.next}>Next</button>
+      <FormikStep label="Number4">
+        <div>
+          <div className="form-group">
+            <h1 className="pt-2 font-bold text-lg text-[#05345C]">Contributions to project process</h1>
+            <p className="pt-3 font-bold text-md ml-3">Well below expectation</p>
+            <label>
+              <Field name="projectContributions" type="radio" value="0" className="ml-3" />
+              <div className="ml-3 inline-block">
+                None or trivial
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="15" className="ml-3" />
+              <div className="ml-3 inline-block">
+                A few small contributions of very poor quality
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="25" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Some contributions but quality poor
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Below</p>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="35" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Unsatisfactory but some understanding shown
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Third</p>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="45" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Modest but adequate contribution; shows basic competence
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.2</p>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="50" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Competent attempt at basic process tasks throughout project
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.1</p>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="60" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Good attempt at process tasks; able to adapt when difficulties arise
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">First Class</p>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="70" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Managed a major area of the process very effectively and documented it well
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Beyond First</p>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="80" className="ml-3" />
+              <div className="ml-3 inline-block">
+                c.f. experienced professional
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Well Beyond</p>
+          <div className="form-group">
+            <label>
+              <Field name="projectContributions" type="radio" value="90" className="ml-3" />
+              <div className="ml-3 inline-block">
+                c.f. top professional
+              </div>
+            </label>
           </div>
         </div>
-      </div>
+      </FormikStep>
 
-      <div className={styles.checkbox}>
-        <FormGroup>
-          <h1 id={styles.gradeaspect}>Teamwork and related skills</h1>
-          <p className={styles.subtitle}>Well below expectation</p>
-          <FormLabel htmlFor="rarely" />
-          <FormCheck id="rarely" type="checkbox" label="Rarely in contact" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="unreliable" />
-          <FormCheck id="unreliable" type="checkbox" label="Mostly unreliable or out of touch" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="patchy" />
-          <FormCheck id="patchy" type="checkbox" label="Coordination patchy" />
-        </FormGroup>
-        <p className={styles.subtitle}>Below</p>
-        <FormGroup>
-          <FormLabel htmlFor="sometimesunreliable" />
-          <FormCheck id="sometimesunreliable" type="checkbox" label="Sometimes unreliable or out of touch" />
-        </FormGroup>
-        <p className={styles.subtitle}>Third</p>
-        <FormGroup>
-          <FormLabel htmlFor="adequate" />
-          <FormCheck id="adequate" type="checkbox" label="Adequate but needed prompting from other team members" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.2</p>
-        <FormGroup>
-          <FormLabel htmlFor="reasonable" />
-          <FormCheck id="reasonable" type="checkbox" label="Coordinated with others reasonably well most of the time" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.1</p>
-        <FormGroup>
-          <FormLabel htmlFor="helped" />
-          <FormCheck id="helped" type="checkbox" label="Integrated well and willing to help others when they needed assistance" />
-        </FormGroup>
-        <p className={styles.subtitle}>First Class</p>
-        <FormGroup>
-          <FormLabel htmlFor="supported" />
-          <FormCheck id="supported" type="checkbox" label="Integrated well and proactively supported other team members" />
-        </FormGroup>
-        <p className={styles.subtitle}>Beyond First</p>
-        <FormGroup>
-          <FormLabel htmlFor="pivotal" />
-          <FormCheck id="pivotal" type="checkbox" label="Made pivotal contribution to success of team" />
-        </FormGroup>
-        <p className={styles.subtitle}>Well Beyond</p>
-        <FormGroup>
-          <FormLabel htmlFor="energised" />
-          <FormCheck id="energised" type="checkbox" label="Energised team so they surpassed themselves" />
-        </FormGroup>
-        <div className={styles.container}>
-          <div className={styles.navbar}>
-            <button type="button" className={styles.save}>Save</button>
-            <span className={styles.formspacer} />
-            <button type="button" className={styles.next}>Next</button>
+      <FormikStep label="Number5">
+        <div>
+          <div className="form-group">
+            <h1 className="pt-2 font-bold text-lg text-[#05345C]">Teamwork and related skills</h1>
+            <p className="pt-3 font-bold text-md ml-3">Well below expectation</p>
+            <label>
+              <Field name="teamworkSkills" type="radio" value="0" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Rarely in contact
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="15" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Mostly unreliable or out of touch
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="25" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Coordination patchy
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Below</p>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="35" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Sometimes unreliable or out of touch
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Third</p>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="45" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Adequate but needed prompting from other team members
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.2</p>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="50" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Coordinated with others reasonably well most of the time
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.1</p>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="60" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Integrated well and willing to help others when they needed assistance
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">First Class</p>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="70" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Integrated well and proactively supported other team members
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Beyond First</p>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="80" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Made pivotal contribution to success of team
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Well Beyond</p>
+          <div className="form-group">
+            <label>
+              <Field name="teamworkSkills" type="radio" value="90" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Energised team so they surpassed themselves
+              </div>
+            </label>
           </div>
         </div>
-      </div>
+      </FormikStep>
 
-      <div className={styles.checkbox}>
-        <FormGroup>
-          <h1 id={styles.gradeaspect}>Critical reflection</h1>
-          <p className={styles.subtitle}>Well below expectation</p>
-          <FormLabel htmlFor="none" />
-          <FormCheck id="none" type="checkbox" label="None or trivial" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="irrelevant" />
-          <FormCheck id="irrelevant" type="checkbox" label="Largely inaccurate or irrelevant" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel htmlFor="onesided" />
-          <FormCheck id="onesided" type="checkbox" label="Often inaccurate or entirely one sided" />
-        </FormGroup>
-        <p className={styles.subtitle}>Below</p>
-        <FormGroup>
-          <FormLabel htmlFor="partlyinaccurate" />
-          <FormCheck id="partlyinaccurate" type="checkbox" label="Partly inaccurate or largely one sided" />
-        </FormGroup>
-        <p className={styles.subtitle}>Third</p>
-        <FormGroup>
-          <FormLabel htmlFor="some" />
-          <FormCheck id="some" type="checkbox" label="Aware of some of the major strengths and weaknesses" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.2</p>
-        <FormGroup>
-          <FormLabel htmlFor="most" />
-          <FormCheck id="most" type="checkbox" label="Aware of most major strengths and weaknesses but lacks insight" />
-        </FormGroup>
-        <p className={styles.subtitle}>2.1</p>
-        <FormGroup>
-          <FormLabel htmlFor="appreciates" />
-          <FormCheck id="appreciates" type="checkbox" label="Appreciates strengths and weaknesses; offers a few insights" />
-        </FormGroup>
-        <p className={styles.subtitle}>First Class</p>
-        <FormGroup>
-          <FormLabel htmlFor="understands" />
-          <FormCheck id="understands" type="checkbox" label="Understands strengths and weaknesses; offers useful insights" />
-        </FormGroup>
-        <p className={styles.subtitle}>Beyond First</p>
-        <FormGroup>
-          <FormLabel htmlFor="deep" />
-          <FormCheck id="deep" type="checkbox" label="Deep understanding with many useful insights" />
-        </FormGroup>
-        <p className={styles.subtitle}>Well Beyond</p>
-        <FormGroup>
-          <FormLabel htmlFor="solutions" />
-          <FormCheck id="solutions" type="checkbox" label="...plus good insight into solutions and future work" />
-        </FormGroup>
-        <div className={styles.container}>
-          <div className={styles.navbar}>
-            <button type="button" className={styles.save}>Save</button>
-            <span className={styles.formspacer} />
-            <button type="button" className={styles.next}>Next</button>
+      <FormikStep label="Number6">
+        <div>
+          <div className="form-group">
+            <h1 className="pt-2 font-bold text-lg text-[#05345C]">Critical reflection</h1>
+            <p className="pt-3 font-bold text-md ml-3">Well below expectation</p>
+            <label>
+              <Field name="criticalReflection" type="radio" value="0" className="ml-3" />
+              <div className="ml-3 inline-block">
+                None or trivial
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="15" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Largely inaccurate or irrelevant
+              </div>
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="25" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Often inaccurate or entirely one sided
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Below</p>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="35" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Partly inaccurate or largely one sided
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Third</p>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="45" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Aware of some of the major strengths and weaknesses
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.2</p>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="50" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Aware of most major strengths and weaknesses but lacks insight
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">2.1</p>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="60" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Appreciates strengths and weaknesses; offers a few insights
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">First Class</p>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="70" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Understands strengths and weaknesses; offers useful insights
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Beyond First</p>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="80" className="ml-3" />
+              <div className="ml-3 inline-block">
+                Deep understanding with many useful insights
+              </div>
+            </label>
+          </div>
+          <p className="pt-3 font-bold text-md ml-3">Well Beyond</p>
+          <div className="form-group">
+            <label>
+              <Field name="criticalReflection" type="radio" value="90" className="ml-3" />
+              <div className="ml-3 inline-block">
+                ...plus good insight into solutions and future work
+              </div>
+            </label>
           </div>
         </div>
-      </div>
+      </FormikStep>
     </MarkingFormWrapper>
   );
 };
