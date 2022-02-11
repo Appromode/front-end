@@ -23,8 +23,6 @@ export const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, .
   const [step, setStep] = useState(0);
   const currentChild = childrenArray[step] as React.ElementType<FormikStepProps>;
 
-  const next = () => step < childrenArray.length - 1 && setStep(step + 1);
-
   const previous = () => step > 0 && setStep(step - 1);
 
   function isLastStep() {
@@ -37,7 +35,6 @@ export const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, .
       validationSchema={currentChild.props.validationSchema}
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
-          console.log(values);
           await props.onSubmit(values, helpers);
         } else {
           setStep((s) => s + 1);
