@@ -37,6 +37,7 @@ export const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, .
       validationSchema={currentChild.props.validationSchema}
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
+          console.log(values);
           await props.onSubmit(values, helpers);
         } else {
           setStep((s) => s + 1);
@@ -119,7 +120,7 @@ export const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, .
               />
             ) }
             <button
-              type="button"
+              type="submit"
               onClick={() => next()}
               className="px-4 py-2
               rounded-md
