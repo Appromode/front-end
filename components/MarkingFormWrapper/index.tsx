@@ -19,16 +19,15 @@ export function FormikStep({ children }: FormikStepProps) {
 }
 
 export const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, ...props }) => {
-  const childrenArray = Children.toArray(children) as React.ElementType<FormikStepProps>[];
+  const childrenArray:any = Children.toArray(children) as React.ElementType<FormikStepProps>[];
   const [step, setStep] = useState(0);
-  const currentChild = childrenArray[step] as React.ElementType<FormikStepProps>;
+  const currentChild:any = childrenArray[step] as React.ElementType<FormikStepProps>;
 
   const previous = () => step > 0 && setStep(step - 1);
 
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
-
   return (
     <Formik
       {...props}
@@ -45,7 +44,7 @@ export const MarkingFormWrapper: FC<FormikConfig<FormikValues>> = ({ children, .
         <Form>
           <div className="mb-2 mt-10">
             <Stepper activeStep={step}>
-              {childrenArray.map((child) => (
+              {childrenArray.map((child:any) => (
                 <Step key={child.props.label}>
                   <StepLabel />
                 </Step>
