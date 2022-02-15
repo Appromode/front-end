@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { useTable, useGlobalFilter } from 'react-table';
+import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { useFormikContext } from 'formik';
 import { Alert } from 'react-bootstrap';
 import GlobalFilter from '../GlobalFilter';
@@ -7,6 +7,7 @@ import { getUsers } from '../../api/users';
 import Group from '../../types/group';
 import removeArrayItem from '../../utils/removeArrayItem';
 import getById from '../../utils/getById';
+import TablePagination from '../TablePagination';
 
 const UserSearch:FC = () => {
   const {
@@ -43,14 +44,24 @@ const UserSearch:FC = () => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
     prepareRow,
     preGlobalFilteredRows,
     state: {
+      pageIndex,
+      pageSize,
       globalFilter,
     },
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter);
+  } = useTable({ columns, data }, useGlobalFilter, usePagination);
 
   return (
     <>
@@ -62,7 +73,7 @@ const UserSearch:FC = () => {
         label="Find Group Members"
       />
       {
-        rows.length > 0 ? (
+        page.length > 0 ? (
           <div className="border-1 overflow-x-scroll lg:overflow-x-visible border-gray-300">
             <table {...getTableProps()} className="divide-y divide-gray-200 w-full table-auto">
               <thead className="bg-gray-50 w-full">
@@ -81,7 +92,7 @@ const UserSearch:FC = () => {
                 ))}
               </thead>
               <tbody {...getTableBodyProps()} className="bg-white divide-y divide-gray-200">
-                {rows.map((row) => {
+                {page.map((row) => {
                   prepareRow(row);
                   return (
                     <tr {...row.getRowProps()}>
@@ -91,6 +102,7 @@ const UserSearch:FC = () => {
                           className="px-6 py-4 whitespace-nowrap"
                         >
                           {cell.render('Cell')}
+                          {console.log('row', row.original)}
                         </td>
                       ))}
                       <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
@@ -113,6 +125,18 @@ const UserSearch:FC = () => {
                 })}
               </tbody>
             </table>
+            <TablePagination
+              canPreviousPage={canPreviousPage}
+              canNextPage={canNextPage}
+              pageOptions={pageOptions}
+              pageCount={pageCount}
+              gotoPage={gotoPage}
+              nextPage={nextPage}
+              previousPage={previousPage}
+              setPageSize={setPageSize}
+              pageIndex={pageIndex}
+              pageSize={pageSize}
+            />
           </div>
         ) : <div>No results</div>
       }
