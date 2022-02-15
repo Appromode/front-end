@@ -1,35 +1,115 @@
 import {
-  Row,
-  IdType,
-  TableOptions,
-  UseTableInstanceProps,
+  UseColumnOrderInstanceProps,
+  UseColumnOrderState,
+  UseExpandedHooks,
+  UseExpandedInstanceProps,
+  UseExpandedOptions,
+  UseExpandedRowProps,
+  UseExpandedState,
+  UseFiltersColumnOptions,
+  UseFiltersColumnProps,
+  UseFiltersInstanceProps,
+  UseFiltersOptions,
+  UseFiltersState,
+  UseGlobalFiltersColumnOptions,
+  UseGlobalFiltersInstanceProps,
+  UseGlobalFiltersOptions,
+  UseGlobalFiltersState,
+  UseGroupByCellProps,
+  UseGroupByColumnOptions,
+  UseGroupByColumnProps,
+  UseGroupByHooks,
+  UseGroupByInstanceProps,
+  UseGroupByOptions,
+  UseGroupByRowProps,
+  UseGroupByState,
+  UsePaginationInstanceProps,
+  UsePaginationOptions,
+  UsePaginationState,
+  UseResizeColumnsColumnOptions,
+  UseResizeColumnsColumnProps,
+  UseResizeColumnsOptions,
+  UseResizeColumnsState,
+  UseRowSelectHooks,
+  UseRowSelectInstanceProps,
+  UseRowSelectOptions,
+  UseRowSelectRowProps,
+  UseRowSelectState,
+  UseRowStateCellProps,
+  UseRowStateInstanceProps,
+  UseRowStateOptions,
+  UseRowStateRowProps,
+  UseRowStateState,
+  UseSortByColumnOptions,
+  UseSortByColumnProps,
+  UseSortByHooks,
+  UseSortByInstanceProps,
+  UseSortByOptions,
+  UseSortByState,
 } from 'react-table';
 
 declare module 'react-table' {
-  type Rows = Row[];
+  export interface TableOptions<D extends Record<string, unknown>>
+    extends UseExpandedOptions<D>,
+    UseFiltersOptions<D>,
+    UseGlobalFiltersOptions<D>,
+    UseGroupByOptions<D>,
+    UsePaginationOptions<D>,
+    UseResizeColumnsOptions<D>,
+    UseRowSelectOptions<D>,
+    UseRowStateOptions<D>,
+    UseSortByOptions<D>,
+    Record<string, any> { }
 
-  interface GlobalFilter {
-    globalFilter: string
-  }
+  export interface Hooks<D extends Record<string, unknown> = Record<string, unknown>>
+    extends UseExpandedHooks<D>,
+    UseGroupByHooks<D>,
+    UseRowSelectHooks<D>,
+    UseSortByHooks<D> { }
 
-  interface PreGlobalFilteredRows {
-    preGlobalFilteredRows: Rows;
-  }
+  export interface TableInstance<D extends Record<string, unknown> = Record<string, unknown>>
+    extends UseColumnOrderInstanceProps<D>,
+    UseExpandedInstanceProps<D>,
+    UseFiltersInstanceProps<D>,
+    UseGlobalFiltersInstanceProps<D>,
+    UseGroupByInstanceProps<D>,
+    UsePaginationInstanceProps<D>,
+    UseRowSelectInstanceProps<D>,
+    UseRowStateInstanceProps<D>,
+    UseSortByInstanceProps<D> { }
 
-  interface SetGlobalFilter {
-    setGlobalFilter: (filterValue) => void;
-  }
+  export interface TableState<D extends Record<string, unknown> = Record<string, unknown>>
+    extends UseColumnOrderState<D>,
+    UseExpandedState<D>,
+    UseFiltersState<D>,
+    UseGlobalFiltersState<D>,
+    UseGroupByState<D>,
+    UsePaginationState<D>,
+    UseResizeColumnsState<D>,
+    UseRowSelectState<D>,
+    UseRowStateState<D>,
+    UseSortByState<D> { }
 
-  interface Filter extends GlobalFilter, PreGlobalFilteredRows, SetGlobalFilter { }
+  export interface ColumnInterface<D extends Record<string, unknown> = Record<string, unknown>>
+    extends UseFiltersColumnOptions<D>,
+    UseGlobalFiltersColumnOptions<D>,
+    UseGroupByColumnOptions<D>,
+    UseResizeColumnsColumnOptions<D>,
+    UseSortByColumnOptions<D> { }
 
-  interface TableInstance<D extends object = {}>
-    extends Omit<TableOptions<D>,
-    'columns' | 'pageCount'>,
-    UseTableInstanceProps<D>,
-    PreGlobalFilteredRows,
-    SetGlobalFilter { }
+  export interface ColumnInstance<D extends Record<string, unknown> = Record<string, unknown>>
+    extends UseFiltersColumnProps<D>,
+    UseGroupByColumnProps<D>,
+    UseResizeColumnsColumnProps<D>,
+    UseSortByColumnProps<D> { }
 
-  interface TableState<D extends object = {}> extends GlobalFilter {
-    hiddenColumns?: Array<IdType<D>> | undefined;
-  }
+  export interface Cell<D extends Record<string, unknown> = Record<string, unknown>>
+    extends UseGroupByCellProps<D>,
+    UseRowStateCellProps<D> { }
+
+  export interface Row<D extends Record<string, unknown> = Record<string, unknown>>
+    extends UseExpandedRowProps<D>,
+    UseGroupByRowProps<D>,
+    UseRowSelectRowProps<D>,
+    UseRowStateRowProps<D> { }
 }
