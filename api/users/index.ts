@@ -1,13 +1,13 @@
 import useSWR from 'swr';
+import { User } from '../../types/user';
 import fetcher from '../../utils/fetcher';
 import poster from '../../utils/poster';
 import Login from '../../types/login';
-import User from '../../types/user';
 
 export const getUsers = () => {
   const { data, error } = useSWR('/api/User', fetcher);
 
-  return Object.freeze({
+  return Object.freeze<{ users: User[], error: any }>({
     users: data,
     error,
   });

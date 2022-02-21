@@ -1,11 +1,11 @@
-type User = {
+export interface Id {
+  id: number | string;
+}
+
+export type User = Id & {
   firstName: string;
   lastName: string;
-  normalizedEmail: string;
-  normalizedUserName: string;
-  profilePicture: number;
-  twoFactorEnabled: boolean;
-  userId: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
 };
-
-export default User;

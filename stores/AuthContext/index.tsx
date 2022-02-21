@@ -4,7 +4,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import User from '../../types/user';
+import { User } from '../../types/user';
 import AuthContext from '../../types/auth-context';
 
 export const AuthContext = createContext<AuthContext>({
