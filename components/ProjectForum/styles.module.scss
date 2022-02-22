@@ -2,10 +2,9 @@
 
 #title {
     color: $default-blue;
-    font-size: large;
+    font-size: xx-large;
     padding-top: 10px;
     font-weight: bold;
-    text-align: center;
 }
 
 #centreConsole {
@@ -15,15 +14,9 @@
 }
 
 #headingContainer {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-#heading1 {
-    font-weight: bold;
+    margin-top: 10px;
     color: $default-blue;
-    padding-left: 10px;
+    font-size: large;
 }
 
 #subtitle {

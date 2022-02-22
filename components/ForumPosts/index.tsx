@@ -30,6 +30,11 @@ const ForumPosts: FC = () => {
   const handleClick = (commentText: string, commentUserId: string) => {
     addToPool(commentUserId, commentText);
   };
+  const removeContent = (index: number) => {
+    const clone = [...data];
+    clone.splice(index, 1);
+    setData(clone);
+  };
   return (
     <>
       <Col lg={{ span: 10, offset: 1 }}>
@@ -43,7 +48,7 @@ const ForumPosts: FC = () => {
                   && project.comments.map((comment :any, i :number) => {
                     const closedStatus = () => {
                       if (project.isClosed === false) {
-                        return (/* Add a way to make the top locked status match this one */
+                        return (
                           <>
                             <Row>
                               <Col>
@@ -277,7 +282,7 @@ const ForumPosts: FC = () => {
                 </div>
                 <div className={styles.descContainer} id="forum-reply">
                   <div className={styles.userReply}>
-                    <Editor data={data} />
+                    <Editor data={data} removeItem={removeContent} />
                   </div>
                   <div id={styles.buttonContainer}>
                     <button type="submit" id={styles.postReplyButton}>

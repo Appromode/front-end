@@ -3,46 +3,31 @@ import {
   Col,
   FormControl,
   FormGroup,
-  OverlayTrigger,
   Row,
-  Tooltip,
 } from 'react-bootstrap';
-import Link from 'next/link';
-import Moment from 'moment';
 import Image from 'next/image';
 import {
   Formik,
   Form,
 } from 'formik';
-import { getComments } from '../../api/comments';
+import ProjectSearch from '../ProjectSearch';
 import styles from './styles.module.scss';
 import Editor from '../Editor';
 
 const ProjectForum:FC = () => {
-  const { comments } = getComments();
   const [state, setState] = useState(false);
   const handleClick = () => {
     setState(true);
   };
-  const renderOpenMsg = (props: any) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Open Thread
-    </Tooltip>
-  );
-  const renderClosedMsg = (props: any) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Closed Thread
-    </Tooltip>
-  );
 
   return (
     <Col lg={{ span: 10, offset: 1 }}>
       <div id={styles.centreConsole}>
         <div id={styles.title}>Project Forum</div>
         <Row>
-          <Col>
+          <Col md={8} xs={7}>
             <div id={styles.headingContainer}>
-              <div id={styles.heading1}>CO600 Project Proposals</div>
+              Search for available projects posted by students and supervisors
             </div>
           </Col>
           <Col>
@@ -60,117 +45,7 @@ const ProjectForum:FC = () => {
             </a>
           </Col>
         </Row>
-        <div id={styles.tableTop}>
-          <Row>
-            <Col xs={1} md={1}>
-              <Col xs={2} md={1}>
-                <span id={styles.tableTitle}>Status</span>
-              </Col>
-            </Col>
-            <Col>
-              <Row>
-                <Col xs={6} md={6}>
-                  <span id={styles.tableTitle}>Title</span>
-                </Col>
-                <Col xs={3} md={3}>
-                  Replies
-                </Col>
-                <Col xs={3} md={3}>
-                  Last Post
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </div>
-        {
-              comments
-                && comments.map((comment :any) => {
-                  const parentProj = comment.comment.parentCommentId === comment.comment.commentId;
-                  const statusCheck = () => {
-                    if (!comment.project.isClosed) {
-                      return (
-                        <OverlayTrigger
-                          placement="top"
-                          delay={{ show: 250, hide: 400 }}
-                          overlay={renderOpenMsg}
-                        >
-                          <div className={styles.status}>
-                            <Image
-                              src="/unlocked.svg"
-                              width={45}
-                              height={45}
-                            />
-                          </div>
-                        </OverlayTrigger>
-                      );
-                    } return (
-                      <OverlayTrigger
-                        placement="top"
-                        delay={{ show: 250, hide: 400 }}
-                        overlay={renderClosedMsg}
-                      >
-                        <div className={styles.status}>
-                          <Image
-                            src="/locked.svg"
-                            width={45}
-                            height={45}
-                          />
-                        </div>
-                      </OverlayTrigger>
-                    );
-                  };
-                  if ((comment.comment.deleted === false) && (parentProj)) {
-                    return (
-                      <Link
-                        href={{
-                          pathname: `/project-forum/${comment.comment.commentId}`,
-                          query: { id: comment.comment.commentId },
-                        }}
-                        key={comment.comment.commentId}
-                      >
-                        <div className={styles.projectIdea}>
-                          <Row>
-                            <Col xs={1} md={1}>
-                              {statusCheck()}
-                            </Col>
-                            <Col xs={11} md={11}>
-                              <Row>
-                                <Col xs={6} md={6}>
-                                  <div className={styles.projectTitle}>
-                                    {comment.project.projectName}
-                                  </div>
-                                </Col>
-                              </Row>
-                              <Row>
-                                <Col xs={6} md={6}>
-                                  <div className={styles.projectTitle}>
-                                    Started by
-                                    {' '}
-                                    {comment.comment.userId}
-                                    ,
-                                    {Moment(comment.comment.createdAt).format(' Do MMM YYYY HH:mm')}
-                                  </div>
-                                </Col>
-                                <Col xs={3} md={3}>
-                                  Replies:
-                                  {' '}
-                                  {comment.comment.replies}
-                                </Col>
-                                <Col xs={3} md={3}>
-                                  {Moment(comment.comment.updatedAt).format('DD/MM/YYYY, HH:mm')}
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Link>
-                    );
-                  }
-                  return (
-                    <div key={comment.comment.commentId} />
-                  );
-                })
-          }
+        <ProjectSearch />
         {
             state
               ? (
@@ -196,7 +71,7 @@ const ProjectForum:FC = () => {
                             </FormGroup>
                           </div>
                           <div className={styles.userReply}>
-                            <Editor data={[]} />
+                            <Editor data={[]} removeItem={[]} />
                           </div>
                           <div id={styles.buttonContainer}>
                             <button type="button" id={styles.submit}>

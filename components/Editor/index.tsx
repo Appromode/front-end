@@ -1,5 +1,11 @@
 import React, { FC } from 'react';
 import {
+  Col,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from 'react-bootstrap';
+import {
   BoldExtension,
   CodeExtension,
   ItalicExtension,
@@ -165,9 +171,10 @@ const Menu = () => {
 
 interface EditorProps {
   data: any[];
+  removeItem: any;
 }
 
-const Editor: FC<EditorProps> = ({ data }) => {
+const Editor: FC<EditorProps> = ({ data, removeItem }) => {
   const { manager, state, onChange } = useRemirror({
     extensions: () => [
       new BoldExtension({ weight: 300 }),
@@ -186,15 +193,40 @@ const Editor: FC<EditorProps> = ({ data }) => {
   const quotedText = data.map((a) => a.quote);
   const QuoteNull = () => (
     data.length > 0 && (
-      <div className={styles.quotedText}>
-        <div className={styles.userId}>
-          {userId}
-          {': '}
-        </div>
-        <div>
-          {quotedText}
-        </div>
-      </div>
+      <Row className={styles.quotedText}>
+        <Col md={11}>
+          <div className={styles.userId}>
+            {userId}
+            {': '}
+          </div>
+          <div>
+            {quotedText}
+          </div>
+        </Col>
+        <Col md={1} className="flex justify-center align-center">
+          <OverlayTrigger
+            placement="top"
+            delay={{ show: 250, hide: 400 }}
+            overlay={(props) => (
+              <Tooltip id="button-tooltip" {...props}>
+                Remove quote
+              </Tooltip>
+            )}
+          >
+            <button
+              type="button"
+              className="bg-[#05345C] hover:bg-[#6B87BB] leading-none px-2 rounded-md border border-transparent"
+              onClick={() => removeItem(0)}
+            >
+              <Image
+                src="/x-icon.svg"
+                width={30}
+                height={30}
+              />
+            </button>
+          </OverlayTrigger>
+        </Col>
+      </Row>
     )
   );
 
