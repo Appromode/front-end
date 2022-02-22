@@ -106,7 +106,7 @@ const UserSearch:FC = () => {
                       ))}
                       <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
                         {
-                          getById(values.groupMembers, row.original.id) !== undefined ? (
+                          getById(values.groupMembers, row.original.id, 'id') !== undefined ? (
                             <div>Added</div>
                           ) : (
                             <button
