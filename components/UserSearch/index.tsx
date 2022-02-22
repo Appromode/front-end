@@ -102,7 +102,6 @@ const UserSearch:FC = () => {
                           className="px-6 py-4 whitespace-nowrap"
                         >
                           {cell.render('Cell')}
-                          {console.log('row', row.original)}
                         </td>
                       ))}
                       <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
