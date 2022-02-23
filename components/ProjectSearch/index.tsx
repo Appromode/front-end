@@ -1,6 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import React, { FC, useMemo } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { useTable, useGlobalFilter } from 'react-table';
+import { useTable, useGlobalFilter, useSortBy } from 'react-table';
 import Moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -105,7 +106,7 @@ const ProjectSearch:FC = () => {
       globalFilter,
     },
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter);
+  } = useTable({ columns, data }, useGlobalFilter, useSortBy);
 
   return (
     <>
@@ -126,10 +127,15 @@ const ProjectSearch:FC = () => {
                   <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                       <th
-                        {...column.getHeaderProps()}
+                        {...column.getHeaderProps(column.getSortByToggleProps())}
                         className="px-6 py-3 font-medium text-[#05345C] uppercase text-base whitespace-nowrap"
                       >
                         {column.render('Header')}
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? ' 🔽'
+                            : ' 🔼'
+                          : ''}
                       </th>
                     ))}
                     <th className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap">{}</th>
