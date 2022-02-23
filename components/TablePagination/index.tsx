@@ -23,9 +23,9 @@ function TablePagination<T extends object>({
   pageSize,
 }: TablePaginationProps<T>): ReactElement {
   return (
-    <div className="float-right mb-3">
+    <div className="my-3">
       <select
-        style={{ padding: '7px', borderRadius: '3px', border: '1px solid #007bff' }}
+        className="btn btn-outline-primary m-1"
         value={pageSize}
         onChange={(e) => setPageSize(Number(e.target.value))}
       >
@@ -38,8 +38,7 @@ function TablePagination<T extends object>({
       </select>
       <button
         type="button"
-        className="btn btn-outline-primary"
-        style={{ marginTop: '-4px' }}
+        className="btn btn-outline-primary m-1"
         onClick={() => gotoPage(0)}
         disabled={!canPreviousPage}
       >
@@ -47,8 +46,7 @@ function TablePagination<T extends object>({
       </button>
       <button
         type="button"
-        className="btn btn-outline-primary"
-        style={{ marginTop: '-4px' }}
+        className="btn btn-outline-primary m-1"
         onClick={() => previousPage()}
         disabled={!canPreviousPage}
       >
@@ -64,8 +62,7 @@ function TablePagination<T extends object>({
       </span>
       <button
         type="button"
-        className="btn btn-outline-primary"
-        style={{ marginTop: '-4px' }}
+        className="btn btn-outline-primary m-1"
         onClick={() => nextPage()}
         disabled={!canNextPage}
       >
@@ -73,8 +70,7 @@ function TablePagination<T extends object>({
       </button>
       <button
         type="button"
-        className="btn btn-outline-primary"
-        style={{ marginTop: '-4px' }}
+        className="btn btn-outline-primary m-1"
         onClick={() => gotoPage(pageCount - 1)}
         disabled={!canNextPage}
       >
