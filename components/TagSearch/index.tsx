@@ -19,7 +19,7 @@ const UserSearch:FC = () => {
 
   const columns = useMemo(() => [
     {
-      Header: 'Tag',
+      Header: 'Tag Name',
       accessor: 'tagName',
     },
   ], []);
@@ -59,59 +59,62 @@ const UserSearch:FC = () => {
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
         label="Find Tags"
+        forControl="findTags"
       />
       {
         page.length > 0 ? (
-          <div className="border-1 overflow-x-scroll lg:overflow-x-visible border-gray-300">
-            <table {...getTableProps()} className="divide-y divide-gray-200 w-full table-auto">
-              <thead className="bg-gray-50 w-full">
-                {headerGroups.map((headerGroup) => (
-                  <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map((column) => (
-                      <th
-                        {...column.getHeaderProps()}
-                        className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap"
-                      >
-                        {column.render('Header')}
-                      </th>
-                    ))}
-                    <th className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap">{}</th>
-                  </tr>
-                ))}
-              </thead>
-              <tbody {...getTableBodyProps()} className="bg-white divide-y divide-gray-200">
-                {page.map((row) => {
-                  prepareRow(row);
-                  return (
-                    <tr {...row.getRowProps()}>
-                      {row.cells.map((cell) => (
-                        <td
-                          {...cell.getCellProps()}
-                          className="px-6 py-4 whitespace-nowrap"
+          <>
+            <div className="border-1 overflow-x-scroll lg:overflow-x-visible border-gray-300">
+              <table {...getTableProps()} className="divide-y divide-gray-300 w-full table-auto">
+                <thead className="bg-gray-50 w-full">
+                  {headerGroups.map((headerGroup) => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                      {headerGroup.headers.map((column) => (
+                        <th
+                          {...column.getHeaderProps()}
+                          className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap"
                         >
-                          {cell.render('Cell')}
-                        </td>
+                          {column.render('Header')}
+                        </th>
                       ))}
-                      <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
-                        {
-                          getById(values.groupTags, row.original.tagId, 'tagId') !== undefined ? (
-                            <div>Added</div>
-                          ) : (
-                            <button
-                              type="button"
-                              className="text-green-800"
-                              onClick={() => setFieldValue('groupTags', [...values.groupTags, row.original])}
-                            >
-                              Add Tag
-                            </button>
-                          )
-                        }
-                      </td>
+                      <th className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap">{}</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                  ))}
+                </thead>
+                <tbody {...getTableBodyProps()} className="bg-white divide-y divide-gray-300">
+                  {page.map((row) => {
+                    prepareRow(row);
+                    return (
+                      <tr {...row.getRowProps()}>
+                        {row.cells.map((cell) => (
+                          <td
+                            {...cell.getCellProps()}
+                            className="px-6 py-4 whitespace-nowrap"
+                          >
+                            {cell.render('Cell')}
+                          </td>
+                        ))}
+                        <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
+                          {
+                            getById(values.groupTags, row.original.tagId, 'tagId') !== undefined ? (
+                              <div>Added</div>
+                            ) : (
+                              <button
+                                type="button"
+                                className="text-green-800"
+                                onClick={() => setFieldValue('groupTags', [...values.groupTags, row.original])}
+                              >
+                                Add Tag
+                              </button>
+                            )
+                          }
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
             <TablePagination
               canPreviousPage={canPreviousPage}
               canNextPage={canNextPage}
@@ -124,15 +127,19 @@ const UserSearch:FC = () => {
               pageIndex={pageIndex}
               pageSize={pageSize}
             />
-          </div>
-        ) : <div>No results</div>
+          </>
+        ) : (
+          <>
+            <div>No results</div>
+          </>
+        )
       }
       {
         values.groupTags.length > 0 ? (
           <>
             <h1 className="mt-3">Added Tags</h1>
-            <div className="border border-gray-600 rounded-sm my-3">
-              <ul className="divide-y">
+            <div className="border-1 border-gray-300 rounded-sm my-3">
+              <ul className="divide-y divide-gray-300">
                 {
                   values.groupTags.map((groupTag, index) => (
                     <li className="flex flex-col p-4">
