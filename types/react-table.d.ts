@@ -46,9 +46,17 @@ import {
   UseSortByInstanceProps,
   UseSortByOptions,
   UseSortByState,
+  FilterValue,
 } from 'react-table';
 
 declare module 'react-table' {
+  export interface Filter {
+    preGlobalFilteredRows,
+    globalFilter: string;
+    setGlobalFilter: (filterValue: FilterValue) => void;
+    label: string;
+    forControl: string;
+  }
   export interface TableOptions<D extends Record<string, unknown>>
     extends UseExpandedOptions<D>,
     UseFiltersOptions<D>,
