@@ -10,7 +10,6 @@ import {
 } from 'react-bootstrap';
 import styles from './styles.module.scss';
 import UserSearch from '../UserSearch';
-import TagSearch from '../TagSearch';
 import postGroup from '../../api/groups';
 import Group from '../../types/group';
 
@@ -23,21 +22,20 @@ const GroupRegistrationForm: FC = () => {
     groupFiles: [],
   };
 
-  const validationSchema = object({
-    groupName: string().min(5).max(30).required(),
-    groupDescription: string().min(10).max(100).required(),
-    groupMembers: array().max(4).required(),
-    groupTags: array(),
-    groupFiles: array(),
-  });
-
   return (
     <Container>
       <h2 className={styles.formHeading}>Group Registration</h2>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => postGroup(values)}
-        validationSchema={validationSchema}
+        validationSchema={
+          object({
+            groupName: string().min(5).max(30).required(),
+            groupDescription: string().min(10).max(100).required(),
+            groupMembers: array().min(2).max(4).required(),
+            groupFiles: array(),
+          })
+        }
       >
         {({ touched, errors }) => (
           <Form>
@@ -54,7 +52,6 @@ const GroupRegistrationForm: FC = () => {
             </FormGroup>
 
             <UserSearch />
-            <TagSearch />
 
             <button
               type="submit"

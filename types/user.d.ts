@@ -1,11 +1,11 @@
-import Id from './id';
+export interface Id {
+  id: number | string;
+}
 
-type User = Id & {
+export type User = Id & {
   firstName: string;
   lastName: string;
   userName: string;
   email: string;
   phoneNumber: string;
 };
-
-export default User;

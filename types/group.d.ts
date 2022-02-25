@@ -1,11 +1,10 @@
-import User from './user';
-import Tag from './tag';
+import { User } from './user';
 
 type Group = {
   groupName: string;
   groupDescription: string;
   groupMembers: User[];
-  groupTags: Tag[];
+  groupTags: [];
   groupFiles: [];
 };
 
