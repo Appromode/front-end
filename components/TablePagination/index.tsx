@@ -32,6 +32,7 @@ function TablePagination<T extends object>({
         {[1, 2, 3, 4, 5].map((pSize) => (
           <option key={pSize} value={pSize}>
             Show
+            {' '}
             {pSize}
           </option>
         ))}
@@ -54,9 +55,10 @@ function TablePagination<T extends object>({
       </button>
       <span>
         Page
+        {' '}
         <strong>
           {pageIndex + 1}
-          of
+          {' of '}
           {pageOptions.length}
         </strong>
       </span>
