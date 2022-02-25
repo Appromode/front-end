@@ -44,7 +44,6 @@ const ProjectSearch:FC = () => {
                   src="/unlocked.svg"
                   width={45}
                   height={45}
-                  alt="Open Thread"
                 />
               </div>
             </OverlayTrigger>
@@ -65,7 +64,6 @@ const ProjectSearch:FC = () => {
                 src="/locked.svg"
                 width={45}
                 height={45}
-                alt="Closed Thread"
               />
             </div>
           </OverlayTrigger>
