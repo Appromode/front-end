@@ -201,7 +201,7 @@ const ForumPosts: FC = () => {
                                                         src="/clipboard-icon.svg"
                                                         width={30}
                                                         height={30}
-                                                        alt="Supervisor Icon"
+                                                        alt="Clipboard Icon"
                                                       />
                                                     </div>
                                                   </CopyToClipboard>
@@ -290,7 +290,7 @@ const ForumPosts: FC = () => {
                         src="/post-reply.svg"
                         width={25}
                         height={25}
-                        alt="Share Icon"
+                        alt="Reply Icon"
                       />
                       <div className={styles.replyText}>
                         Post Reply
