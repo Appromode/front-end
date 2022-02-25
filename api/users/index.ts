@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { User } from '../../types/user';
+import User from '../../types/user';
 import fetcher from '../../utils/fetcher';
 import poster from '../../utils/poster';
 import Login from '../../types/login';
