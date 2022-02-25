@@ -4,7 +4,13 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        prussian: '#05345C',
+        bottle: '#12664F',
+        brunswick: '#0C4536',
+      },
+    },
   },
   corePlugins: {
     preflight: false,
