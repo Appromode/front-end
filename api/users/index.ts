@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { User } from '../../types/user';
+import User from '../../types/user';
 import fetcher from '../../utils/fetcher';
 
 export const getUsers = () => {

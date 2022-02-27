@@ -3,7 +3,10 @@
 #navigation {
   background-color: $default-blue;
   font-weight: 300;
-  padding: 18px 0px;
+  padding: 20px 0px;
+  position: sticky;
+  width: 100%;
+  top: 0px;
 
   div.navbar-nav {
     margin: 0px 50px;

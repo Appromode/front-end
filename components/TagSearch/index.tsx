@@ -3,11 +3,11 @@ import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { useFormikContext } from 'formik';
 import { Alert } from 'react-bootstrap';
 import GlobalFilter from '../GlobalFilter';
-import { getUsers } from '../../api/users';
 import Group from '../../types/group';
 import removeArrayItem from '../../utils/removeArrayItem';
 import getById from '../../utils/getById';
 import TablePagination from '../TablePagination';
+import { getTags } from '../../api/tags';
 
 const UserSearch:FC = () => {
   const {
@@ -19,26 +19,14 @@ const UserSearch:FC = () => {
 
   const columns = useMemo(() => [
     {
-      Header: 'Username',
-      accessor: 'userName',
-    },
-    {
-      Header: 'First Name',
-      accessor: 'firstName',
-    },
-    {
-      Header: 'Last Name',
-      accessor: 'lastName',
-    },
-    {
-      Header: 'Email',
-      accessor: 'email',
+      Header: 'Tag Name',
+      accessor: 'tagName',
     },
   ], []);
 
-  const { users } = getUsers();
+  const { tags } = getTags();
 
-  const data = useMemo(() => users || [], [users]);
+  const data = useMemo(() => tags || [], [tags]);
 
   const {
     getTableProps,
@@ -65,13 +53,13 @@ const UserSearch:FC = () => {
 
   return (
     <>
-      {(touched.groupMembers && errors.groupMembers) ? <Alert>{errors.groupMembers}</Alert> : ''}
+      {(touched.groupTags && errors.groupTags) ? <Alert>{errors.groupTags}</Alert> : ''}
       <GlobalFilter
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
-        label="Find Group Members"
-        forControl="findGroupMembers"
+        label="Find Tags"
+        forControl="findTags"
       />
       {
         page.length > 0 ? (
@@ -108,15 +96,15 @@ const UserSearch:FC = () => {
                         ))}
                         <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
                           {
-                            getById(values.groupMembers, row.original.id, 'id') !== undefined ? (
+                            getById(values.groupTags, row.original.tagId, 'tagId') !== undefined ? (
                               <div>Added</div>
                             ) : (
                               <button
                                 type="button"
                                 className="text-green-800"
-                                onClick={() => setFieldValue('groupMembers', [...values.groupMembers, row.original])}
+                                onClick={() => setFieldValue('groupTags', [...values.groupTags, row.original])}
                               >
-                                Add Member
+                                Add Tag
                               </button>
                             )
                           }
@@ -140,22 +128,26 @@ const UserSearch:FC = () => {
               pageSize={pageSize}
             />
           </>
-        ) : <div>No results</div>
+        ) : (
+          <>
+            <div>No results</div>
+          </>
+        )
       }
       {
-        values.groupMembers.length > 0 ? (
+        values.groupTags.length > 0 ? (
           <>
-            <h1 className="mt-3">Added Group Members</h1>
+            <h1 className="mt-3">Added Tags</h1>
             <div className="border-1 border-gray-300 rounded-sm my-3">
               <ul className="divide-y divide-gray-300">
                 {
-                  values.groupMembers.map((groupMember, index) => (
+                  values.groupTags.map((groupTag, index) => (
                     <li className="flex flex-col p-4">
                       <span className="flex flex-row justify-between">
-                        <p>{groupMember.email}</p>
+                        <p>{groupTag.tagName}</p>
                         <button
                           type="button"
-                          onClick={() => setFieldValue('groupMembers', removeArrayItem(values.groupMembers, index))}
+                          onClick={() => setFieldValue('groupTags', removeArrayItem(values.groupTags, index))}
                         >
                           Remove
                         </button>
@@ -166,7 +158,7 @@ const UserSearch:FC = () => {
               </ul>
             </div>
           </>
-        ) : <div className="my-3">No group members added</div>
+        ) : <div className="my-3">No tags added</div>
       }
     </>
   );
