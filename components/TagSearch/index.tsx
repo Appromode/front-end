@@ -9,7 +9,7 @@ import getById from '../../utils/getById';
 import TablePagination from '../TablePagination';
 import { getTags } from '../../api/tags';
 
-const UserSearch:FC = () => {
+const TagSearch: FC = () => {
   const {
     values,
     errors,
@@ -77,7 +77,7 @@ const UserSearch:FC = () => {
                           {column.render('Header')}
                         </th>
                       ))}
-                      <th className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap">{}</th>
+                      <th className="px-6 py-3 font-medium text-gray-500 uppercase text-base whitespace-nowrap">{ }</th>
                     </tr>
                   ))}
                 </thead>
@@ -164,4 +164,4 @@ const UserSearch:FC = () => {
   );
 };
 
-export default UserSearch;
+export default TagSearch;
