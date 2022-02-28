@@ -11,7 +11,7 @@ import {
   Formik,
   Form,
 } from 'formik';
-import Tags from '../Tags';
+import TagSearch from '../TagSearch';
 import styles from './styles.module.scss';
 
 const StudentDashboardForm: FC = () => (
@@ -38,6 +38,7 @@ const StudentDashboardForm: FC = () => (
           lastName: '',
           kentID: 0,
           email: '',
+          groupTags: [],
           // skills: skillslist,
         }}
         onSubmit={(values, actions) => {
@@ -66,7 +67,7 @@ const StudentDashboardForm: FC = () => (
                 <FormGroup>
                   <FormLabel>My Skills</FormLabel>
                   <div className="px-10" />
-                  <Tags />
+                  <TagSearch />
                 </FormGroup>
               </Row>
             </div>
