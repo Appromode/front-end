@@ -60,7 +60,7 @@ const StudentDashboardForm: FC = () => (
             </Row>
             <div className="font-bold pt-4 w-full text-sm text-blue-600">
               <FormLabel>My Files</FormLabel>
-              <FormControl type="file" placeholder="Choose File" />
+              <FormControl type="file" multiple placeholder="Choose File" />
             </div>
             <div className="font-bold pt-4 w-full text-sm text-blue-600 ">
               <Row>
@@ -71,48 +71,6 @@ const StudentDashboardForm: FC = () => (
                 </FormGroup>
               </Row>
             </div>
-            <Row>
-              <div className="font-bold pt-4 w-full text-sm text-blue-600 ">
-                <FormGroup controlId="username">
-                  <FormLabel>Username</FormLabel>
-                  <FormControl type="text" placeholder="apk294" />
-                </FormGroup>
-              </div>
-
-            </Row>
-            <Row>
-              <div className="font-bold pt-4 w-full text-sm text-blue-600 ">
-                <FormGroup controlId="firstname">
-                  <FormLabel>First Name</FormLabel>
-                  <FormControl type="text" placeholder="First Name" />
-                </FormGroup>
-              </div>
-
-            </Row>
-            <Row>
-              <div className="font-bold pt-4 w-full text-sm text-blue-600 ">
-                <FormGroup controlId="lastname">
-                  <FormLabel>Last Name</FormLabel>
-                  <FormControl type="text" placeholder="Last Name" />
-                </FormGroup>
-              </div>
-
-            </Row>
-            <Row>
-              <div className="font-bold pt-4 w-full text-sm text-blue-600 ">
-                <FormGroup controlId="firstname">
-                  <FormLabel>Password</FormLabel>
-                  <FormControl type="password" placeholder="Password" />
-                </FormGroup>
-              </div>
-
-            </Row>
-            <Row>
-              <Col className={styles.buttonWrapper}>
-                <button type="submit" className={styles.save}>Update Settings</button>
-              </Col>
-
-            </Row>
             <div className={styles.formspacer} />
           </Form>
         </div>
