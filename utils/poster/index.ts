@@ -11,4 +11,15 @@ const poster = <T>(url: string, method: Method, data: object): Promise<T> => (
     .then((res) => res.json())
 );
 
+export const localPoster = <T>(url: string, method: Method, data: object): Promise<T> => (
+  fetch(`${url}`, {
+    method,
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+);
+
 export default poster;
