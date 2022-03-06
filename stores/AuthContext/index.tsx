@@ -4,7 +4,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { User } from '../../types/user';
+import UserToken from '../../types/user-token';
 import AuthContext from '../../types/auth-context';
 
 export const AuthContext = createContext<AuthContext>({
@@ -13,9 +13,15 @@ export const AuthContext = createContext<AuthContext>({
 });
 
 export const AuthProvider:FC = ({ children }) => {
-  const [user, setUser] = useState<User>(undefined);
+  const [user, setUser] = useState<UserToken>(undefined);
 
-  useEffect(() => setUser(user), [user]);
+  useEffect(() => {
+    (async () => {
+      const responseToken = await fetch('/api/user');
+      const { userToken } = await responseToken.json();
+      setUser(userToken);
+    })();
+  }, []);
 
   const value = {
     user,
