@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
-import User from './user';
+import UserToken from './user-token';
 
 type AuthContext = {
-  user: User;
-  setUser: Dispatch<SetStateAction<User>>;
+  user: UserToken;
+  setUser: Dispatch<SetStateAction<UserToken>>;
 }
 
 export default AuthContext;
