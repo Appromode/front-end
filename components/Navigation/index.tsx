@@ -41,7 +41,10 @@ const Navigation:FC = () => {
             user ? (
               <Nav>
                 <NavItem>
-                  <NavLink href="/login">{user.normalizedUserName}</NavLink>
+                  <NavLink href="/login">{user.email}</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/logout">Logout</NavLink>
                 </NavItem>
               </Nav>
             ) : (
