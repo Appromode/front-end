@@ -150,7 +150,7 @@ const UserSearch:FC = () => {
               <ul className="divide-y divide-gray-300">
                 {
                   values.groupMembers.map((groupMember, index) => (
-                    <li className="flex flex-col p-4">
+                    <li className="flex flex-col p-4" key={groupMember.email}>
                       <span className="flex flex-row justify-between">
                         <p>{groupMember.email}</p>
                         <button
