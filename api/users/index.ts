@@ -5,9 +5,9 @@ import poster from '../../utils/poster';
 import Login from '../../types/login';
 
 export const getUsers = () => {
-  const { data, error } = useSWR('/api/User', fetcher);
+  const { data, error } = useSWR<User[]>('/api/User', fetcher);
 
-  return Object.freeze<{ users: User[], error: any }>({
+  return Object.freeze({
     users: data,
     error,
   });
