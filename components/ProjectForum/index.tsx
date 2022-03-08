@@ -1,13 +1,13 @@
 import React, { FC, useState } from 'react';
 import {
   Col,
-  FormControl,
   FormGroup,
   Row,
 } from 'react-bootstrap';
 import Image from 'next/image';
 import {
   Formik,
+  Field,
   Form,
 } from 'formik';
 import ProjectSearch from '../ProjectSearch';
@@ -67,11 +67,18 @@ const ProjectForum:FC = () => {
                           <div id={styles.threadTitle}>Post Thread</div>
                           <div id={styles.formPadding}>
                             <FormGroup controlId="title">
-                              <FormControl type="text" placeholder="Thread title" />
+                              <Field type="text" placeholder="Thread title" />
                             </FormGroup>
                           </div>
                           <div className={styles.userReply}>
                             <Editor data={[]} removeItem={[]} />
+                          </div>
+                          <div>
+                            <FormGroup controlId="linkedProject">
+                              <label>
+                                  Would you like to link this thread to a registered project?
+                              </label>
+                            </FormGroup>
                           </div>
                           <div id={styles.buttonContainer}>
                             <button type="button" id={styles.submit}>

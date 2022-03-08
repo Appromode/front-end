@@ -36,6 +36,7 @@
 .infoContainer {
     display: inline-block;
     margin-right: 5px;
+    font-weight: bold;
 }
 
 #centreConsole {
@@ -128,6 +129,8 @@
 
 .projDesc {
     font-size: medium;
+    padding-top: 115px;
+    margin-top: -115px;
 }
 
 #threadNo {
@@ -164,6 +167,7 @@
     right: 0;
     background-color: inherit;
     border: none;
+    z-index: 1;
 }
 
 .replyButton:hover {

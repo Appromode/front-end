@@ -6,7 +6,7 @@ import Moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
 import GlobalFilter from '../GlobalFilter';
-import { getComments } from '../../api/comments';
+import { getThreads } from '../../api/threads';
 import styles from '../ProjectForum/styles.module.scss';
 
 interface Props {
@@ -17,7 +17,7 @@ const ProjectSearch:FC = () => {
   const columns = useMemo(() => [
     {
       Header: 'Title',
-      accessor: 'project.projectName',
+      accessor: 'threadTitle',
       Cell: ({ value }: Props) => (
         <div>
           {value}
@@ -26,7 +26,7 @@ const ProjectSearch:FC = () => {
     },
     {
       Header: 'Status',
-      accessor: 'project.isClosed',
+      accessor: 'threadStatus',
       Cell: ({ value }: Props) => {
         if (!value) {
           return (
@@ -72,7 +72,7 @@ const ProjectSearch:FC = () => {
     },
     {
       Header: 'Started by',
-      accessor: 'comment.userId',
+      accessor: 'user.userName',
       Cell: ({ value }: Props) => (
         <div>
           {value}
@@ -81,19 +81,19 @@ const ProjectSearch:FC = () => {
     },
     {
       Header: 'Replies',
-      accessor: 'comment.replies',
+      accessor: 'replies',
       Cell: ({ value }: Props) => (`${value}`),
     },
     {
       Header: 'Last Post',
-      id: 'comment.updatedAt',
-      accessor: (time: any) => Moment(time.comment.updatedAt).format('DD/MM/YYYY, HH:mm'),
+      id: 'updatedAt',
+      accessor: (time: any) => Moment(time.updatedAt).format('DD/MM/YYYY, HH:mm'),
     },
   ], []);
 
-  const { comments } = getComments();
+  const { threads } = getThreads();
 
-  const data = useMemo(() => comments || [], [comments]);
+  const data = useMemo(() => threads || [], [threads]);
 
   const {
     getTableProps,
@@ -147,9 +147,10 @@ const ProjectSearch:FC = () => {
                   prepareRow(row);
                   return (
                     <Link
+                      key={row.original.threadId}
                       href={{
-                        pathname: `/project-forum/${row.original.comment.commentId}`,
-                        query: { id: row.original.comment.commentId },
+                        pathname: `/project-forum/${row.original.threadId}`,
+                        query: { id: row.original.threadId },
                       }}
                     >
                       <tr {...row.getRowProps()} className="odd:bg-slate-200 even:bg-slate-300 cursor-pointer hover:bg-[#C4C4C4] my-100">
