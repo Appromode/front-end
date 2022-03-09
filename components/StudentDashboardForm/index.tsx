@@ -27,8 +27,8 @@ const StudentDashboardForm: FC = () => {
               <Image src="https://randomuser.me/api/portraits/men/59.jpg" width="100" roundedCircle />
             </div>
             <h1 id={styles.headertext}>CO600</h1>
-            <div id={styles.studentname}>{user.email}</div>
-            <div id={styles.studentname}>{user.nameid}</div>
+            <div id={styles.studentname}>{user?.email ? user.email : 'elon@tesla.com'}</div>
+            <div id={styles.studentname}>{user?.nameid ? user.nameid : 'elon'}</div>
             <div id={styles.projectname}>Project Name</div>
             <div className={styles.subtext1}>Supervised by: David Barnes</div>
           </div>

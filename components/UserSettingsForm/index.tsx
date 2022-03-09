@@ -38,8 +38,8 @@ const UserSettingsForm: FC = () => {
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => {
-            putUser(values);
-            console.log('values : ', values);
+            // eslint-disable-next-line no-alert
+            alert(JSON.stringify(values));
           }}
           validationSchema={validationSchema}
 
@@ -76,9 +76,11 @@ const UserSettingsForm: FC = () => {
 
               </Row>
               <Row>
-                <Col className={styles.buttonWrapper}>
-                  <button type="submit" className={styles.save}>Update Settings</button>
-                </Col>
+                <div className="mt-4">
+                  <Col className={styles.buttonWrapper}>
+                    <button type="submit" className={styles.save}>Update Settings</button>
+                  </Col>
+                </div>
               </Row>
               <div className={styles.formspacer} />
 
