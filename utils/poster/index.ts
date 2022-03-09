@@ -1,7 +1,18 @@
 type Method = 'PUT' | 'PATCH' | 'POST';
 
-const poster = (url: string, method: Method, data: object) => (
+const poster = <T>(url: string, method: Method, data: object): Promise<T> => (
   fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}${url}`, {
+    method,
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+);
+
+export const localPoster = <T>(url: string, method: Method, data: object): Promise<T> => (
+  fetch(`${url}`, {
     method,
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
