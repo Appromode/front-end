@@ -71,6 +71,23 @@ const ProjectSearch:FC = () => {
       },
     },
     {
+      Header: 'Total Members',
+      accessor: 'totalMembers',
+      Cell: ({ value }: Props) => {
+        if (value !== null) {
+          return (
+            <div>
+              {value}
+            </div>
+          );
+        } return (
+          <div>
+            N/a
+          </div>
+        );
+      },
+    },
+    {
       Header: 'Started by',
       accessor: 'user.userName',
       Cell: ({ value }: Props) => (
