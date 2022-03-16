@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import cookie from 'cookie';
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.cookies.token === undefined) {
-    res.status(401).send('No auth');
+const handler = (req: NextApiRequest, res: NextApiResponse<string>) => {
+  if (!req.headers.cookie) {
+    res.status(401).send('Not authorized');
   } else {
-    res.status(200).json({
-      token: req.cookies.token,
-    });
+    const { accesstoken } = cookie.parse(req.headers.cookie);
+    res.status(200).send(accesstoken);
   }
 };
 
