@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
-import UserToken from './user-token';
+import { UserJwtPayload } from 'jsonwebtoken';
+import Login from './login';
 
 type AuthContext = {
-  user: UserToken;
-  setUser: Dispatch<SetStateAction<UserToken>>;
+  user: UserJwtPayload;
+  login: (credentials: Login) => Promise<UserJwtPayload>;
+  logout: () => void;
 }
 
 export default AuthContext;
