@@ -9,10 +9,10 @@ import {
   NavItem,
 } from 'react-bootstrap';
 import styles from './styles.module.scss';
-import { AuthContext } from '../../stores/AuthContext';
+import AuthContext from '../../stores/AuthContext';
 
 const Navigation:FC = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <Navbar id={styles.navigation} collapseOnSelect expand="md">
@@ -44,7 +44,7 @@ const Navigation:FC = () => {
                   <NavLink href="/login">{user.email}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/logout">Logout</NavLink>
+                  <NavLink onClick={() => logout()}>Logout</NavLink>
                 </NavItem>
               </Nav>
             ) : (
