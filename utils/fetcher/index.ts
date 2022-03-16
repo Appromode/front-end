@@ -1,11 +1,14 @@
-export const fetcher = async (url: string) => {
-  const responseToken = await fetch('/api/token');
+const fetcher = async (url: string) => {
+  const response = await fetch('/api/token');
 
-  const { token } = await responseToken.json();
+  const authorization = await response.text();
 
   return fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}${url}`, {
+    method: 'GET',
+    credentials: 'include',
     headers: {
-      Authorization: `Bearer ${token}`,
+      'Access-Control-Allow-Credentials': '*',
+      Authorization: `Bearer ${authorization}`,
     },
   }).then((data) => data.json());
 };
