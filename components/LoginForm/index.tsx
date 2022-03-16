@@ -1,18 +1,15 @@
 import React, { FC, useContext } from 'react';
+import { object, SchemaOf, string } from 'yup';
 import { useRouter } from 'next/router';
 import { Formik, Form } from 'formik';
-import { object, SchemaOf, string } from 'yup';
-import { postUser } from '../../api/users';
 import Input from '../Input';
 import Label from '../Label';
 import Login from '../../types/login';
-import { localPoster } from '../../utils/poster';
-import UserToken from '../../types/user-token';
-import { AuthContext } from '../../stores/AuthContext';
+import AuthContext from '../../stores/AuthContext';
 
 const LoginForm:FC = () => {
-  const { user } = useContext(AuthContext);
   const router = useRouter();
+  const { user, login } = useContext(AuthContext);
 
   const initialValues: Login = {
     email: '',
@@ -30,10 +27,9 @@ const LoginForm:FC = () => {
         initialValues={initialValues}
         onSubmit={(values, { setSubmitting, setStatus }) => {
           setSubmitting(true);
-          postUser(values)
-            .then((data) => localPoster<UserToken>('/api/login', 'POST', data))
-            .then(() => router.push(`/dashboard/${user.nameid}`))
-            .catch(() => setStatus('There was an issue, try again later'));
+          login(values)
+            .then((data) => router.push(`/dashboard/${data.nameid}`))
+            .catch((error) => console.log(error));
         }}
         validationSchema={validationSchema}
       >
