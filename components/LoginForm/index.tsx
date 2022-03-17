@@ -31,7 +31,7 @@ const LoginForm:FC = () => {
           onSubmit={(values, { setSubmitting, setErrors }) => {
             setSubmitting(true);
             login(values)
-              .then((data) => router.push(`/dashboard/${data.nameid}`))
+              .then(() => router.push('/dashboard'))
               .catch(() => {
                 setErrors({
                   email: 'Incorrect email or password',

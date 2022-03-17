@@ -41,7 +41,7 @@ const Navigation:FC = () => {
             user ? (
               <Nav>
                 <NavItem>
-                  <NavLink href="/login">{user.email}</NavLink>
+                  <NavLink href="/dashboard">{user.email}</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink onClick={() => logout()}>Logout</NavLink>
