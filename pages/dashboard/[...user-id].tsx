@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { Container, Row } from 'react-bootstrap';
+import ProjectsTable from '../../components/ProjectsTable';
+import withAuthorization from '../../utils/withAuthorization';
 
-const Login:FC = () => (
+const Dashboard:FC = () => (
   <>
     <div className="py-20 bg-bottle text-white">
       <Container>
@@ -10,7 +12,14 @@ const Login:FC = () => (
         </Row>
       </Container>
     </div>
+    <div className="py-20">
+      <Container>
+        <Row>
+          <ProjectsTable />
+        </Row>
+      </Container>
+    </div>
   </>
 );
 
-export default Login;
+export default withAuthorization(Dashboard);
