@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import ProjectsTable from '../../components/ProjectsTable';
 import withAuthorization from '../../utils/withAuthorization';
 
 const Dashboard:FC = () => (
@@ -9,13 +8,6 @@ const Dashboard:FC = () => (
       <Container>
         <Row>
           <h1 className="text-3xl">Dashboard</h1>
-        </Row>
-      </Container>
-    </div>
-    <div className="py-20">
-      <Container>
-        <Row>
-          <ProjectsTable />
         </Row>
       </Container>
     </div>
