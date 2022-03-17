@@ -1,14 +1,15 @@
 import React, {
   createContext,
   FC,
-  useEffect,
   useState,
+  useEffect,
 } from 'react';
 import { useRouter } from 'next/router';
 import { decode, UserJwtPayload } from 'jsonwebtoken';
 import AuthContext from '../../types/auth-context';
 import Login, { LoginResponse } from '../../types/login';
 import poster from '../../utils/poster';
+import useHasMounted from '../../utils/useHasMounted';
 
 const AuthContext = createContext<AuthContext>({
   user: undefined,
@@ -18,6 +19,7 @@ const AuthContext = createContext<AuthContext>({
 
 export const AuthProvider: FC = ({ children }) => {
   const router = useRouter();
+  const hasMounted = useHasMounted();
   const [user, setUser] = useState<UserJwtPayload>(undefined);
 
   const getUser = () => {
@@ -46,7 +48,7 @@ export const AuthProvider: FC = ({ children }) => {
     return tokenUser;
   };
 
-  const logout = async () => {
+  const logout = () => {
     localStorage.removeItem('user');
 
     poster('/api/logout', 'POST', undefined, false);
@@ -64,7 +66,7 @@ export const AuthProvider: FC = ({ children }) => {
         logout,
       }}
     >
-      {children}
+      {hasMounted && children}
     </AuthContext.Provider>
   );
 };
