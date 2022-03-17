@@ -3,7 +3,7 @@ import { object, SchemaOf, string } from 'yup';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Formik, Form } from 'formik';
-import { Col, Container, Row, Spinner } from 'react-bootstrap';
+import { Col, Row, Spinner } from 'react-bootstrap';
 import Input from '../Input';
 import Label from '../Label';
 import Login from '../../types/login';
