@@ -1,25 +1,17 @@
 type Method = 'PUT' | 'PATCH' | 'POST';
 
-const poster = <T>(url: string, method: Method, data: object): Promise<T> => (
-  fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}${url}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-);
+const poster = <T>(url: string, method: Method, data: object | string, remote: boolean = true):
+  Promise<T> => {
+  const URI = remote ? `${process.env.NEXT_PUBLIC_API_ROUTE}${url}` : url;
 
-export const localPoster = <T>(url: string, method: Method, data: object): Promise<T> => (
-  fetch(`${url}`, {
-    method,
+  return fetch(URI, {
+    method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
     },
     body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-);
+  }).then((response) => response.json());
+};
 
 export default poster;
