@@ -13,8 +13,17 @@ export const getUsers = () => {
   });
 };
 
-export const getUser = (id: number) => {
-  const { data, error } = useSWR(`/api/User/${id}`, fetcher);
+export const getRecommendedUsers = (userId: string) => {
+  const { data, error } = useSWR<User[]>(`/api/User/${userId}/Recommended`, fetcher);
+
+  return Object.freeze({
+    recommendedUsers: data,
+    error,
+  });
+};
+
+export const getUser = (id: string) => {
+  const { data, error } = useSWR<User>(`/api/User/${id}`, fetcher);
 
   return Object.freeze({
     user: data,
