@@ -1,9 +1,10 @@
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
 import poster from '../../utils/poster';
+import Tag from '../../types/tag';
 
 export const getTags = () => {
-  const { data, error } = useSWR('/api/Tag', fetcher);
+  const { data, error } = useSWR<Tag[]>('/api/Tag', fetcher);
 
   return Object.freeze({
     tags: data,

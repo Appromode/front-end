@@ -1,14 +1,21 @@
 type Method = 'PUT' | 'PATCH' | 'POST';
 
-const poster = (url: string, method: Method, data: object) => (
-  fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}${url}`, {
+const poster = async<T>(url: string, method: Method, data: object | string, remote: boolean = true):
+  Promise<T> => {
+  const URI = remote ? `${process.env.NEXT_PUBLIC_API_ROUTE}${url}` : url;
+
+  const res = await fetch('/api/token');
+
+  const authorization = await res.text();
+
+  return fetch(URI, {
     method,
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
+      Authorization: `Bearer ${authorization}`,
     },
     body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-);
+  }).then((response) => response.json());
+};
 
 export default poster;
