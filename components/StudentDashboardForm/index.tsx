@@ -13,7 +13,7 @@ import {
 } from 'formik';
 import TagSearch from '../TagSearch';
 import styles from './styles.module.scss';
-import { AuthContext } from '../../stores/AuthContext';
+import AuthContext from '../../stores/AuthContext';
 
 const StudentDashboardForm: FC = () => {
   const { user } = useContext(AuthContext);
