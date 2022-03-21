@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useContext } from 'react';
 import Image from 'next/image';
 import {
   Navbar,
@@ -9,9 +9,10 @@ import {
   NavItem,
 } from 'react-bootstrap';
 import styles from './styles.module.scss';
+import AuthContext from '../../stores/AuthContext';
 
 const Navigation:FC = () => {
-  const [user] = useState(undefined);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <Navbar id={styles.navigation} collapseOnSelect expand="md">
@@ -40,7 +41,10 @@ const Navigation:FC = () => {
             user ? (
               <Nav>
                 <NavItem>
-                  <NavLink href="/login">Account</NavLink>
+                  <NavLink href="/dashboard">{user.email}</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink onClick={() => logout()}>Logout</NavLink>
                 </NavItem>
               </Nav>
             ) : (
