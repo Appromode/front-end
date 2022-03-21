@@ -85,19 +85,6 @@ const ForumPosts: FC = () => {
                     </>
                   );
                 };
-                const editedTime = () => {
-                  if (threads.createdAt !== threads.updatedAt) {
-                    return (
-                      <div id={styles.lastEdited}>
-                        Last Edited:
-                        {' '}
-                        {Moment(threads.updatedAt).format(' Do MMM YYYY, HH:mm')}
-                      </div>
-                    );
-                  } return (
-                    <div />
-                  );
-                };
                 const userEmail = threads.user.email;
                 return (
                   <div key={`#thread${threads.threadId}`}>
@@ -214,12 +201,11 @@ const ForumPosts: FC = () => {
                             </div>
                             <div className={styles.container}>
                               <div className={styles.projDesc} id={`thread${threads.threadId}`}>
-                                {threads.threadDesc}
+                                {threads.threadContent}
                               </div>
                             </div>
-                            {editedTime()}
                             <a href="#forum-reply" className={styles.replyLink}>
-                              <button className={styles.replyButton} type="button" onClick={() => handleClick(threads.threadDesc, threads.user.userName)}>
+                              <button className={styles.replyButton} type="button" onClick={() => handleClick(threads.threadContent, threads.user.userName)}>
                                 <Image
                                   src="/reply.svg"
                                   width={15}
@@ -247,19 +233,6 @@ const ForumPosts: FC = () => {
                 threads.comments
                 && threads.comments.map((comment: any, i :number) => {
                   const userEmail = comment.user.email;
-                  const editedTime = () => {
-                    if (comment.createdAt !== comment.updatedAt) {
-                      return (
-                        <div id={styles.lastEdited}>
-                          Last Edited:
-                          {' '}
-                          {Moment(comment.updatedAt).format(' Do MMM YYYY, HH:mm')}
-                        </div>
-                      );
-                    } return (
-                      <div />
-                    );
-                  };
                   return (
                     <div key={`#comment${comment.commentId}`}>
                       <Row>
@@ -344,7 +317,6 @@ const ForumPosts: FC = () => {
                                   {comment.commentText}
                                 </div>
                               </div>
-                              {editedTime()}
                               <a href="#forum-reply" className={styles.replyLink}>
                                 <button className={styles.replyButton} type="button" onClick={() => handleClick(comment.commentText, comment.user.userName)}>
                                   <Image

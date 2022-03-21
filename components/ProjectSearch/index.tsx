@@ -28,7 +28,7 @@ const ProjectSearch:FC = () => {
       Header: 'Status',
       accessor: 'threadStatus',
       Cell: ({ value }: Props) => {
-        if (!value) {
+        if (value) {
           return (
             <OverlayTrigger
               placement="top"
@@ -98,7 +98,7 @@ const ProjectSearch:FC = () => {
     },
     {
       Header: 'Replies',
-      accessor: 'replies',
+      accessor: 'replyCount',
       Cell: ({ value }: Props) => (`${value}`),
     },
     {

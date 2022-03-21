@@ -1,8 +1,7 @@
 type Thread = {
     threadTitle: String,
-    linkProject: Boolean,
     linkedProject: String,
-    members: String,
+    totalMembers: string | number,
 };
 
 export default Thread;
