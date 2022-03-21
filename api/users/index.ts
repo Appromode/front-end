@@ -24,4 +24,4 @@ export const getUser = (id: number) => {
 
 export const postUser = (data: Login) => poster<User | null>('/api/Login', 'POST', data);
 
-export const putUser = (user: User) => poster('/api/User', 'PUT', user);
+export const putUser = (id:string, user: User) => poster('/api/User', 'PUT', { id, user });

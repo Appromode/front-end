@@ -7,27 +7,33 @@ import {
 import Label from '../Label';
 import Input from '../Input';
 import AuthContext from '../../stores/AuthContext';
+import { putUser } from '../../api/users';
+import User from '../../types/user';
 
 const PublicSettingsForm: FC = () => {
   const { user } = useContext(AuthContext);
 
-  const initialValues = {
+  const initialValues:User = {
     firstName: user.given_name,
+    id:user.nameid,
     lastName: user.family_name,
     phoneNumber: '',
+    email:'',
+    userName:'',
   };
-
   return (
     <>
       <h2 className="text-3xl mb-5">Public Settings</h2>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={async(values, { setSubmitting }) => {
           setSubmitting(true);
-          new Promise((resolve, reject) => {
-            setTimeout(reject, 2000);
-          })
-            .finally(() => setSubmitting(false));
+          await putUser(user.nameid,values)
+          setSubmitting(false)
+          // new Promise((resolve, reject) => {
+          //   setTimeout(reject, 2000);
+          // })
+          //   .finally(() => );
         }}
       >
         {({ isSubmitting }) => (
