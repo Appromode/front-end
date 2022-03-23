@@ -18,6 +18,7 @@ const Editor = dynamic(() => import('../Editor'), { ssr: false });
 const ForumPosts: FC = () => {
   const router = useRouter();
   const [num, setNum] = useState(0);
+  const [copied, setCopied] = useState(false);
   const {
     query: { id },
   } = router;
@@ -158,6 +159,7 @@ const ForumPosts: FC = () => {
                                     <OverlayTrigger
                                       placement="top"
                                       trigger="click"
+                                      onToggle={() => setCopied(false)}
                                       rootClose
                                       key={threads.threadId}
                                       overlay={(
@@ -167,15 +169,29 @@ const ForumPosts: FC = () => {
                                             <div id={styles.shareContainer}>
                                               <CopyToClipboard
                                                 text={linkValue}
+                                                onCopy={() => setCopied(true)}
                                               >
-                                                <div id={styles.clipboardIcon}>
-                                                  <Image
-                                                    src="/clipboard-icon.svg"
-                                                    width={30}
-                                                    height={30}
-                                                    alt="Supervisor Icon"
-                                                  />
-                                                </div>
+                                                {
+                                                  copied ? (
+                                                    <div id={styles.clipboardIcon}>
+                                                      <Image
+                                                        src="/copied-icon.svg"
+                                                        width={40}
+                                                        height={40}
+                                                        alt="Tick Icon"
+                                                      />
+                                                    </div>
+                                                  ) : (
+                                                    <div id={styles.clipboardIcon}>
+                                                      <Image
+                                                        src="/clipboard-icon.svg"
+                                                        width={40}
+                                                        height={40}
+                                                        alt="Clipboard Icon"
+                                                      />
+                                                    </div>
+                                                  )
+                                                }
                                               </CopyToClipboard>
                                               <input type="text" value={linkValue} className={styles.copyLink} readOnly />
                                             </div>
@@ -233,6 +249,24 @@ const ForumPosts: FC = () => {
                 threads.comments
                 && threads.comments.map((comment: any, i :number) => {
                   const userEmail = comment.user.email;
+                  const quotedComment = () => {
+                    if (comment.quotedCommentId !== null) {
+                      return (
+                        <Row className={styles.quotedText}>
+                          <Col md={11}>
+                            <div className={styles.userId}>
+                              {comment.quotedComment.user.userName}
+                              {' said: '}
+                            </div>
+                            <div>
+                              {comment.quotedComment.commentText}
+                            </div>
+                          </Col>
+                        </Row>
+                      );
+                    }
+                    return (null);
+                  };
                   return (
                     <div key={`#comment${comment.commentId}`}>
                       <Row>
@@ -278,15 +312,29 @@ const ForumPosts: FC = () => {
                                               <div id={styles.shareContainer}>
                                                 <CopyToClipboard
                                                   text={linkValue}
+                                                  onCopy={() => setCopied(true)}
                                                 >
-                                                  <div id={styles.clipboardIcon}>
-                                                    <Image
-                                                      src="/clipboard-icon.svg"
-                                                      width={30}
-                                                      height={30}
-                                                      alt="Supervisor Icon"
-                                                    />
-                                                  </div>
+                                                  {
+                                                    copied ? (
+                                                      <div id={styles.clipboardIcon}>
+                                                        <Image
+                                                          src="/copied-icon.svg"
+                                                          width={40}
+                                                          height={40}
+                                                          alt="Tick Icon"
+                                                        />
+                                                      </div>
+                                                    ) : (
+                                                      <div id={styles.clipboardIcon}>
+                                                        <Image
+                                                          src="/clipboard-icon.svg"
+                                                          width={40}
+                                                          height={40}
+                                                          alt="Clipboard Icon"
+                                                        />
+                                                      </div>
+                                                    )
+                                                  }
                                                 </CopyToClipboard>
                                                 <input type="text" value={linkValue} className={styles.copyLink} readOnly />
                                               </div>
@@ -314,22 +362,25 @@ const ForumPosts: FC = () => {
                               </div>
                               <div className={styles.container}>
                                 <div className={styles.projDesc} id={`comment${comment.commentId}`}>
+                                  {quotedComment()}
                                   {comment.commentText}
                                 </div>
                               </div>
-                              <a href="#forum-reply" className={styles.replyLink}>
-                                <button className={styles.replyButton} type="button" onClick={() => handleClick(comment.commentText, comment.user.userName)}>
-                                  <Image
-                                    src="/reply.svg"
-                                    width={15}
-                                    height={15}
-                                    alt="Reply Icon"
-                                  />
-                                  <div className={styles.replyText}>
-                                    Reply
-                                  </div>
-                                </button>
-                              </a>
+                              <div className="mt-10">
+                                <a href="#forum-reply" className={styles.replyLink}>
+                                  <button className={styles.replyButton} type="button" onClick={() => handleClick(comment.commentText, comment.user.userName)}>
+                                    <Image
+                                      src="/reply.svg"
+                                      width={15}
+                                      height={15}
+                                      alt="Reply Icon"
+                                    />
+                                    <div className={styles.replyText}>
+                                      Reply
+                                    </div>
+                                  </button>
+                                </a>
+                              </div>
                             </div>
                           </div>
                         </div>

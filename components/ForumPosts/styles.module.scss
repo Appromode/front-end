@@ -69,6 +69,7 @@
 
 .container {
     padding: 0px 10px;
+    margin-bottom: 10px;
 }
 
 #keyInfo {
@@ -265,4 +266,23 @@
 
 #clipboardIcon:hover {
     background-color: $default-lightgrey;
+}
+
+.quotedText {
+    background-color: #e7e7e7;
+    margin-bottom: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 3px solid $default-blue;
+    border-top: 1px solid $default-lightgrey;
+    border-bottom: 1px solid $default-lightgrey;
+    border-right: 1px solid $default-lightgrey;
+}
+
+.userId {
+    color: $default-blue;
+    font-weight: bold;
+    margin-bottom: 15px;
 }

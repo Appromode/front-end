@@ -10,7 +10,7 @@ import { getThreads } from '../../api/threads';
 import styles from '../ProjectForum/styles.module.scss';
 
 interface Props {
-  value: string,
+  value: string | number,
 }
 
 const ProjectSearch:FC = () => {
@@ -74,15 +74,15 @@ const ProjectSearch:FC = () => {
       Header: 'Total Members',
       accessor: 'totalMembers',
       Cell: ({ value }: Props) => {
-        if (value !== null) {
+        if (value === 0 || value === null) {
           return (
             <div>
-              {value}
+              N/a
             </div>
           );
         } return (
           <div>
-            N/a
+            {value}
           </div>
         );
       },

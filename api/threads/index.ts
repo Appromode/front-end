@@ -30,6 +30,6 @@ export const getThreadComments = (id :number) => {
   });
 };
 
-const postThread = (thread: Thread) => poster('/api/Group', 'POST', thread);
+const postThread = (thread: Thread) => poster <{ threadId: number }>('/api/Thread', 'POST', thread).then((data) => (data.threadId));
 
 export default postThread;

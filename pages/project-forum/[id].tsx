@@ -4,6 +4,7 @@ import {
   Row,
 } from 'react-bootstrap';
 import ForumPosts from '../../components/ForumPosts';
+import withAuthorization from '../../utils/withAuthorization';
 
 const Posts: FC = () => (
   <Container>
@@ -13,4 +14,4 @@ const Posts: FC = () => (
   </Container>
 );
 
-export default Posts;
+export default withAuthorization(Posts);

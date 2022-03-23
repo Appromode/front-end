@@ -4,6 +4,7 @@ export type Project = {
   ethicsForm: any;
   ethicsFormId: string | number;
   isClosed: boolean;
+  linkedThreadId: string | number;
   projectId: string | number;
   projectName: string;
   updatedAt: string;

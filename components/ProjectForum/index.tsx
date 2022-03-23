@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import {
   Alert,
   Col,
@@ -16,30 +16,35 @@ import {
 import * as Yup from 'yup';
 import Thread from '../../types/thread';
 import postThread from '../../api/threads';
-import { getProjects } from '../../api/projects';
+import { getProjects, patchProject } from '../../api/projects';
 import ProjectSearch from '../ProjectSearch';
 import styles from './styles.module.scss';
 import Editor from '../Editor';
+import AuthContext from '../../stores/AuthContext';
 
 const ProjectForum:FC = () => {
   const { projects } = getProjects();
   const [state, setState] = useState(false);
   const [projectState, setProjectState] = useState(false);
+  const { user } = useContext(AuthContext);
   const handleClick = () => {
     setState(true);
   };
   const initialValues: Thread = {
     threadTitle: '',
-    linkedProject: '',
+    linkedProjectId: null,
     totalMembers: '',
+    threadStatus: true,
+    userId: user.nameid,
   };
   const PostThreadSchema = Yup.object().shape({
     threadTitle: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
       .required('A title is required!'),
-    totalMembers: Yup.number()
-      .required('Please select an option'),
+    totalMembers: Yup.string()
+      .required('Please select an option')
+      .nullable(true),
   });
   return (
     <Col lg={{ span: 10, offset: 1 }}>
@@ -75,7 +80,20 @@ const ProjectForum:FC = () => {
                     <Formik
                       initialValues={initialValues}
                       validationSchema={PostThreadSchema}
-                      onSubmit={(values) => { postThread(values); console.log(values); }}
+                      onSubmit={
+                        (values) => {
+                          postThread(values).then((data) => {
+                            if (values.linkedProjectId !== null) {
+                              const patchData = [{
+                                value: data.toString(),
+                                path: 'linkedThreadId',
+                                op: 'replace',
+                              }];
+                              patchProject(patchData, values.linkedProjectId);
+                            }
+                          });
+                        }
+                      }
                     >
                       {({ touched, errors, values }) => (
                         <Form>
@@ -89,7 +107,7 @@ const ProjectForum:FC = () => {
                               <Editor data={[]} removeItem={[]} />
                             </div>
                             <div className={styles.formPadding}>
-                              {(touched.linkedProject && errors.linkedProject) ? <Alert>{errors.linkedProject}</Alert> : ''}
+                              {(touched.linkedProjectId && errors.linkedProjectId) ? <Alert>{errors.linkedProjectId}</Alert> : ''}
                             </div>
                             {projects
                               && projects.length > 0 ? (
@@ -117,7 +135,7 @@ const ProjectForum:FC = () => {
                                       </div>
                                     </OverlayTrigger>
                                   </div>
-                                  <Field name="linkedProject" as="select" value={values.linkedProject}>
+                                  <Field name="linkedProjectId" as="select" value={values.linkedProjectId}>
                                     <option value="">
                                       Please select a project
                                     </option>
@@ -138,7 +156,7 @@ const ProjectForum:FC = () => {
                                   </Field>
                                 </div>
                               ) : (
-                                <div>
+                                <div className={styles.formPadding}>
                                   No projects found, please select
                                   no on the previous question
                                 </div>
