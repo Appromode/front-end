@@ -7,9 +7,9 @@ import Group from '../../types/group';
 import removeArrayItem from '../../utils/removeArrayItem';
 import getById from '../../utils/getById';
 import TablePagination from '../TablePagination';
-import { getTags } from '../../api/tags';
+import { getGroups } from '../../api/groups';
 
-const TagSearch: FC = () => {
+const ProjectSearch: FC = () => {
   const {
     values,
     errors,
@@ -19,14 +19,14 @@ const TagSearch: FC = () => {
 
   const columns = useMemo(() => [
     {
-      Header: 'Tag Name',
-      accessor: 'tagName',
+      Header: 'Project Name',
+      accessor: 'groupName',
     },
   ], []);
 
-  const { tags } = getTags();
+  const { groups } = getGroups();
 
-  const data = useMemo(() => tags || [], [tags]);
+  const data = useMemo(() => groups || [], [groups]);
 
   const {
     getTableProps,
@@ -53,7 +53,7 @@ const TagSearch: FC = () => {
 
   return (
     <>
-      {(touched.groupTags && errors.groupTags) ? <Alert>{errors.groupTags}</Alert> : ''}
+      {(touched.groupName && errors.groupName) ? <Alert>{errors.groupName}</Alert> : ''}
       <GlobalFilter
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
@@ -96,13 +96,13 @@ const TagSearch: FC = () => {
                         ))}
                         <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
                           {
-                            getById(values.groupTags, row.original.tagId, 'tagId') !== undefined ? (
+                            getById(values.groupName, row.original.tagId, 'tagId') !== undefined ? (
                               <div>Added</div>
                             ) : (
                               <button
                                 type="button"
                                 className="text-green-800"
-                                onClick={() => setFieldValue('groupTags', [...values.groupTags, row.original])}
+                                onClick={() => setFieldValue('groupName', [...values.groupName, row.original])}
                               >
                                 Add Tag
                               </button>
@@ -135,19 +135,19 @@ const TagSearch: FC = () => {
         )
       }
       {
-        values.groupTags.length > 0 ? (
+        values.groupName.length > 0 ? (
           <>
             <h1 className="mt-3">Added Tags</h1>
             <div className="border-1 border-gray-300 rounded-sm my-3">
               <ul className="divide-y divide-gray-300">
                 {
-                  values.groupTags.map((groupTag, index) => (
+                  values.groupName.map((groupTag, index) => (
                     <li className="flex flex-col p-4">
                       <span className="flex flex-row justify-between">
                         <p>{groupTag.tagName}</p>
                         <button
                           type="button"
-                          onClick={() => setFieldValue('groupTags', removeArrayItem(values.groupTags, index))}
+                          onClick={() => setFieldValue('groupName', removeArrayItem(values.groupName, index))}
                         >
                           Remove
                         </button>
@@ -164,4 +164,4 @@ const TagSearch: FC = () => {
   );
 };
 
-export default TagSearch;
+export default ProjectSearch;

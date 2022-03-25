@@ -1,0 +1,265 @@
+@import '../../styles/colours.scss';
+
+.header {
+    background-color: $default-lightgrey;
+    height: 180px;
+}
+
+.topbar {
+    background-color: $default-lightblue;
+    height: 142px;
+}
+
+#headertext {
+    padding-top: 20px;
+    font-weight: bold;
+    font-size: 150%;
+    color: $default-white;
+}
+
+.centreConsole {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    width: 40%;
+}
+
+#img {
+    display: inline;
+    float: right;
+    padding-right: 20px;
+    padding-top: 20px;
+    top: 0;
+}
+
+#studentname {
+    font-weight: bold;
+    font-size: medium;  
+    display: inline;
+    float: right;
+    padding-right: 20px;
+    color: $default-white;
+}
+
+#studentname2 {
+    font-weight: bold;
+    font-size: medium;  
+    display: inline;
+    float: right;
+    clear: left;
+    padding-right: 20px;
+    color: $default-white;
+}
+
+#projectname {
+    font-weight: bold;
+    font-size: medium;
+    color: $default-white;
+}
+
+.subtext1 {
+    font-weight: normal;
+    font-size: small;
+    color: $default-white;
+}
+
+.subtext2 {
+    font-weight: normal;
+    font-size: small;
+    color: $default-white;
+    padding-bottom: 20px;
+}
+
+.pagebar {
+    color: $default-blue;
+    font-size: small;
+    padding-top: 4px;
+    display: inline;
+}
+
+#pageid {
+    display: inline;
+}
+
+.progressbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $default-blue;
+    transition: width .6s ease;
+}
+
+#title {
+    color: $default-blue;
+    font-size: medium;
+    padding-top: 30px;
+    font-weight: bold;
+}
+
+#title1 {
+    color: $default-blue;
+    font-size: large;
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.subtitle {
+    padding-top: 40px;
+    color: $default-blue;
+    font-weight: bold;
+    font-size: small;
+}
+
+.checkbox {
+    color: $default-blue;
+    font-size: small;
+}
+
+.textbox {
+    font-weight: bold;
+    color: $default-blue;
+    font-size: small;
+    padding-top: 15px;
+    width: 100%;
+}
+
+.lefttext {
+    width: 42%;
+}
+
+.righttext {
+    flex: 1;
+    padding-left: 195px;
+}
+
+.righttext1 {
+    float: right;
+    width: 42%;
+    padding-top: 29px;
+}
+
+.textcontainer {
+    width: 100%;
+}
+
+.formspacer {
+    padding: 10px;
+}
+
+.formspacer2 {
+    padding-left: 178px;
+}
+
+.formspacer3 {
+    padding-left: 20px;
+}
+
+.container {
+    height: 50px;
+    position: relative;
+    padding-top: 100px;
+}
+
+.navbar {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.next {
+    padding-right: 45px;
+    padding-left: 45px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 4px;
+    background-color: $default-grey;
+    color: $default-white;
+    border: none;
+}
+
+.next:hover {
+    background-color: #565a5d;
+    color: $default-white;
+}
+
+.save {
+    padding-right: 45px;
+    padding-left: 45px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 4px;
+    background-color: $default-green;
+    color: $default-white;
+    border: none;
+}
+
+.save1 {
+    border-radius: 4px;
+    background-color: $default-green;
+    color: $default-white;
+    border: none;
+    margin-top: 27px;
+    width:100%;
+}
+
+.save:hover {
+    background-color: #178265;
+    color: white;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addButton {
+    display: flex;
+    flex-direction: row;
+    bottom: 0;
+}
+
+.save1:hover {
+    background-color: #178265;
+    color: white;
+}
+
+#footer {
+    text-align: center;
+    background-color: $default-blue;
+    color: $default-white;
+    font-weight: normal;
+    font-size: medium;
+}
+
+.tagContainer {
+    display: inline-block;
+}
+
+.tag {
+    background-color: $default-blue;
+    display: inline-block;
+    color: $default-white;
+    padding: 8px;
+    border-radius: 3px;
+  }
+
+  .tagRemover {
+    display: inline-block;
+    color: $default-white;
+    padding: 12px;
+    border-radius: 3px;
+    margin-right: 10px;
+    box-shadow: 0 4px 8px 0 rgba(34, 20, 226, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+.body {
+    color: $default-gold;
+}
