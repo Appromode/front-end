@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import { useRouter } from 'next/router';
 import { decode, UserJwtPayload } from 'jsonwebtoken';
+import cookie from 'js-cookie';
 import AuthContext from '../../types/auth-context';
 import Login, { LoginResponse } from '../../types/login';
 import poster from '../../utils/poster';
@@ -23,7 +24,7 @@ export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useState<UserJwtPayload>(undefined);
 
   const getUser = () => {
-    const localUser = localStorage.getItem('user');
+    const localUser = cookie.get('user');
 
     if (!localUser) {
       setUser(undefined);
@@ -39,7 +40,11 @@ export const AuthProvider: FC = ({ children }) => {
 
     const tokenUser = decode(token);
 
-    localStorage.setItem('user', JSON.stringify(tokenUser));
+    cookie.set('user', JSON.stringify(tokenUser), {
+      expires: tokenUser.exp,
+    });
+
+    sessionStorage.setItem('user', JSON.stringify(tokenUser));
 
     setUser(tokenUser);
 
