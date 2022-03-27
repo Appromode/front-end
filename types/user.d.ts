@@ -8,4 +8,14 @@ type User = Id & {
   phoneNumber: string;
 };
 
+export type UserDTO = {
+  firstName: string;
+  lastName: string;
+  normalizedEmail: string;
+  normalizedUserName: string;
+  profilePicture: string;
+  twoFactorEnabled: boolean;
+  userId: string;
+}
+
 export default User;
