@@ -12,9 +12,11 @@ const UserGroup = () => {
       <h2 className="text-3xl mb-5">Group</h2>
       {
         group ? (
-          <div>
-            <p>{group.groupName}</p>
-          </div>
+          group.map((userGroup) => (
+            <div>
+              <p>{userGroup.groupName}</p>
+            </div>
+          ))
         ) : <div>Not in a group</div>
       }
     </>
