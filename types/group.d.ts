@@ -9,4 +9,21 @@ type Group = {
   groupFiles: [];
 };
 
+export interface Group {
+  accessRole: number;
+  canDelete: false
+  createdAt: string
+  createdBy: null
+  deleted: false
+  deletedAt: null
+  deletedBy: null
+  groupId: number;
+  groupName: string
+  groupTags: null
+  groupUsers: []
+  isClosed: false
+  updatedAt: string
+  updatedBy: null
+}
+
 export default Group;
