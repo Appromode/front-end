@@ -1,16 +1,28 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, {
+  FC,
+  useState,
+  useEffect,
+  useContext,
+} from 'react';
 import {
   Col,
   OverlayTrigger,
   Popover,
   Row,
 } from 'react-bootstrap';
+import {
+  Formik,
+  Form,
+} from 'formik';
 import Image from 'next/image';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Moment from 'moment';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { getThread, getThreadComments } from '../../api/threads';
+import { getThread, getThreadComments, patchThread } from '../../api/threads';
+import postComment from '../../api/comments';
+import Comment from '../../types/comment';
+import AuthContext from '../../stores/AuthContext';
 import styles from './styles.module.scss';
 
 const Editor = dynamic(() => import('../Editor'), { ssr: false });
@@ -18,25 +30,39 @@ const Editor = dynamic(() => import('../Editor'), { ssr: false });
 const ForumPosts: FC = () => {
   const router = useRouter();
   const [num, setNum] = useState(0);
+  const [desiredCommentId, setDesiredCommentId] = useState(null);
   const [copied, setCopied] = useState(false);
+  const { user } = useContext(AuthContext);
   const {
     query: { id },
   } = router;
+  const [dataSent, setDataSent] = useState('');
+  const handleCallback = (childData: any) => {
+    setDataSent(childData);
+  };
   useEffect(() => (router.isReady ? setNum(parseInt(id ? id.toString() : '1', 10)) : setNum(0)));
   const { thread } = getThread(num);
   const { threadComments } = getThreadComments(num);
   const linkValue = `http://localhost:3000/project-forum/${id}`;
-  const [data, setData] = useState([]);
+  const [editorData, setEditorData] = useState([]);
   const addToPool = (userid: string, quoteText: string) => {
-    setData(() => [{ id: userid, quote: quoteText }]);
+    setEditorData(() => [{ id: userid, quote: quoteText }]);
   };
-  const handleClick = (commentText: string, commentUserId: string) => {
+  const handleClick = (commentText: string, commentUserId: string, commentId: number) => {
     addToPool(commentUserId, commentText);
+    setDesiredCommentId(commentId);
   };
   const removeContent = (index: number) => {
-    const clone = [...data];
+    const clone = [...editorData];
     clone.splice(index, 1);
-    setData(clone);
+    setEditorData(clone);
+  };
+  const initialValues: Comment = {
+    parentThreadId: num,
+    quotedCommentId: desiredCommentId,
+    commentText: dataSent,
+    userId: user.nameid,
+    canDelete: true,
   };
   return (
     <>
@@ -45,6 +71,7 @@ const ForumPosts: FC = () => {
           {
             thread
               && thread.map((threads: any) => {
+                const createMarkupDataSent = () => ({ __html: threads.threadContent });
                 const closedStatus = () => {
                   if (threads.threadStatus === true) {
                     return (
@@ -217,22 +244,24 @@ const ForumPosts: FC = () => {
                             </div>
                             <div className={styles.container}>
                               <div className={styles.projDesc} id={`thread${threads.threadId}`}>
-                                {threads.threadContent}
+                                <div dangerouslySetInnerHTML={createMarkupDataSent()} />
                               </div>
                             </div>
-                            <a href="#forum-reply" className={styles.replyLink}>
-                              <button className={styles.replyButton} type="button" onClick={() => handleClick(threads.threadContent, threads.user.userName)}>
-                                <Image
-                                  src="/reply.svg"
-                                  width={15}
-                                  height={15}
-                                  alt="Reply Icon"
-                                />
-                                <div className={styles.replyText}>
-                                  Reply
-                                </div>
-                              </button>
-                            </a>
+                            <div className="mt-10">
+                              <a href="#forum-reply" className={styles.replyLink}>
+                                <button className={styles.replyButton} type="button" onClick={() => handleClick(threads.threadContent, threads.user.userName, thread.threadId)}>
+                                  <Image
+                                    src="/reply.svg"
+                                    width={15}
+                                    height={15}
+                                    alt="Reply Icon"
+                                  />
+                                  <div className={styles.replyText}>
+                                    Reply
+                                  </div>
+                                </button>
+                              </a>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -249,6 +278,10 @@ const ForumPosts: FC = () => {
                 threads.comments
                 && threads.comments.map((comment: any, i :number) => {
                   const userEmail = comment.user.email;
+                  const createMarkupCommentText = () => ({ __html: comment.commentText });
+                  const createMarkupQuotedComment = () => (
+                    { __html: comment.quotedComment.commentText }
+                  );
                   const quotedComment = () => {
                     if (comment.quotedCommentId !== null) {
                       return (
@@ -259,7 +292,7 @@ const ForumPosts: FC = () => {
                               {' said: '}
                             </div>
                             <div>
-                              {comment.quotedComment.commentText}
+                              <div dangerouslySetInnerHTML={createMarkupQuotedComment()} />
                             </div>
                           </Col>
                         </Row>
@@ -363,12 +396,12 @@ const ForumPosts: FC = () => {
                               <div className={styles.container}>
                                 <div className={styles.projDesc} id={`comment${comment.commentId}`}>
                                   {quotedComment()}
-                                  {comment.commentText}
+                                  <div dangerouslySetInnerHTML={createMarkupCommentText()} />
                                 </div>
                               </div>
                               <div className="mt-10">
                                 <a href="#forum-reply" className={styles.replyLink}>
-                                  <button className={styles.replyButton} type="button" onClick={() => handleClick(comment.commentText, comment.user.userName)}>
+                                  <button className={styles.replyButton} type="button" onClick={() => handleClick(comment.commentText, comment.user.userName, comment.commentId)}>
                                     <Image
                                       src="/reply.svg"
                                       width={15}
@@ -393,47 +426,86 @@ const ForumPosts: FC = () => {
             ))
           }
           <Row>
-            <div className={styles.messageContainer}>
-              <div className={styles.innerContainer}>
-                <div className={styles.keyInfoContainer}>
-                  <Image
-                    src="/supervisor.svg"
-                    width={75}
-                    height={75}
-                    alt="Supervisor Icon"
-                  />
-                  <div id={styles.keyInfo}>
-                    Name
-                  </div>
-                  <div>
-                    Supervisor
-                  </div>
-                  <a href="mailto:foo@bar.org.uk" className={styles.link}>
-                    <div id={styles.contact}>
-                      Supervisor Email
-                    </div>
-                  </a>
-                </div>
-                <div className={styles.descContainer} id="forum-reply">
-                  <div className={styles.userReply}>
-                    <Editor data={data} removeItem={removeContent} />
-                  </div>
-                  <div id={styles.buttonContainer}>
-                    <button type="submit" id={styles.postReplyButton}>
-                      <Image
-                        src="/post-reply.svg"
-                        width={25}
-                        height={25}
-                        alt="Share Icon"
-                      />
-                      <div className={styles.replyText}>
-                        Post Reply
+            <Formik
+              initialValues={initialValues}
+              onSubmit={
+                (values) => {
+                  postComment(values)
+                    .then((data) => (data.map((dataThread: any) => {
+                      const patchData = [{
+                        value: dataThread.parentThread.replyCount + 1,
+                        path: 'replyCount',
+                        op: 'replace',
+                      }];
+                      return (
+                        patchThread(patchData, num));
+                    })));
+                }
+              }
+            >
+              {({
+                setFieldValue,
+              }) => {
+                useEffect(() => {
+                  setFieldValue('commentText', dataSent);
+                }, [dataSent]);
+                useEffect(() => {
+                  setFieldValue('quotedCommentId', desiredCommentId);
+                }, [desiredCommentId]);
+                useEffect(() => {
+                  setFieldValue('parentThreadId', num);
+                }, [num]);
+                return (
+                  <Form>
+                    <div className={styles.messageContainer}>
+                      <div className={styles.innerContainer}>
+                        <div className={styles.keyInfoContainer}>
+                          <Image
+                            src="/supervisor.svg"
+                            width={75}
+                            height={75}
+                            alt="Supervisor Icon"
+                          />
+                          <div id={styles.keyInfo}>
+                            {user.given_name}
+                          </div>
+                          <div>
+                            Supervisor
+                          </div>
+                          <a href={`mailto:${user.email}`} className={styles.link}>
+                            <div id={styles.contact}>
+                              {user.email}
+                            </div>
+                          </a>
+                        </div>
+                        <div className={styles.descContainer} id="forum-reply">
+                          <div className={styles.userReply}>
+                            <Editor
+                              data={editorData}
+                              removeItem={removeContent}
+                              parentCallback={handleCallback}
+                            />
+                          </div>
+                          <div id={styles.buttonContainer}>
+                            <button type="submit" id={styles.postReplyButton}>
+                              <Image
+                                src="/post-reply.svg"
+                                width={25}
+                                height={25}
+                                alt="Share Icon"
+                              />
+                              <div className={styles.replyText}>
+                                Post Reply
+                              </div>
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    </div>
+                  </Form>
+                );
+              }}
+            </Formik>
           </Row>
         </div>
       </Col>

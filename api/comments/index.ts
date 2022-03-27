@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
+import poster from '../../utils/poster';
 
 export const getComments = () => {
   const { data, error } = useSWR('/api/Comment', fetcher);
@@ -18,3 +19,7 @@ export const getComment = (id :number) => {
     error,
   });
 };
+
+const postComment = (comment: Comment) => poster <[{ parentThread: any }]>('/api/Comment', 'POST', comment).then((data) => (data));
+
+export default postComment;

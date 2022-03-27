@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import fetcher from '../../utils/fetcher';
 import poster from '../../utils/poster';
+import patcher from '../../utils/patcher';
 import Thread from '../../types/thread';
 
 export const getThreads = () => {
@@ -29,6 +30,8 @@ export const getThreadComments = (id :number) => {
     error,
   });
 };
+
+export const patchThread = (thread: { value: string; path: string; op: string; }[], id: number) => patcher(`/api/Thread/${id}`, 'PATCH', thread);
 
 const postThread = (thread: Thread) => poster <{ threadId: number }>('/api/Thread', 'POST', thread).then((data) => (data.threadId));
 

@@ -14,7 +14,7 @@ import {
   HeadingExtension,
   OrderedListExtension,
 } from 'remirror/extensions';
-import { htmlToProsemirrorNode } from 'remirror';
+import { htmlToProsemirrorNode, prosemirrorNodeToHtml } from 'remirror';
 import Image from 'next/image';
 import {
   useRemirror,
@@ -170,12 +170,13 @@ const Menu = () => {
 };
 
 interface EditorProps {
-  data: any[];
-  removeItem: any;
+  data?: any[];
+  removeItem?: any;
+  parentCallback?: any;
 }
 
-const Editor: FC<EditorProps> = ({ data, removeItem }) => {
-  const { manager, state, onChange } = useRemirror({
+const Editor: FC<EditorProps> = ({ data, removeItem, parentCallback }) => {
+  const { manager, state, setState } = useRemirror({
     extensions: () => [
       new BoldExtension({ weight: 300 }),
       new ItalicExtension(),
@@ -189,8 +190,15 @@ const Editor: FC<EditorProps> = ({ data, removeItem }) => {
     + '<p><code spellcheck="false"> < Pop your code here > </code></p>',
     stringHandler: htmlToProsemirrorNode,
   });
+  const htmlString = prosemirrorNodeToHtml(state.doc);
   const userId = data.map((a) => a.id);
   const quotedText = data.map((a) => a.quote);
+  const createMarkupQuotedComment = () => (
+    { __html: quotedText.toString() }
+  );
+  const onTrigger = () => {
+    parentCallback(htmlString);
+  };
   const QuoteNull = () => (
     data.length > 0 && (
       <Row className={styles.quotedText}>
@@ -200,7 +208,7 @@ const Editor: FC<EditorProps> = ({ data, removeItem }) => {
             {': '}
           </div>
           <div>
-            {quotedText}
+            <div dangerouslySetInnerHTML={createMarkupQuotedComment()} />
           </div>
         </Col>
         <Col md={1} className="flex justify-center align-center">
@@ -232,13 +240,26 @@ const Editor: FC<EditorProps> = ({ data, removeItem }) => {
 
   return (
     <div>
-      <Remirror manager={manager} initialContent={state} onChange={onChange}>
+      <Remirror
+        manager={manager}
+        initialContent={state}
+        onChange={(paremeter) => {
+          setState(paremeter.state);
+          onTrigger();
+        }}
+      >
         <Menu />
         <QuoteNull />
         <EditorComponent />
       </Remirror>
     </div>
   );
+};
+
+Editor.defaultProps = {
+  data: [],
+  removeItem: 0,
+  parentCallback: '',
 };
 
 export default Editor;
