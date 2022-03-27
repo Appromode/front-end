@@ -12,7 +12,7 @@ const UsersTable:FC = () => {
   const columns = useMemo(() => [
     {
       Header: 'Username',
-      accessor: 'userName',
+      accessor: 'normalizedUserName',
     },
     {
       Header: 'First Name',
@@ -24,7 +24,7 @@ const UsersTable:FC = () => {
     },
     {
       Header: 'Email',
-      accessor: 'email',
+      accessor: 'normalizedEmail',
     },
   ], []);
 
