@@ -1,8 +1,9 @@
 import useSWR from 'swr';
-import User from '../../types/user';
-import fetcher from '../../utils/fetcher';
+import User, { UserDTO } from '../../types/user';
 import poster from '../../utils/poster';
 import Login from '../../types/login';
+import fetcher from '../../utils/fetcher';
+import { Group } from '../../types/group';
 
 export const getUsers = () => {
   const { data, error } = useSWR<User[]>('/api/User', fetcher);
@@ -14,10 +15,51 @@ export const getUsers = () => {
 };
 
 export const getRecommendedUsers = (userId: string) => {
-  const { data, error } = useSWR<User[]>(`/api/User/${userId}/Recommended`, fetcher);
+  const { data, error } = useSWR<UserDTO[]>(`/api/User/${userId}/Recommended`, fetcher);
 
   return Object.freeze({
     recommendedUsers: data,
+    error,
+  });
+};
+
+export const getRecommendedGroups = (userId: string) => {
+  const { data, error } = useSWR<UserDTO[]>(`/api/User/${userId}/Recommended/Groups`, fetcher);
+
+  return Object.freeze({
+    recommendedGroups: data,
+    error,
+  });
+};
+
+export const getInvites = (userId: string) => {
+  const key = `/api/User/${userId}/Invites`;
+
+  const { data, error, mutate: rehydrateInvites } = useSWR<[]>(key, fetcher);
+
+  return Object.freeze({
+    key,
+    rehydrateInvites,
+    invites: data,
+    error,
+  });
+};
+
+export const acceptInvite = (inviteId: number) => (
+  poster(`/api/User/${inviteId}/Invite/Accept`, 'POST', {
+    inviteId,
+  })
+);
+
+export const getGroup = (id: string) => {
+  const key = `/api/User/${id}/Group`;
+
+  const { data, error } = useSWR<Group[]>(key, fetcher, {
+    revalidateOnFocus: true,
+  });
+
+  return Object.freeze({
+    group: data,
     error,
   });
 };
