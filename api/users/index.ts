@@ -54,9 +54,7 @@ export const acceptInvite = (inviteId: number) => (
 export const getGroup = (id: string) => {
   const key = `/api/User/${id}/Group`;
 
-  const { data, error } = useSWR<Group[]>(key, fetcher, {
-    revalidateOnFocus: true,
-  });
+  const { data, error } = useSWR<Group[]>(key, fetcher);
 
   return Object.freeze({
     group: data,
