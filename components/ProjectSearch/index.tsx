@@ -137,8 +137,8 @@ const ProjectSearch:FC = () => {
       </div>
       {
         rows.length > 0 ? (
-          <div className="border-1 overflow-x-scroll lg:overflow-x-visible border-gray-300">
-            <table {...getTableProps()} className="divide-y-8 divide-white w-full table-auto space-y-15">
+          <div className="border-1 overflow-x-scroll border-gray-300">
+            <table {...getTableProps()} className="divide-y-8 divide-white table-auto space-y-15">
               <thead className="bg-gray-50 w-full">
                 {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>

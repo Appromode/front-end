@@ -58,8 +58,14 @@
     border-left: 1px solid $default-lightgrey;
     border-top: 1px solid $default-lightgrey;
     border-bottom: 1px solid $default-lightgrey;
+    width: 110px;
     max-width: 110px;
   }
+
+  .innerContainer:hover {
+    transform: scale(1.02);
+    z-index: 0;
+}
 
 #commentTime {
     color: $default-blue;
@@ -130,8 +136,6 @@
 
 .projDesc {
     font-size: medium;
-    padding-top: 115px;
-    margin-top: -115px;
 }
 
 #threadNo {
@@ -153,6 +157,7 @@
     display: inline-flex;
     width: 100%;
     margin-bottom: 10px;
+    transition: all .2s ease-in-out;
 }
 
 .messageContainer {
@@ -194,6 +199,20 @@
     margin: 10px;
 }
 
+.deletedComment {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+    border: 2px solid $default-lightgrey;
+    padding: 10px;
+}
+
+.deletedComment:hover {
+    transform: scale(1.02);
+} 
+
 .userInfoReply {
     color: $default-blue;
     display: inline-block;
@@ -224,6 +243,15 @@
     align-items: center;
     border-radius: 4px;
     border: 1px solid transparent;
+}
+
+.deleteButton {
+    float: left;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: inherit;
+    border: none;
 }
 
 #buttonContainer {
