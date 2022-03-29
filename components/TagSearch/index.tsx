@@ -142,7 +142,7 @@ const UserSearch:FC = () => {
               <ul className="divide-y divide-gray-300">
                 {
                   values.groupTags.map((groupTag, index) => (
-                    <li className="flex flex-col p-4">
+                    <li className="flex flex-col p-4" key={groupTag.tagName}>
                       <span className="flex flex-row justify-between">
                         <p>{groupTag.tagName}</p>
                         <button
