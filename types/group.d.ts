@@ -2,6 +2,7 @@ import User from './user';
 import Tag from './tag';
 
 type Group = {
+  senderId: string;
   groupName: string;
   groupDescription: string;
   groupMembers: User[];
