@@ -1,11 +1,11 @@
-import User from './user';
+import { UserDTO } from './user';
 import Tag from './tag';
 
 type Group = {
   senderId: string;
   groupName: string;
   groupDescription: string;
-  groupMembers: User[];
+  groupMembers: UserDTO[];
   groupTags: Tag[];
   groupFiles: [];
 };
@@ -21,7 +21,7 @@ export interface Group {
   groupId: number;
   groupName: string
   groupTags: null
-  groupUsers: []
+  groupUsers: UserDTO[]
   isClosed: false
   updatedAt: string
   updatedBy: null
