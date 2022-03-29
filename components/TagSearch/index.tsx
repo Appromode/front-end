@@ -49,7 +49,7 @@ const UserSearch:FC = () => {
       globalFilter,
     },
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter, usePagination);
+  } = useTable({ columns, data, initialState: { pageSize: 5 } }, useGlobalFilter, usePagination);
 
   return (
     <>

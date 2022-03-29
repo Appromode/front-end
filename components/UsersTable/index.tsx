@@ -1,15 +1,18 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
 import Link from 'next/link';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import GlobalFilter from '../GlobalFilter';
 import { getUsers } from '../../api/users';
 import TablePagination from '../TablePagination';
+import AuthContext from '../../stores/AuthContext';
 
 const UsersTable:FC = () => {
+  const { user } = useContext(AuthContext);
+
   const columns = useMemo(() => [
     {
       Header: 'Username',
-      accessor: 'userName',
+      accessor: 'normalizedUserName',
     },
     {
       Header: 'First Name',
@@ -21,11 +24,11 @@ const UsersTable:FC = () => {
     },
     {
       Header: 'Email',
-      accessor: 'email',
+      accessor: 'normalizedEmail',
     },
   ], []);
 
-  const { users } = getUsers();
+  const { users } = getUsers(user.nameid);
 
   const data = useMemo(() => users || [], [users]);
 
@@ -50,7 +53,7 @@ const UsersTable:FC = () => {
       globalFilter,
     },
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter, usePagination);
+  } = useTable({ columns, data, initialState: { pageSize: 5 } }, useGlobalFilter, usePagination);
 
   return (
     <>
