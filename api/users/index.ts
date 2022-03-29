@@ -6,7 +6,7 @@ import fetcher from '../../utils/fetcher';
 import { Group } from '../../types/group';
 
 export const getUsers = (userId: string) => {
-  const { data, error } = useSWR<UserDTO[]>(`/api/User/${userId}/Recommended`, fetcher);
+  const { data, error } = useSWR<User[]>(`/api/User/${userId}/Users`, fetcher);
 
   return Object.freeze({
     users: data,
