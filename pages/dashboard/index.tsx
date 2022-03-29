@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Link from 'next/link';
 import { Container, Row } from 'react-bootstrap';
 import InvitesTable from '../../components/InvitesTable';
 import UserGroup from '../../components/UserGroup';
@@ -11,6 +12,26 @@ const Dashboard:FC = () => (
         <Row>
           <h1 className="text-3xl">Dashboard</h1>
         </Row>
+      </Container>
+    </div>
+    <div className="py-5">
+      <Container>
+        <Link href="/group-registration">
+          <button
+            className="bg-prussian p-3 bg-prussian-blue text-white rounded-md font-medium text-center border-1 mr-3"
+            type="button"
+          >
+            Register Group
+          </button>
+        </Link>
+        <Link href="/users">
+          <button
+            className="bg-prussian p-3 bg-prussian-blue text-white rounded-md font-medium text-center border-1"
+            type="button"
+          >
+            Find Users
+          </button>
+        </Link>
       </Container>
     </div>
     <div className="py-20">
