@@ -15,7 +15,6 @@ export type UserDTO = {
   normalizedUserName: string;
   profilePicture: string;
   twoFactorEnabled: boolean;
-  userId: string;
-}
+} & Id;
 
 export default User;
