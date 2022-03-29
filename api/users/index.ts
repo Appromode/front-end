@@ -63,7 +63,7 @@ export const getGroup = (id: string) => {
 };
 
 export const getUser = (id: string) => {
-  const { data, error } = useSWR<User>(`/api/User/${id}`, fetcher);
+  const { data, error } = useSWR<UserDTO>(`/api/User/${id}`, fetcher);
 
   return Object.freeze({
     user: data,
