@@ -5,8 +5,8 @@ import Login from '../../types/login';
 import fetcher from '../../utils/fetcher';
 import { Group } from '../../types/group';
 
-export const getUsers = () => {
-  const { data, error } = useSWR<User[]>('/api/User', fetcher);
+export const getUsers = (userId: string) => {
+  const { data, error } = useSWR<UserDTO[]>(`/api/User/${userId}/Recommended`, fetcher);
 
   return Object.freeze({
     users: data,
