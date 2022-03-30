@@ -30,19 +30,19 @@ const Index:FC = () => (
             <h2 className="text-3xl mb-4 font-medium text-prussian">Student Features</h2>
           </Col>
           <Col md={4}>
-            <div className="bg-white rounded-md p-10 border-1 border-gray-300 shadow-2xl">
+            <div className="bg-white rounded-md p-10 mb-3 sm:m-0 border-1 border-gray-300 shadow-2xl">
               <h3 className="mb-4 text-lg font-medium text-prussian">Simple Group Registration</h3>
               <img src="/home/project-registration.svg" alt="Student group registration" />
             </div>
           </Col>
           <Col md={4}>
-            <div className="bg-white rounded-md p-10 border-1 border-gray-300 shadow-2xl">
+            <div className="bg-white rounded-md p-10 mb-3 sm:m-0 border-1 border-gray-300 shadow-2xl">
               <h3 className="mb-4 text-lg font-medium text-prussian">Manage Your Profile</h3>
               <img src="/home/student-profile.svg" alt="Student profile page" />
             </div>
           </Col>
           <Col md={4}>
-            <div className="bg-white rounded-md p-10 border-1 border-gray-300 shadow-2xl">
+            <div className="bg-white rounded-md p-10 mb-3 sm:m-0 border-1 border-gray-300 shadow-2xl">
               <h3 className="mb-4 text-lg font-medium text-prussian">Find Group Members</h3>
               <img src="/home/find-students.svg" alt="Find students page" />
             </div>

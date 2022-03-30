@@ -1,32 +1,37 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
+import Link from 'next/link';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
-import { useFormikContext } from 'formik';
-import { Alert } from 'react-bootstrap';
 import GlobalFilter from '../GlobalFilter';
-import Group from '../../types/group';
-import removeArrayItem from '../../utils/removeArrayItem';
-import getById from '../../utils/getById';
+import { getRecommendedGroups } from '../../api/users';
 import TablePagination from '../TablePagination';
-import { getTags } from '../../api/tags';
+import AuthContext from '../../stores/AuthContext';
 
-const UserSearch:FC = () => {
-  const {
-    values,
-    errors,
-    touched,
-    setFieldValue,
-  } = useFormikContext<Group>();
+const UsersTable:FC = () => {
+  const { user } = useContext(AuthContext);
 
   const columns = useMemo(() => [
     {
-      Header: 'Tag Name',
-      accessor: 'tagName',
+      Header: 'Group Name',
+      accessor: 'groupName',
+    },
+    {
+      Header: 'Created At',
+      accessor: 'createdAt',
+    },
+    {
+      Header: 'Is Closed',
+      accessor: (data) => {
+        if (data.isClosed === false) {
+          return 'Open';
+        }
+        return 'Closed';
+      },
     },
   ], []);
 
-  const { tags } = getTags();
+  const { recommendedGroups } = getRecommendedGroups(user.nameid);
 
-  const data = useMemo(() => tags || [], [tags]);
+  const data = useMemo(() => recommendedGroups || [], [recommendedGroups]);
 
   const {
     getTableProps,
@@ -49,17 +54,16 @@ const UserSearch:FC = () => {
       globalFilter,
     },
     setGlobalFilter,
-  } = useTable({ columns, data, initialState: { pageSize: 5 } }, useGlobalFilter, usePagination);
+  } = useTable({ columns, data }, useGlobalFilter, usePagination);
 
   return (
     <>
-      {(touched.groupTags && errors.groupTags) ? <Alert>{errors.groupTags}</Alert> : ''}
       <GlobalFilter
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
-        label="Find Tags"
-        forControl="findTags"
+        label="Search Recommeded Groups"
+        forControl="recommededGroups"
       />
       {
         page.length > 0 ? (
@@ -95,19 +99,16 @@ const UserSearch:FC = () => {
                           </td>
                         ))}
                         <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
-                          {
-                            getById(values.groupTags, row.original.tagId, 'tagId') !== undefined ? (
-                              <div>Added</div>
-                            ) : (
-                              <button
-                                type="button"
-                                className="text-green-800"
-                                onClick={() => setFieldValue('groupTags', [...values.groupTags, row.original])}
-                              >
-                                Add Tag
-                              </button>
-                            )
-                          }
+                          <Link
+                            href="/groups/"
+                          >
+                            <button
+                              type="button"
+                              className="text-green-800"
+                            >
+                              View Group
+                            </button>
+                          </Link>
                         </td>
                       </tr>
                     );
@@ -128,40 +129,10 @@ const UserSearch:FC = () => {
               pageSize={pageSize}
             />
           </>
-        ) : (
-          <>
-            <div>No results</div>
-          </>
-        )
-      }
-      {
-        values.groupTags.length > 0 ? (
-          <>
-            <h1 className="mt-3">Added Tags</h1>
-            <div className="border-1 border-gray-300 rounded-sm my-3">
-              <ul className="divide-y divide-gray-300">
-                {
-                  values.groupTags.map((groupTag, index) => (
-                    <li className="flex flex-col p-4" key={groupTag.tagName}>
-                      <span className="flex flex-row justify-between">
-                        <p>{groupTag.tagName}</p>
-                        <button
-                          type="button"
-                          onClick={() => setFieldValue('groupTags', removeArrayItem(values.groupTags, index))}
-                        >
-                          Remove
-                        </button>
-                      </span>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-          </>
-        ) : <div className="my-3">No tags added</div>
+        ) : <div>No recommended groups</div>
       }
     </>
   );
 };
 
-export default UserSearch;
+export default UsersTable;

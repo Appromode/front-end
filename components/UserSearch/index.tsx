@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { useFormikContext } from 'formik';
 import { Alert } from 'react-bootstrap';
@@ -8,8 +8,11 @@ import Group from '../../types/group';
 import removeArrayItem from '../../utils/removeArrayItem';
 import getById from '../../utils/getById';
 import TablePagination from '../TablePagination';
+import AuthContext from '../../stores/AuthContext';
 
 const UserSearch:FC = () => {
+  const { user } = useContext(AuthContext);
+
   const {
     values,
     errors,
@@ -20,7 +23,7 @@ const UserSearch:FC = () => {
   const columns = useMemo(() => [
     {
       Header: 'Username',
-      accessor: 'userName',
+      accessor: 'normalizedUserName',
     },
     {
       Header: 'First Name',
@@ -32,11 +35,11 @@ const UserSearch:FC = () => {
     },
     {
       Header: 'Email',
-      accessor: 'email',
+      accessor: 'normalizedEmail',
     },
   ], []);
 
-  const { users } = getUsers();
+  const { users } = getUsers(user.nameid);
 
   const data = useMemo(() => users || [], [users]);
 
@@ -61,7 +64,7 @@ const UserSearch:FC = () => {
       globalFilter,
     },
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter, usePagination);
+  } = useTable({ columns, data, initialState: { pageSize: 5 } }, useGlobalFilter, usePagination);
 
   return (
     <>
@@ -145,14 +148,14 @@ const UserSearch:FC = () => {
       {
         values.groupMembers.length > 0 ? (
           <>
-            <h1 className="mt-3">Added Group Members</h1>
+            <h1 className="mt-3">Invited Group Members</h1>
             <div className="border-1 border-gray-300 rounded-sm my-3">
               <ul className="divide-y divide-gray-300">
                 {
                   values.groupMembers.map((groupMember, index) => (
-                    <li className="flex flex-col p-4" key={groupMember.email}>
+                    <li className="flex flex-col p-4" key={groupMember.normalizedEmail}>
                       <span className="flex flex-row justify-between">
-                        <p>{groupMember.email}</p>
+                        <p>{groupMember.normalizedEmail}</p>
                         <button
                           type="button"
                           onClick={() => setFieldValue('groupMembers', removeArrayItem(values.groupMembers, index))}

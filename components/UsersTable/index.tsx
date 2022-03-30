@@ -1,32 +1,36 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
+import Link from 'next/link';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
-import { useFormikContext } from 'formik';
-import { Alert } from 'react-bootstrap';
 import GlobalFilter from '../GlobalFilter';
-import Group from '../../types/group';
-import removeArrayItem from '../../utils/removeArrayItem';
-import getById from '../../utils/getById';
+import { getUsers } from '../../api/users';
 import TablePagination from '../TablePagination';
-import { getTags } from '../../api/tags';
+import AuthContext from '../../stores/AuthContext';
 
-const UserSearch:FC = () => {
-  const {
-    values,
-    errors,
-    touched,
-    setFieldValue,
-  } = useFormikContext<Group>();
+const UsersTable:FC = () => {
+  const { user } = useContext(AuthContext);
 
   const columns = useMemo(() => [
     {
-      Header: 'Tag Name',
-      accessor: 'tagName',
+      Header: 'Username',
+      accessor: 'normalizedUserName',
+    },
+    {
+      Header: 'First Name',
+      accessor: 'firstName',
+    },
+    {
+      Header: 'Last Name',
+      accessor: 'lastName',
+    },
+    {
+      Header: 'Email',
+      accessor: 'normalizedEmail',
     },
   ], []);
 
-  const { tags } = getTags();
+  const { users } = getUsers(user.nameid);
 
-  const data = useMemo(() => tags || [], [tags]);
+  const data = useMemo(() => users || [], [users]);
 
   const {
     getTableProps,
@@ -53,13 +57,12 @@ const UserSearch:FC = () => {
 
   return (
     <>
-      {(touched.groupTags && errors.groupTags) ? <Alert>{errors.groupTags}</Alert> : ''}
       <GlobalFilter
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
-        label="Find Tags"
-        forControl="findTags"
+        label="Search Users"
+        forControl="users"
       />
       {
         page.length > 0 ? (
@@ -95,19 +98,16 @@ const UserSearch:FC = () => {
                           </td>
                         ))}
                         <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
-                          {
-                            getById(values.groupTags, row.original.tagId, 'tagId') !== undefined ? (
-                              <div>Added</div>
-                            ) : (
-                              <button
-                                type="button"
-                                className="text-green-800"
-                                onClick={() => setFieldValue('groupTags', [...values.groupTags, row.original])}
-                              >
-                                Add Tag
-                              </button>
-                            )
-                          }
+                          <Link
+                            href="/users/user"
+                          >
+                            <button
+                              type="button"
+                              className="text-green-800"
+                            >
+                              View Profile
+                            </button>
+                          </Link>
                         </td>
                       </tr>
                     );
@@ -128,40 +128,10 @@ const UserSearch:FC = () => {
               pageSize={pageSize}
             />
           </>
-        ) : (
-          <>
-            <div>No results</div>
-          </>
-        )
-      }
-      {
-        values.groupTags.length > 0 ? (
-          <>
-            <h1 className="mt-3">Added Tags</h1>
-            <div className="border-1 border-gray-300 rounded-sm my-3">
-              <ul className="divide-y divide-gray-300">
-                {
-                  values.groupTags.map((groupTag, index) => (
-                    <li className="flex flex-col p-4" key={groupTag.tagName}>
-                      <span className="flex flex-row justify-between">
-                        <p>{groupTag.tagName}</p>
-                        <button
-                          type="button"
-                          onClick={() => setFieldValue('groupTags', removeArrayItem(values.groupTags, index))}
-                        >
-                          Remove
-                        </button>
-                      </span>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-          </>
-        ) : <div className="my-3">No tags added</div>
+        ) : <div>No Users</div>
       }
     </>
   );
 };
 
-export default UserSearch;
+export default UsersTable;

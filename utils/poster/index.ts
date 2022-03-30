@@ -1,6 +1,7 @@
 type Method = 'PUT' | 'PATCH' | 'POST';
 
-const poster = async<T>(url: string, method: Method, data: object | string, remote: boolean = true):
+const poster = async<T>
+(url: string, method: Method, data: object | string | number, remote: boolean = true):
   Promise<T> => {
   const URI = remote ? `${process.env.NEXT_PUBLIC_API_ROUTE}${url}` : url;
 
