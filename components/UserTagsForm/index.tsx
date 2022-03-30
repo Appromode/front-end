@@ -28,11 +28,14 @@ const UserTagsForm: FC = () => {
       <h2 className="text-2xl mb-5">Add Tags</h2>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           postUserTags({
             userId: user.nameid,
             tags: values.tags,
-          }).then(() => matchMutate());
+          }).then(() => {
+            matchMutate();
+            resetForm();
+          });
         }}
         validationSchema={validationSchema}
       >
