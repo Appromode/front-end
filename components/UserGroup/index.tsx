@@ -12,7 +12,7 @@ const UserGroup = () => {
     <>
       <h2 className="text-3xl mb-5">Group</h2>
       {
-        group?.length < 0 ? (
+        group?.length > 0 ? (
           group.map((userGroup) => (
             <div key={userGroup.groupId}>
               <p className="font-semibold text-prussian mb-3">{userGroup.groupName}</p>
