@@ -1,4 +1,4 @@
-type Method = 'PUT' | 'PATCH' | 'POST';
+type Method = 'PUT' | 'PATCH' | 'POST' | 'DELETE';
 
 const poster = async<T>
 (url: string, method: Method, data: object | string | number, remote: boolean = true):
