@@ -7,9 +7,11 @@ import TagSearch from '../TagSearch';
 import withAuthorization from '../../utils/withAuthorization';
 import { TagForm } from '../../types/tag';
 import { getUserTags, postUserTags } from '../../api/users';
+import useMatchMutate from '../../utils/useMatchMutate';
 
 const UserTagsForm: FC = () => {
   const { user } = useContext(AuthContext);
+  const matchMutate = useMatchMutate();
 
   const initialValues: TagForm = {
     tags: [],
@@ -30,7 +32,7 @@ const UserTagsForm: FC = () => {
           postUserTags({
             userId: user.nameid,
             tags: values.tags,
-          });
+          }).then(() => matchMutate());
         }}
         validationSchema={validationSchema}
       >
