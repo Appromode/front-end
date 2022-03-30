@@ -5,6 +5,7 @@ import InvitesTable from '../../components/InvitesTable';
 import UserGroup from '../../components/UserGroup';
 import withAuthorization from '../../utils/withAuthorization';
 import UserTagsForm from '../../components/UserTagsForm';
+import UserTags from '../../components/UserTags';
 
 const Dashboard:FC = () => (
   <div className="divide-gray-400 divide">
@@ -15,7 +16,7 @@ const Dashboard:FC = () => (
         </Row>
       </Container>
     </div>
-    <div className="py-5">
+    <div className="py-10">
       <Container>
         <Link href="/group-registration">
           <button
@@ -35,18 +36,19 @@ const Dashboard:FC = () => (
         </Link>
       </Container>
     </div>
-    <div className="py-20">
+    <div className="py-10">
       <Container>
         <UserGroup />
       </Container>
     </div>
-    <div className="py-20">
+    <div className="py-10">
       <Container>
         <InvitesTable />
       </Container>
     </div>
-    <div className="py-20">
+    <div className="py-10">
       <Container>
+        <UserTags />
         <UserTagsForm />
       </Container>
     </div>
