@@ -1,10 +1,8 @@
 import useSWR from 'swr';
-import { User } from '../../types/user';
 import fetcher from '../../utils/fetcher';
 import User, { UserDTO } from '../../types/user';
 import poster from '../../utils/poster';
 import Login from '../../types/login';
-import fetcher from '../../utils/fetcher';
 import { Group } from '../../types/group';
 
 export const getUsers = (userId: string) => {

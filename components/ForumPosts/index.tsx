@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, {
   FC,
   useState,
@@ -548,7 +549,8 @@ const ForumPosts: FC = () => {
                                 }];
                                 return (
                                   patchThread(patchData, num));
-                              })));
+                              })))
+                              .then(() => location.reload());
                           }
                         }
                       >
