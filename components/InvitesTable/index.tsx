@@ -1,12 +1,12 @@
 import React, { FC, useContext, useMemo } from 'react';
-import { useRouter } from 'next/router';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { acceptInvite, getInvites } from '../../api/users';
 import TablePagination from '../TablePagination';
 import AuthContext from '../../stores/AuthContext';
+import useMatchMutate from '../../utils/useMatchMutate';
 
 const InvitesTable:FC = () => {
-  const router = useRouter();
+  const matchMutate = useMatchMutate();
   const { user } = useContext(AuthContext);
 
   const columns = useMemo(() => [
@@ -96,12 +96,9 @@ const InvitesTable:FC = () => {
                                 <button
                                   type="button"
                                   className="bg-bottle text-white mr-5 px-3 py-2 border-1 border-brunswick rounded-md"
-                                  onClick={async () => {
-                                    const response = await acceptInvite(row.original.inviteId);
-
-                                    if (response < 300) {
-                                      router.replace(router.asPath);
-                                    }
+                                  onClick={() => {
+                                    acceptInvite(row.original.inviteId)
+                                      .finally(() => matchMutate());
                                   }}
                                 >
                                   Accept
