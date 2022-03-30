@@ -9,7 +9,7 @@ import UserTags from '../../components/UserTags';
 
 const Dashboard:FC = () => (
   <div className="divide-gray-400 divide">
-    <div className="py-20 bg-bottle text-white">
+    <div className="py-24 bg-bottle text-white">
       <Container>
         <Row>
           <h1 className="text-3xl">Dashboard</h1>
