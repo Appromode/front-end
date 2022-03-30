@@ -4,6 +4,7 @@ import poster from '../../utils/poster';
 import Login from '../../types/login';
 import fetcher from '../../utils/fetcher';
 import { Group } from '../../types/group';
+import Tag, { TagPost, RemoveUserTag } from '../../types/tag';
 
 export const getUsers = (userId: string) => {
   const { data, error } = useSWR<User[]>(`/api/User/${userId}/Users`, fetcher);
@@ -51,6 +52,12 @@ export const acceptInvite = (inviteId: number) => (
   })
 );
 
+export const rejectInvite = (inviteId: number) => (
+  poster(`/api/User/${inviteId}/Invite/Reject`, 'POST', {
+    inviteId,
+  })
+);
+
 export const getGroup = (id: string) => {
   const key = `/api/User/${id}/Group`;
 
@@ -58,6 +65,24 @@ export const getGroup = (id: string) => {
 
   return Object.freeze({
     group: data,
+    error,
+  });
+};
+
+export const getAvailableTags = (userId: string) => {
+  const { data, error } = useSWR<Tag[]>(`/api/User/${userId}/AvailableTags`, fetcher);
+
+  return Object.freeze({
+    availableTags: data,
+    error,
+  });
+};
+
+export const getUserTags = (userId: string) => {
+  const { data, error } = useSWR<Tag[]>(`/api/User/${userId}/Tags`, fetcher);
+
+  return Object.freeze({
+    userTags: data,
     error,
   });
 };
@@ -70,5 +95,12 @@ export const getUser = (id: string) => {
     error,
   });
 };
+
+export const removeUserTag = ({ tagId, userId }: RemoveUserTag) => poster(`/api/User/${tagId}/Tag`, 'DELETE', {
+  userId,
+  tagId,
+});
+
+export const postUserTags = (data: TagPost) => poster('/api/User/Tags', 'POST', data);
 
 export const postUser = (data: Login) => poster<User | null>('/api/Login', 'POST', data);

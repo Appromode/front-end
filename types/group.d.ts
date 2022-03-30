@@ -1,14 +1,13 @@
 import { UserDTO } from './user';
-import Tag from './tag';
+import { TagForm } from './tag';
 
 type Group = {
   senderId: string;
   groupName: string;
   groupDescription: string;
   groupMembers: UserDTO[];
-  groupTags: Tag[];
   groupFiles: [];
-};
+} & TagForm;
 
 export interface Group {
   accessRole: number;
