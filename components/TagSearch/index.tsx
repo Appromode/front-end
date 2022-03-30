@@ -3,19 +3,18 @@ import { useTable, useGlobalFilter, usePagination } from 'react-table';
 import { useFormikContext } from 'formik';
 import { Alert } from 'react-bootstrap';
 import GlobalFilter from '../GlobalFilter';
-import Group from '../../types/group';
 import removeArrayItem from '../../utils/removeArrayItem';
 import getById from '../../utils/getById';
 import TablePagination from '../TablePagination';
-import { getTags } from '../../api/tags';
+import { TagForm, TagSearchProps } from '../../types/tag';
 
-const UserSearch:FC = () => {
+const TagSearch:FC<TagSearchProps> = ({ tags, formKey }) => {
   const {
     values,
     errors,
     touched,
     setFieldValue,
-  } = useFormikContext<Group>();
+  } = useFormikContext<TagForm>();
 
   const columns = useMemo(() => [
     {
@@ -23,8 +22,6 @@ const UserSearch:FC = () => {
       accessor: 'tagName',
     },
   ], []);
-
-  const { tags } = getTags();
 
   const data = useMemo(() => tags || [], [tags]);
 
@@ -53,7 +50,7 @@ const UserSearch:FC = () => {
 
   return (
     <>
-      {(touched.groupTags && errors.groupTags) ? <Alert>{errors.groupTags}</Alert> : ''}
+      {(touched.tags && errors.tags) ? <Alert>{errors.tags}</Alert> : ''}
       <GlobalFilter
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
@@ -96,13 +93,15 @@ const UserSearch:FC = () => {
                         ))}
                         <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
                           {
-                            getById(values.groupTags, row.original.tagId, 'tagId') !== undefined ? (
+                            getById(values.tags, row.original.tagId, 'tagId') !== undefined ? (
                               <div>Added</div>
                             ) : (
                               <button
                                 type="button"
                                 className="text-green-800"
-                                onClick={() => setFieldValue('groupTags', [...values.groupTags, row.original])}
+                                onClick={() => (
+                                  setFieldValue(formKey, [...values.tags, row.original])
+                                )}
                               >
                                 Add Tag
                               </button>
@@ -135,19 +134,21 @@ const UserSearch:FC = () => {
         )
       }
       {
-        values.groupTags.length > 0 ? (
+        values.tags.length > 0 ? (
           <>
             <h1 className="mt-3">Added Tags</h1>
             <div className="border-1 border-gray-300 rounded-sm my-3">
               <ul className="divide-y divide-gray-300">
                 {
-                  values.groupTags.map((groupTag, index) => (
-                    <li className="flex flex-col p-4" key={groupTag.tagName}>
+                  values.tags.map((tag, index) => (
+                    <li className="flex flex-col p-4" key={tag.tagName}>
                       <span className="flex flex-row justify-between">
-                        <p>{groupTag.tagName}</p>
+                        <p>{tag.tagName}</p>
                         <button
                           type="button"
-                          onClick={() => setFieldValue('groupTags', removeArrayItem(values.groupTags, index))}
+                          onClick={() => (
+                            setFieldValue(formKey, removeArrayItem(values.tags, index))
+                          )}
                         >
                           Remove
                         </button>
@@ -164,4 +165,4 @@ const UserSearch:FC = () => {
   );
 };
 
-export default UserSearch;
+export default TagSearch;

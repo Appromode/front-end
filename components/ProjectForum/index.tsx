@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, {
   FC,
@@ -23,6 +24,7 @@ import Thread from '../../types/thread';
 import postThread from '../../api/threads';
 import { getProjects, patchProject } from '../../api/projects';
 import ProjectSearch from '../ProjectSearch';
+import RecommendedGroupsTable from '../RecommendedGroupsTable';
 import styles from './styles.module.scss';
 import Editor from '../Editor';
 import AuthContext from '../../stores/AuthContext';
@@ -82,6 +84,7 @@ const ProjectForum:FC = () => {
             </a>
           </Col>
         </Row>
+        <RecommendedGroupsTable />
         <ProjectSearch />
         {
             state
@@ -102,7 +105,7 @@ const ProjectForum:FC = () => {
                               }];
                               patchProject(patchData, values.linkedProjectId);
                             }
-                          });
+                          }).then(() => location.reload());
                         }
                       }
                     >
