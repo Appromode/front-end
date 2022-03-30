@@ -5,4 +5,18 @@ type Tag = Id & {
   tagName: string;
 };
 
+export type TagForm = {
+  tags: Tag[],
+}
+
+export interface TagPost {
+  userId: string;
+  tags: Tag[];
+}
+
+export interface TagSearchProps {
+  tags: Tag[],
+  formKey: string,
+}
+
 export default Tag;
