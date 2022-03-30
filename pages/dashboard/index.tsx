@@ -4,6 +4,7 @@ import { Container, Row } from 'react-bootstrap';
 import InvitesTable from '../../components/InvitesTable';
 import UserGroup from '../../components/UserGroup';
 import withAuthorization from '../../utils/withAuthorization';
+import UserTagsForm from '../../components/UserTagsForm';
 
 const Dashboard:FC = () => (
   <div className="divide-gray-400 divide">
@@ -42,6 +43,11 @@ const Dashboard:FC = () => (
     <div className="py-20">
       <Container>
         <InvitesTable />
+      </Container>
+    </div>
+    <div className="py-20">
+      <Container>
+        <UserTagsForm />
       </Container>
     </div>
   </div>
