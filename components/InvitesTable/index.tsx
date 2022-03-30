@@ -1,6 +1,6 @@
 import React, { FC, useContext, useMemo } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
-import { acceptInvite, getInvites } from '../../api/users';
+import { acceptInvite, getInvites, rejectInvite } from '../../api/users';
 import TablePagination from '../TablePagination';
 import AuthContext from '../../stores/AuthContext';
 import useMatchMutate from '../../utils/useMatchMutate';
@@ -91,7 +91,7 @@ const InvitesTable:FC = () => {
                         ))}
                         <td className="flex flex-row px-6 py-4 justify-end whitespace-nowrap">
                           <div className="flex flex-row justify-evenly">
-                            {!row.original.status && (
+                            {row.original.status === null && (
                               <>
                                 <button
                                   type="button"
@@ -106,6 +106,10 @@ const InvitesTable:FC = () => {
                                 <button
                                   type="button"
                                   className="bg-red-600 text-white mr-5 px-3 py-2 border-1 border-red-700 rounded-md"
+                                  onClick={() => {
+                                    rejectInvite(row.original.inviteId)
+                                      .finally(() => matchMutate());
+                                  }}
                                 >
                                   Reject
                                 </button>
