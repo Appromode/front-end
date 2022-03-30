@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
+import { useRouter } from 'next/router';
 import { Formik, Form, Field } from 'formik';
 import { object, string, array } from 'yup';
 import {
@@ -8,13 +9,19 @@ import {
   FormControl,
   Alert,
 } from 'react-bootstrap';
+import AuthContext from '../../stores/AuthContext';
 import styles from './styles.module.scss';
 import UserSearch from '../UserSearch';
 import postGroup from '../../api/groups';
 import Group from '../../types/group';
+import withAuthorization from '../../utils/withAuthorization';
 
 const GroupRegistrationForm: FC = () => {
+  const router = useRouter();
+  const { user } = useContext(AuthContext);
+
   const initialValues: Group = {
+    senderId: user.nameid,
     groupName: '',
     groupDescription: '',
     groupMembers: [],
@@ -27,15 +34,11 @@ const GroupRegistrationForm: FC = () => {
       <h2 className={styles.formHeading}>Group Registration</h2>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => postGroup(values)}
-        validationSchema={
-          object({
-            groupName: string().min(5).max(30).required(),
-            groupDescription: string().min(10).max(100).required(),
-            groupMembers: array().min(2).max(4).required(),
-            groupFiles: array(),
-          })
-        }
+        onSubmit={(values) => {
+          postGroup(values)
+            .then(() => router.push('/dashboard'));
+        }}
+        validationSchema={validationSchema}
       >
         {({ touched, errors }) => (
           <Form>
@@ -66,4 +69,4 @@ const GroupRegistrationForm: FC = () => {
   );
 };
 
-export default GroupRegistrationForm;
+export default withAuthorization(GroupRegistrationForm);

@@ -11,7 +11,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse<string | UserJwtPaylo
     sameSite: 'none',
   }));
 
-  res.status(200).send('cookie');
+  res.status(200).json('cookie');
 };
 
 export default handler;
