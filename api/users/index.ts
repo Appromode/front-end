@@ -52,6 +52,12 @@ export const acceptInvite = (inviteId: number) => (
   })
 );
 
+export const rejectInvite = (inviteId: number) => (
+  poster(`/api/User/${inviteId}/Invite/Reject`, 'POST', {
+    inviteId,
+  })
+);
+
 export const getGroup = (id: string) => {
   const key = `/api/User/${id}/Group`;
 
