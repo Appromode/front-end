@@ -16,6 +16,7 @@ import TagSearch from '../TagSearch';
 import postGroup from '../../api/groups';
 import Group from '../../types/group';
 import withAuthorization from '../../utils/withAuthorization';
+import { getTags } from '../../api/tags';
 
 const GroupRegistrationForm: FC = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const GroupRegistrationForm: FC = () => {
     groupName: '',
     groupDescription: '',
     groupMembers: [],
-    groupTags: [],
+    tags: [],
     groupFiles: [],
   };
 
@@ -34,9 +35,11 @@ const GroupRegistrationForm: FC = () => {
     groupName: string().min(5).max(30).required(),
     groupDescription: string().min(10).max(100).required(),
     groupMembers: array().max(4).required(),
-    groupTags: array(),
+    tags: array(),
     groupFiles: array(),
   });
+
+  const { tags } = getTags();
 
   return (
     <Container>
@@ -64,7 +67,11 @@ const GroupRegistrationForm: FC = () => {
             </FormGroup>
 
             <UserSearch />
-            <TagSearch />
+
+            <TagSearch
+              tags={tags}
+              formKey="tags"
+            />
 
             <button
               type="submit"
