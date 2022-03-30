@@ -6,7 +6,7 @@ import AuthContext from '../../stores/AuthContext';
 import TagSearch from '../TagSearch';
 import withAuthorization from '../../utils/withAuthorization';
 import { TagForm } from '../../types/tag';
-import { getUserTags, postUserTags } from '../../api/users';
+import { getAvailableTags, postUserTags } from '../../api/users';
 import useMatchMutate from '../../utils/useMatchMutate';
 
 const UserTagsForm: FC = () => {
@@ -21,11 +21,11 @@ const UserTagsForm: FC = () => {
     tags: array().min(1),
   });
 
-  const { userTags } = getUserTags(user.nameid);
+  const { availableTags } = getAvailableTags(user.nameid);
 
   return (
     <Container>
-      <h2 className="text-4xl mb-5">Tags</h2>
+      <h2 className="text-2xl mb-5">Add Tags</h2>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
@@ -38,12 +38,12 @@ const UserTagsForm: FC = () => {
       >
         <Form>
           <TagSearch
-            tags={userTags}
+            tags={availableTags}
             formKey="tags"
           />
           <button
             type="submit"
-            className="p-2 bg-blue-900 text-white my-2 rounded-sm"
+            className="p-3 bg-bottle text-white my-2 rounded-sm"
           >
             Add Tags
           </button>
