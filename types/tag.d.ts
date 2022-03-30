@@ -19,4 +19,9 @@ export interface TagSearchProps {
   formKey: string,
 }
 
+export interface RemoveUserTag {
+  tagId: number;
+  userId: string;
+}
+
 export default Tag;
