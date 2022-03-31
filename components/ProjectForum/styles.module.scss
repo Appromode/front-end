@@ -1,0 +1,155 @@
+@import '../../styles/colours.scss';
+
+#title {
+    color: $default-blue;
+    font-size: xx-large;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+#centreConsole {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px 0px;
+    padding: 20px;
+}
+
+#headingContainer {
+    margin-top: 10px;
+    color: $default-blue;
+    font-size: large;
+}
+
+#subtitle {
+    float: right;
+    color: $default-blue;
+    padding-right: 10px;
+}
+
+#tableTop {
+    background-color: $default-lightblue;
+    color: $default-white;
+    font-weight: bold;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 10px 0px;
+}
+
+#tableTitle {
+    padding-left: 10px;
+}
+
+.projectTitle {
+    padding-left: 10px;
+}
+
+.projectIdea {
+    margin-top: 10px;
+    padding: 10px 0px;
+    background-color: $default-grey;
+    color: white;
+    border-radius: 8px;
+    font-size: small;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.projectIdea:hover {
+    background-color: $default-lightgrey;
+    color: black;
+}
+
+.navLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navLink:hover {
+    color: inherit;
+}
+
+.status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+#replyButton {
+    color: $default-white;
+    background-color: $default-blue;
+    float: right;
+    padding: 5px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+#replyButton:hover {
+    background-color: $default-lightblue;
+}
+
+#buttonText {
+    display: inline-block;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.userReply {
+    border-radius: 4px;
+    border: 2px solid $default-lightgrey;
+    padding: 10px;
+    margin: 10px;
+}
+
+.descContainer {
+    display: inline-block;
+    font-size: small;
+    background-color: $default-white;
+    width: 100%;
+    border: 1px solid $default-lightgrey;
+    border-radius: 4px;
+    position: relative;
+    margin-top: 10px;
+}
+
+#threadTitle {
+    color: $default-blue;
+    font-weight: bold;
+    margin: 10px;
+    font-size: large;
+}
+
+.formPadding {
+    margin: 10px;
+}
+
+#submit {
+    color: $default-white;
+    background-color: $default-blue;
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+#submit:hover {
+    background-color: $default-lightblue;
+}
+
+#buttonContainer {
+    margin-top: 55px;
+}
