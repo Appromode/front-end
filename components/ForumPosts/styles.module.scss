@@ -1,0 +1,316 @@
+@import '../../styles/colours.scss';
+
+#title {
+    color: $default-blue;
+    font-size: large;
+    font-weight: bold;
+}
+
+.titleContainer {
+    padding-left: 10px;
+}
+
+.firstInfo {
+    padding-left: 10px;
+    font-size: small;
+    color: $default-grey;
+    display: inline-block;
+}
+
+.projectStatus {
+    padding: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: small;
+    border-left: 3px solid $default-blue;
+    background-color: $default-white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 4px;
+}
+
+.icon {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.infoContainer {
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+#centreConsole {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px 0px;
+    padding: 20px;
+}
+
+.keyInfoContainer {
+    color: $default-blue;
+    display: inline-block;
+    font-size: small;
+    text-align: center;
+    background-color: $default-lightgrey;
+    padding: 10px;
+    margin-left: 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px; 
+    border-left: 1px solid $default-lightgrey;
+    border-top: 1px solid $default-lightgrey;
+    border-bottom: 1px solid $default-lightgrey;
+    width: 110px;
+    max-width: 110px;
+  }
+
+  .innerContainer:hover {
+    transform: scale(1.02);
+    z-index: 0;
+}
+
+#commentTime {
+    color: $default-blue;
+    border-bottom: solid 1px $default-lightgrey;
+    padding: 5px 0px;
+}
+
+.container {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+#keyInfo {
+    font-weight: bold;
+}
+
+#contact {
+    background-color: $default-blue;
+    color: $default-white;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 2px 5px;
+    word-wrap: break-word;
+}
+
+#contact:hover {
+    background-color: $default-lightblue;
+}
+
+.link {
+    text-decoration: none;
+    color: #8c8c8c;
+}
+
+.link:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.threadLink {
+    text-decoration: none;
+    color: #8c8c8c;
+}
+
+.requirements {
+    color: $default-blue;
+    font-weight: bold;
+    border-bottom: 1px solid $default-lightgrey;
+    padding: 5px 0px;
+}
+
+.descContainer {
+    display: inline-block;
+    font-size: small;
+    background-color: $default-white;
+    width: 100%;
+    border: 1px solid $default-lightgrey;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    position: relative;
+}
+
+
+.projectIdea:hover {
+    background-color: $default-lightgrey;
+    color: black;
+}
+
+.projDesc {
+    font-size: medium;
+}
+
+#threadNo {
+    float: right;
+}
+
+#iconPadding {
+    padding-right: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+#iconPadding:hover {
+    cursor: pointer;
+    fill: white;
+}
+
+.innerContainer {
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.messageContainer {
+    border-radius: 4px; 
+    margin-top: 10px;
+}
+
+.replyButton {
+    float: right;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: inherit;
+    border: none;
+    z-index: 1;
+}
+
+.replyButton:hover {
+    color: $default-lightblue;
+}
+
+.replyText {
+    padding-left: 5px;
+    display: inline-block;
+}
+
+#lastEdited {
+    text-align: right;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #8c8c8c;
+}
+
+.userReply {
+    border-radius: 4px;
+    border: 2px solid $default-lightgrey;
+    padding: 10px;
+    margin: 10px;
+}
+
+.deletedComment {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+    border: 2px solid $default-lightgrey;
+    padding: 10px;
+}
+
+.deletedComment:hover {
+    transform: scale(1.02);
+} 
+
+.userInfoReply {
+    color: $default-blue;
+    display: inline-block;
+    font-size: small;
+    text-align: center;
+    background-color: $default-lightgrey;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px; 
+    border-left: 1px solid $default-lightgrey;
+    border-top: 1px solid $default-lightgrey;
+    border-bottom: 1px solid $default-lightgrey;
+  }
+
+#postReplyButton {
+    color: $default-white;
+    background-color: $default-blue;
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.deleteButton {
+    float: left;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: inherit;
+    border: none;
+}
+
+#buttonContainer {
+    margin-top: 55px;
+}
+
+#postReplyButton:hover {
+    background-color: $default-lightblue;
+}
+
+.replyStyleButtons {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px 0px 10px 10px;
+}
+
+.copyLink {
+    border-radius: 4px;
+    padding: 10px;
+    border-width: 0px;
+}
+
+#shareContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $default-lightgrey;
+    border-radius: 4px;
+}
+
+#clipboardIcon {
+    padding: 10px 10px;
+    display: inline-block;
+    border-right: 1px solid $default-lightgrey;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    cursor: pointer;
+}
+
+#clipboardIcon:hover {
+    background-color: $default-lightgrey;
+}
+
+.quotedText {
+    background-color: #e7e7e7;
+    margin-bottom: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 3px solid $default-blue;
+    border-top: 1px solid $default-lightgrey;
+    border-bottom: 1px solid $default-lightgrey;
+    border-right: 1px solid $default-lightgrey;
+}
+
+.userId {
+    color: $default-blue;
+    font-weight: bold;
+    margin-bottom: 15px;
+}

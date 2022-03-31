@@ -1,8 +1,8 @@
 import useSWR from 'swr';
+import fetcher from '../../utils/fetcher';
 import User, { UserDTO } from '../../types/user';
 import poster from '../../utils/poster';
 import Login from '../../types/login';
-import fetcher from '../../utils/fetcher';
 import { Group } from '../../types/group';
 import Tag, { TagPost, RemoveUserTag } from '../../types/tag';
 

@@ -1,6 +1,7 @@
 import React, { FC, useContext, useMemo } from 'react';
 import Link from 'next/link';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
+import Moment from 'moment';
 import GlobalFilter from '../GlobalFilter';
 import { getRecommendedGroups } from '../../api/users';
 import TablePagination from '../TablePagination';
@@ -16,7 +17,8 @@ const UsersTable:FC = () => {
     },
     {
       Header: 'Created At',
-      accessor: 'createdAt',
+      id: 'createdAt',
+      accessor: (time: any) => Moment(time.updatedAt).format('DD/MM/YYYY, HH:mm'),
     },
     {
       Header: 'Is Closed',
