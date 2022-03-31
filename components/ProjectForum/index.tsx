@@ -66,7 +66,7 @@ const ProjectForum:FC = () => {
         <Row>
           <Col md={8} xs={7}>
             <div id={styles.headingContainer}>
-              Search for available projects posted by students and supervisors
+              Search for available projects and groups posted by students and supervisors
             </div>
           </Col>
           <Col>

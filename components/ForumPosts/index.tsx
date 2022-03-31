@@ -132,7 +132,8 @@ const ForumPosts: FC = () => {
                               path: 'deleted',
                               op: 'replace',
                             }];
-                            patchThread(patchThreadData, threads.threadId);
+                            patchThread(patchThreadData, threads.threadId)
+                              .then(() => location.reload());
                           }}
                         >
                           <div className={styles.deleteIcon}>
@@ -145,6 +146,25 @@ const ForumPosts: FC = () => {
                           </div>
                         </button>
                       </OverlayTrigger>
+                      {
+                        threads.threadStatus ? (
+                          <button
+                            type="button"
+                            className="ml-10 mb-1 bg-inherit border-none hover:text-sky-600"
+                            onClick={() => {
+                              const patchThreadData1 = [{
+                                value: false,
+                                path: 'threadStatus',
+                                op: 'replace',
+                              }];
+                              patchThread(patchThreadData1, threads.threadId)
+                                .then(() => location.reload());
+                            }}
+                          >
+                            Close thread
+                          </button>
+                        ) : (<div />)
+                      }
                     </div>
                   );
                 } return (
@@ -340,7 +360,8 @@ const ForumPosts: FC = () => {
                                 }];
                                 deleteComment(patchCommentData, comment.commentId);
                                 if (threads.replyCount > 0) {
-                                  patchThread(patchReplyData, threads.threadId);
+                                  patchThread(patchReplyData, threads.threadId)
+                                    .then(() => location.reload());
                                 } else {
                                   alert('No more posts to delete');
                                 }
@@ -549,8 +570,7 @@ const ForumPosts: FC = () => {
                                 }];
                                 return (
                                   patchThread(patchData, num));
-                              })))
-                              .then(() => location.reload());
+                              }))).then(() => location.reload());
                           }
                         }
                       >
@@ -585,7 +605,9 @@ const ForumPosts: FC = () => {
                                     </div>
                                     <a href={`mailto:${user.email}`} className={styles.link}>
                                       <div id={styles.contact}>
-                                        {user.email}
+                                        Email
+                                        {' '}
+                                        {user.given_name}
                                       </div>
                                     </a>
                                   </div>
